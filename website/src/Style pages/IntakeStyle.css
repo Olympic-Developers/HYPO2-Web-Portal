@@ -1,0 +1,34 @@
+.info-block {
+  display: block;
+  margin: 20px 0;
+}
+
+.details-block {
+  margin: 5px 0;
+}
+
+body {
+  font-family: sans-serif;
+  margin-left: 15px;
+}
+
+button {
+  margin-bottom: 50px;
+}
+
+label {
+  margin-right: 20px;
+  margin-left: 10px;
+}
+
+.hidden-text {
+  display: none;
+}
+
+.sub-section-para {
+  margin-top: 0px;
+}
+
+.head-section-header {
+  margin-bottom: 0px;
+}
