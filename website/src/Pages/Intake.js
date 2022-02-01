@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import "../Style pages/IntakeStyle.css";
+import Axios from "axios";
 
 function Intake() {
   function checkBoxUpdate(event) {
@@ -14,33 +15,80 @@ function Intake() {
     }
   }
 
+  const [teamName, setTeamName] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [numPerson, setNumPerson] = useState(0);
+  const [country, setCountry] = useState("");
+
+  const submit = () => {
+    Axios.post("http://localhost:3001/intake", {
+      teamName: teamName,
+      startDate: startDate,
+      endDate: endDate,
+      numPerson: numPerson,
+      country: country,
+    }).then(() => {
+      console.log("success");
+    });
+  };
   return (
     <form>
       <h1>General Information</h1>
 
       <span class="info-block">
         <label>Team Name:</label>
-        <input type="text" name="name" />
+        <input
+          type="text"
+          name="name"
+          onChange={(event) => {
+            setTeamName(event.target.value);
+          }}
+        />
       </span>
 
       <span class="info-block">
         <label>Start Date:</label>
-        <input type="date" name="name" />
+        <input
+          type="date"
+          name="name"
+          onChange={(event) => {
+            setStartDate(event.target.value);
+          }}
+        />
       </span>
 
       <span class="info-block">
         <label>End Date: </label>
-        <input type="date" name="name" />
+        <input
+          type="date"
+          name="name"
+          onChange={(event) => {
+            setEndDate(event.target.value);
+          }}
+        />
       </span>
 
       <span class="info-block">
         <label>Number of Personnel: </label>
-        <input type="text" name="name" />
+        <input
+          type="text"
+          name="name"
+          onChange={(event) => {
+            setNumPerson(event.target.value);
+          }}
+        />
       </span>
 
       <span class="info-block">
         <label>Home Country </label>
-        <select id="country" name="country">
+        <select
+          id="country"
+          name="country"
+          onChange={(event) => {
+            setCountry(event.target.value);
+          }}
+        >
           <option value="Afghanistan">Afghanistan</option>
           <option value="Albania">Albania</option>
           <option value="Algeria">Algeria</option>
@@ -859,7 +907,7 @@ function Intake() {
         </div>
       </span>
 
-      <button>Submit</button>
+      <button onClick={submit}>Submit</button>
     </form>
   );
 }
