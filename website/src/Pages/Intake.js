@@ -16,8 +16,8 @@ function Intake() {
   }
 
   const [teamName, setTeamName] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [startDate, setStartDate] = useState({ varOne: new Date() });
+  const [endDate, setEndDate] = useState({ varTwo: new Date() });
   const [numPerson, setNumPerson] = useState(0);
   const [country, setCountry] = useState("");
 

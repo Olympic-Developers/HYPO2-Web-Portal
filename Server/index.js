@@ -21,8 +21,8 @@ app.post("/intake", (req, res) => {
   const country = req.body.country;
 
   db.query(
-    "INSERT INTO GeneralIntake(Team_Name, Num_Personnel, Country) VALUES (?, ?, ?)",
-    [teamName, numPerson, country],
+    "INSERT INTO GeneralIntake(Team_Name, Camp_Date_Start, Camp_Date_End, Num_Personnel, Country) VALUES (?, ?, ?, ?, ?)",
+    [teamName, startDate, endDate, numPerson, country],
     (err, result) => {
       if (err) {
         console.log(err);
