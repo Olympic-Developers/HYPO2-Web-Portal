@@ -36,7 +36,7 @@ function Intake() {
     <form>
       <h1>General Information</h1>
 
-      <span class="info-block">
+      <span className="info-block">
         <label>Team Name:</label>
         <input
           type="text"
@@ -47,7 +47,7 @@ function Intake() {
         />
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <label>Start Date:</label>
         <input
           type="date"
@@ -58,7 +58,7 @@ function Intake() {
         />
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <label>End Date: </label>
         <input
           type="date"
@@ -69,7 +69,7 @@ function Intake() {
         />
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <label>Number of Personnel: </label>
         <input
           type="text"
@@ -80,7 +80,7 @@ function Intake() {
         />
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <label>Home Country </label>
         <select
           id="country"
@@ -346,44 +346,44 @@ function Intake() {
         </select>
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <label>Name of Main Contact Person: </label>
         <input type="text" name="name" />
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <label>Main Contact Person E-mail:</label>
         <input type="text" name="name" />
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <label>Main Contact Person Phone:</label>
         <input type="tel" name="name" />
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <label>Name of On-site Contact Person (if different than above):</label>
         <input type="text" name="name" />
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <label>On-site Contact Person E-mail: </label>
         <input type="text" name="name" />
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <label>On-site Contact Person Mobile Number: </label>
         <input type="tel" name="name" />
       </span>
 
-      <h1 class="head-section-header">Core Training Camp Needs</h1>
-      <p class="sub-section-para">
+      <h1 className="head-section-header">Core Training Camp Needs</h1>
+      <p className="sub-section-para">
         (please check all desired training camp options)
       </p>
 
       <h3>Accommodations</h3>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -394,7 +394,7 @@ function Intake() {
           university training venues)
         </label>
 
-        <div id="hotelCheckBoxInput" class="hidden-text details-block">
+        <div id="hotelCheckBoxInput" className="hidden-text details-block">
           <label>details if needed:</label>
           <input
             type="text"
@@ -403,7 +403,7 @@ function Intake() {
         </div>
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -414,7 +414,7 @@ function Intake() {
           university training venues)
         </label>
 
-        <div id="condoCheckBoxInput" class="hidden-text details-block">
+        <div id="condoCheckBoxInput" className="hidden-text details-block">
           <label>details if needed:</label>
           <input type="text" />
         </div>
@@ -422,7 +422,7 @@ function Intake() {
 
       <h3>Food/ Dining Services</h3>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -430,13 +430,13 @@ function Intake() {
         />
         <label>University cafeteria (all-you-can-eat buffet)</label>
 
-        <div id="cafeCheckBoxInput" class="hidden-text details-block">
+        <div id="cafeCheckBoxInput" className="hidden-text details-block">
           <label>details if needed:</label>
           <input type="text" />
         </div>
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -447,7 +447,7 @@ function Intake() {
           consultation with team nutritionist)
         </label>
 
-        <div id="cateringCheckBoxInput" class="hidden-text details-block">
+        <div id="cateringCheckBoxInput" className="hidden-text details-block">
           <label>details if needed:</label>
           <input type="text" />
         </div>
@@ -455,7 +455,7 @@ function Intake() {
 
       <h3>Ground Transportation</h3>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -466,13 +466,13 @@ function Intake() {
           with unlimited capacity)
         </label>
 
-        <div id="charterCheckBoxInput" class="hidden-text details-block">
+        <div id="charterCheckBoxInput" className="hidden-text details-block">
           <label>details if needed:</label>
           <input type="text" />
         </div>
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -483,13 +483,13 @@ function Intake() {
           capacity 14 people/shuttle)
         </label>
 
-        <div id="shuttleCheckBoxInput" class="hidden-text details-block">
+        <div id="shuttleCheckBoxInput" className="hidden-text details-block">
           <label>details if needed:</label>
           <input type="text" />
         </div>
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -497,13 +497,13 @@ function Intake() {
         />
         <label>Rental vehicles</label>
 
-        <div id="rentalCheckBoxInput" class="hidden-text details-block">
+        <div id="rentalCheckBoxInput" className="hidden-text details-block">
           <label>details if needed:</label>
           <input type="text" />
         </div>
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -514,20 +514,22 @@ function Intake() {
           campus)
         </label>
 
-        <div id="uniParkingCheckBoxInput" class="hidden-text details-block">
+        <div id="uniParkingCheckBoxInput" className="hidden-text details-block">
           <label>details if needed:</label>
           <input type="text" />
         </div>
       </span>
 
-      <h1 class="head-section-header">Additional High Performance Services</h1>
-      <p class="sub-section-para">
+      <h1 className="head-section-header">
+        Additional High Performance Services
+      </h1>
+      <p className="sub-section-para">
         (please check all desired training camp options)
       </p>
 
       <h3>Sports Med Services</h3>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -535,13 +537,13 @@ function Intake() {
         />
         <label>Massage Therapy</label>
 
-        <div id="massageCheckBoxInput" class="hidden-text details-block">
+        <div id="massageCheckBoxInput" className="hidden-text details-block">
           <label>details if needed:</label>
           <input type="text" />
         </div>
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -549,13 +551,16 @@ function Intake() {
         />
         <label>Physiotherapy/Chiropractic Rehab/Prehab</label>
 
-        <div id="physiotherapyCheckBoxInput" class="hidden-text details-block">
+        <div
+          id="physiotherapyCheckBoxInput"
+          className="hidden-text details-block"
+        >
           <label>details if needed:</label>
           <input type="text" />
         </div>
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -563,13 +568,16 @@ function Intake() {
         />
         <label>Strength & Conditioning Coaching (Sport-Specific)</label>
 
-        <div id="strengthCoachCheckBoxInput" class="hidden-text details-block">
+        <div
+          id="strengthCoachCheckBoxInput"
+          className="hidden-text details-block"
+        >
           <label>details if needed:</label>
           <input type="text" />
         </div>
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -577,13 +585,16 @@ function Intake() {
         />
         <label>Orthopaedic Care</label>
 
-        <div id="orthopaedicCheckBoxInput" class="hidden-text details-block">
+        <div
+          id="orthopaedicCheckBoxInput"
+          className="hidden-text details-block"
+        >
           <label>details if needed:</label>
           <input type="text" />
         </div>
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -591,7 +602,10 @@ function Intake() {
         />
         <label>Primary Medical Care</label>
 
-        <div id="primaryMedicalCheckBoxInput" class="hidden-text details-block">
+        <div
+          id="primaryMedicalCheckBoxInput"
+          className="hidden-text details-block"
+        >
           <label>details if needed:</label>
           <input type="text" />
         </div>
@@ -599,7 +613,7 @@ function Intake() {
 
       <h3>Blood Testing / Biomarkers</h3>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -607,13 +621,13 @@ function Intake() {
         />
         <label>Total Hemoglobin Mass Testing (via CO Rebreathing method)</label>
 
-        <div id="hemoglobinCheckBoxInput" class="hidden-text details-block">
+        <div id="hemoglobinCheckBoxInput" className="hidden-text details-block">
           <label>details if needed:</label>
           <input type="text" />
         </div>
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -623,13 +637,13 @@ function Intake() {
           Complete Blood Profile (includes RBC, WBC, Hematocrit, Hemoglobin, etc
         </label>
 
-        <div id="hemoglobinCheckBoxInput" class="hidden-text details-block">
+        <div id="hemoglobinCheckBoxInput" className="hidden-text details-block">
           <label>details if needed:</label>
           <input type="text" />
         </div>
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -641,13 +655,13 @@ function Intake() {
           Glucose, Potassium, Total Protein, Sodium, etc)
         </label>
 
-        <div id="metabolicCheckBoxInput" class="hidden-text details-block">
+        <div id="metabolicCheckBoxInput" className="hidden-text details-block">
           <label>details if needed:</label>
           <input type="text" />
         </div>
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -655,13 +669,13 @@ function Intake() {
         />
         <label>Ferritin/Iron/Total iron Binding Capacity (TIBC)</label>
 
-        <div id="ferritinCheckBoxInput" class="hidden-text details-block">
+        <div id="ferritinCheckBoxInput" className="hidden-text details-block">
           <label>details if needed:</label>
           <input type="text" />
         </div>
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -669,13 +683,13 @@ function Intake() {
         />
         <label>Creatine Kinase (CK/CPK)</label>
 
-        <div id="creatineCheckBoxInput" class="hidden-text details-block">
+        <div id="creatineCheckBoxInput" className="hidden-text details-block">
           <label>details if needed:</label>
           <input type="text" />
         </div>
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -683,7 +697,7 @@ function Intake() {
         />
         <label>Other - Please specify</label>
 
-        <div id="otherBloodCheckBoxInput" class="hidden-text details-block">
+        <div id="otherBloodCheckBoxInput" className="hidden-text details-block">
           <label>details if needed:</label>
           <input type="text" />
         </div>
@@ -691,7 +705,7 @@ function Intake() {
 
       <h3>Physiological Testing</h3>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -699,13 +713,13 @@ function Intake() {
         />
         <label>VO2 & Lactate Combined</label>
 
-        <div id="VO2LactateCheckBoxInput" class="hidden-text details-block">
+        <div id="VO2LactateCheckBoxInput" className="hidden-text details-block">
           <label>details if needed:</label>
           <input type="text" />
         </div>
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -713,13 +727,13 @@ function Intake() {
         />
         <label>VO2 Threshold</label>
 
-        <div id="VO2CheckBoxInput" class="hidden-text details-block">
+        <div id="VO2CheckBoxInput" className="hidden-text details-block">
           <label>details if needed:</label>
           <input type="text" />
         </div>
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -727,13 +741,13 @@ function Intake() {
         />
         <label>Lactate Threshold</label>
 
-        <div id="lactateCheckBoxInput" class="hidden-text details-block">
+        <div id="lactateCheckBoxInput" className="hidden-text details-block">
           <label>details if needed:</label>
           <input type="text" />
         </div>
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -741,7 +755,10 @@ function Intake() {
         />
         <label>Supplemental O2 for Training / Recovery</label>
 
-        <div id="supplementalCheckBoxInput" class="hidden-text details-block">
+        <div
+          id="supplementalCheckBoxInput"
+          className="hidden-text details-block"
+        >
           <label>details if needed:</label>
           <input type="text" />
         </div>
@@ -749,7 +766,7 @@ function Intake() {
 
       <h3>Sport Nutrition</h3>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -759,14 +776,14 @@ function Intake() {
 
         <div
           id="integratedTrainingCheckBoxInput"
-          class="hidden-text details-block"
+          className="hidden-text details-block"
         >
           <label>details if needed:</label>
           <input type="text" />
         </div>
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -776,7 +793,7 @@ function Intake() {
 
         <div
           id="nutritionWorkshopCheckBoxInput"
-          class="hidden-text details-block"
+          className="hidden-text details-block"
         >
           <label>details if needed:</label>
           <input type="text" />
@@ -785,7 +802,7 @@ function Intake() {
 
       <h3>Sport Psychology / Mental Performance</h3>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -795,14 +812,14 @@ function Intake() {
 
         <div
           id="individualConsultationCheckBoxInput"
-          class="hidden-text details-block"
+          className="hidden-text details-block"
         >
           <label>details if needed:</label>
           <input type="text" />
         </div>
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -810,13 +827,16 @@ function Intake() {
         />
         <label>Group Presentation or Workshop</label>
 
-        <div id="mentalWorkshopCheckBoxInput" class="hidden-text details-block">
+        <div
+          id="mentalWorkshopCheckBoxInput"
+          className="hidden-text details-block"
+        >
           <label>details if needed:</label>
           <input type="text" />
         </div>
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -824,7 +844,10 @@ function Intake() {
         />
         <label>Team Focus Session</label>
 
-        <div id="focusSessionCheckBoxInput" class="hidden-text details-block">
+        <div
+          id="focusSessionCheckBoxInput"
+          className="hidden-text details-block"
+        >
           <label>details if needed:</label>
           <input type="text" />
         </div>
@@ -832,7 +855,7 @@ function Intake() {
 
       <h3>Miscellaneous Needs</h3>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -842,13 +865,16 @@ function Intake() {
           Meeting room Space (for team meetings, on-site physio, etc.)
         </label>
 
-        <div id="meetingRoomCheckBoxInput" class="hidden-text details-block">
+        <div
+          id="meetingRoomCheckBoxInput"
+          className="hidden-text details-block"
+        >
           <label>details if needed:</label>
           <input type="text" />
         </div>
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -858,14 +884,14 @@ function Intake() {
 
         <div
           id="equipmentStoredCheckBoxInput"
-          class="hidden-text details-block"
+          className="hidden-text details-block"
         >
           <label>details if needed:</label>
           <input type="text" />
         </div>
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -873,13 +899,13 @@ function Intake() {
         />
         <label>Day Trips / Excursions</label>
 
-        <div id="dayTripCheckBoxInput" class="hidden-text details-block">
+        <div id="dayTripCheckBoxInput" className="hidden-text details-block">
           <label>details if needed:</label>
           <input type="text" />
         </div>
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -887,13 +913,16 @@ function Intake() {
         />
         <label>Team Building Exercises</label>
 
-        <div id="teamExercisesCheckBoxInput" class="hidden-text details-block">
+        <div
+          id="teamExercisesCheckBoxInput"
+          className="hidden-text details-block"
+        >
           <label>details if needed:</label>
           <input type="text" />
         </div>
       </span>
 
-      <span class="info-block">
+      <span className="info-block">
         <input
           type="checkbox"
           onClick={checkBoxUpdate}
@@ -901,7 +930,7 @@ function Intake() {
         />
         <label>Other (please specify)</label>
 
-        <div id="miscOtherCheckBoxInput" class="hidden-text details-block">
+        <div id="miscOtherCheckBoxInput" className="hidden-text details-block">
           <label>details if needed:</label>
           <input type="text" />
         </div>
