@@ -1,0 +1,11 @@
+{
+  "auth": {
+    "websitef1dfeaad": {
+      "service": "Cognito",
+      "serviceType": "imported",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}
