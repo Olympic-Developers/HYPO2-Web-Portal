@@ -21,6 +21,8 @@ function Intake() {
   const [numPerson, setNumPerson] = useState(0);
   const [country, setCountry] = useState("");
 
+  const [sumList, setSumList] = useState([]);
+
   const submit = () => {
     Axios.post("http://localhost:3001/intake", {
       teamName: teamName,
@@ -30,6 +32,12 @@ function Intake() {
       country: country,
     }).then(() => {
       console.log("success");
+    });
+  };
+
+  const getSummary = () => {
+    Axios.get("http://localhost:3001/summary", {}).then((response) => {
+      console.log(response);
     });
   };
   return (
@@ -937,6 +945,10 @@ function Intake() {
       </span>
 
       <button onClick={submit}>Submit</button>
+      <button onClick={getSummary}>Summary</button>
+      {sumList.map((val, key) => {
+        return <div> {val.teamName} </div>;
+      })}
     </form>
   );
 }
