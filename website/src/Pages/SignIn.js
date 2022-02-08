@@ -10,6 +10,11 @@ function App() {
   const [password, setPassword] = useState("");
 
   let navigate = useNavigate();
+  
+  // Set default value for authenticated and navigate
+  window.sessionStorage.setItem("authenticated", "false");
+  window.sessionStorage.setItem("username", "nouser");
+  window.sessionStorage.setItem("classification", "nouserclassification");
 
   // Function for signing in users
   async function signIn() {

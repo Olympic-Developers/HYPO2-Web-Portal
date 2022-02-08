@@ -7,11 +7,6 @@ import AdminProfile from "./Pages/Profile Pages/AdminProfile";
 import ClientProfile from "./Pages/Profile Pages/ClientProfile";
 
 function App() {
-  // Set default value for authenticated and navigate
-  window.sessionStorage.setItem("authenticated", "false");
-  window.sessionStorage.setItem("username", "nouser");
-  window.sessionStorage.setItem("classification", "nouserclassification");
-
   return (
     <Router>
       <Routes>
