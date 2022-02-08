@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Auth } from "aws-amplify";
 import { useNavigate } from "react-router-dom";
+import { authCheckClient } from "../../Components/UserInfoAndAuth";
 
 function App() {
   // Try to set this all off to a component used in all Profile pages
@@ -9,27 +10,13 @@ function App() {
   let navigate = useNavigate();
 
   // Set constants
-  const authenticated = window.sessionStorage.getItem("authenticated");
   const lowerCasedUserName = window.sessionStorage
     .getItem("username")
-    .toLowerCase();
-  const lowerCasedClassification = window.sessionStorage
-    .getItem("classification")
     .toLowerCase();
 
   // useEffect used for checking for authenticated and proper classification
   useEffect(() => {
-    // user not authenticated or not proper classification
-    if (authenticated !== "true" || lowerCasedClassification !== "client") {
-      // user try to access this through a route in HYPO2 web Portal
-      if (authenticated !== "false") {
-        navigate(-1);
-      }
-      // Tried to access this page from a outside website
-      else {
-        navigate("/");
-      }
-    }
+    authCheckClient(navigate);
   });
 
   // For signing out users
@@ -47,12 +34,22 @@ function App() {
   return (
     <div>
       <h1>Hello {lowerCasedUserName} welcome to your Team Page</h1>
+      <div>
+        <button
+          style={{ marginBottom: "10px " }}
+          onClick={() => {
+            signOut();
+          }}
+        >
+          Sign out
+        </button>
+      </div>
       <button
         onClick={() => {
-          signOut();
+          navigate("/ClientProfile/Intake");
         }}
       >
-        Sign out
+        Create a Camp!
       </button>
     </div>
   );

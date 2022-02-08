@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Auth } from "aws-amplify";
 import { useNavigate } from "react-router-dom";
+import { authCheckStaff } from "../../Components/UserInfoAndAuth";
 
 function App() {
   // try to set this all off to a component used in all Profile pages
@@ -9,27 +10,13 @@ function App() {
   let navigate = useNavigate();
 
   // Set constants
-  const authenticated = window.sessionStorage.getItem("authenticated");
   const lowerCasedUserName = window.sessionStorage
     .getItem("username")
-    .toLowerCase();
-  const lowerCasedClassification = window.sessionStorage
-    .getItem("classification")
     .toLowerCase();
 
   // useEffect used for checking for authenticated and proper classification
   useEffect(() => {
-    // user not authenticated or not proper classification
-    if (authenticated !== "true" || lowerCasedClassification !== "staff") {
-      // user try to access this through a route in HYPO2 web Portal
-      if (authenticated !== "false") {
-        navigate(-1);
-      }
-      // Tried to access this page from a outside website
-      else {
-        navigate("/");
-      }
-    }
+    authCheckStaff(navigate);
   });
 
   // For signing out users

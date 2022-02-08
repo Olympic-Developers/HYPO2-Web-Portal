@@ -7,14 +7,21 @@ import AdminProfile from "./Pages/Profile Pages/AdminProfile";
 import ClientProfile from "./Pages/Profile Pages/ClientProfile";
 
 function App() {
+  // Set default value for authenticated and navigate
+  window.sessionStorage.setItem("authenticated", "false");
+  window.sessionStorage.setItem("username", "nouser");
+  window.sessionStorage.setItem("classification", "nouserclassification");
+
   return (
     <Router>
       <Routes>
         <Route path="/" element={<SignIn />} />
-        <Route path="/Intake" element={<Intake />} />
-        <Route path="/StaffProfile" element={<StaffProfile />} />
+        <Route path="/ClientProfile">
+          <Route index={true} element={<ClientProfile />} />
+          <Route index={false} path="Intake" element={<Intake />} />
+        </Route>
         <Route path="/AdminProfile" element={<AdminProfile />} />
-        <Route path="/ClientProfile" element={<ClientProfile />} />
+        <Route path="/StaffProfile" element={<StaffProfile />} />
       </Routes>
     </Router>
   );

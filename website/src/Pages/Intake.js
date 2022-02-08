@@ -1,8 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../Style pages/IntakeStyle.css";
 import Axios from "axios";
+import { authCheckClient } from "../Components/UserInfoAndAuth";
+import { useNavigate } from "react-router-dom";
 
 function Intake() {
+  let navigate = useNavigate();
+
+  useEffect(() => {
+    authCheckClient(navigate);
+  });
+
   function checkBoxUpdate(event) {
     let Input = document.getElementById(
       event.currentTarget.dataset.id + "Input"
