@@ -11,7 +11,7 @@ export const authCheckAdmin = (navigate) => {
     // Checking if user is allowed here
     if (
       getSessionStorage("authenticated") !== "true" ||
-      getSessionStorage("classification") !== "admin"
+      getSessionStorage("classification").toLowerCase() !== "admin"
     ) {
       // Redirect back one page
       navigate(-1);
@@ -32,7 +32,7 @@ export const authCheckClient = (navigate) => {
     // Checking if user is allowed here
     if (
       getSessionStorage("authenticated") !== "true" ||
-      getSessionStorage("classification") !== "client"
+      getSessionStorage("classification").toLowerCase() !== "client"
     ) {
       // Redirect back one page
       navigate(-1);
@@ -53,7 +53,7 @@ export const authCheckStaff = (navigate) => {
     // Checking if user is allowed here
     if (
       getSessionStorage("authenticated") !== "true" ||
-      getSessionStorage("classification") !== "staff"
+      getSessionStorage("classification").toLowerCase() !== "staff"
     ) {
       // Redirect back one page
       navigate(-1);
@@ -68,5 +68,5 @@ export const getSessionStorage = (variableName) => {
 };
 
 export const setSessionStorage = (variableName, item) => {
-  return window.sessionStorage.setItem(variableName, item);
+  window.sessionStorage.setItem(variableName, item);
 };

@@ -27,18 +27,28 @@ function App() {
     }
   }
 
-  return (
-    <div>
-      <h1>Hello {getSessionStorage("username")} welcome to your Staff Page</h1>
-      <button
-        onClick={() => {
-          signOut();
-        }}
-      >
-        Sign out
-      </button>
-    </div>
-  );
+  if (
+    getSessionStorage("authenticated") === "true" &&
+    getSessionStorage("classification").toLowerCase() === "staff"
+  ) {
+    return (
+      <div>
+        <h1>
+          Hello {getSessionStorage("username").toLowerCase()} welcome to your
+          Staff Page
+        </h1>
+        <button
+          onClick={() => {
+            signOut();
+          }}
+        >
+          Sign out
+        </button>
+      </div>
+    );
+  } else {
+    return null;
+  }
 }
 
 export default App;

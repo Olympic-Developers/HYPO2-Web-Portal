@@ -27,28 +27,38 @@ function App() {
     }
   }
 
-  return (
-    <div>
-      <h1>Hello {getSessionStorage("username")} welcome to your Team Page</h1>
+  if (
+    getSessionStorage("authenticated") === "true" &&
+    getSessionStorage("classification").toLowerCase() === "client"
+  ) {
+    return (
       <div>
+        <h1>
+          Hello {getSessionStorage("username").toLowerCase()} welcome to your
+          Team Page
+        </h1>
+        <div>
+          <button
+            style={{ marginBottom: "10px " }}
+            onClick={() => {
+              signOut();
+            }}
+          >
+            Sign out
+          </button>
+        </div>
         <button
-          style={{ marginBottom: "10px " }}
           onClick={() => {
-            signOut();
+            navigate("/ClientProfile/Intake");
           }}
         >
-          Sign out
+          Create a Camp!
         </button>
       </div>
-      <button
-        onClick={() => {
-          navigate("/ClientProfile/Intake");
-        }}
-      >
-        Create a Camp!
-      </button>
-    </div>
-  );
+    );
+  } else {
+    return null;
+  }
 }
 
 export default App;
