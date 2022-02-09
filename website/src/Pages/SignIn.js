@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Amplify, Auth } from "aws-amplify";
 import { useNavigate } from "react-router-dom";
 import awsExports from "../aws-exports";
+import { setSessionStorage } from "../Components/UserInfoAndAuth";
 Amplify.configure(awsExports);
 
 function App() {
@@ -10,11 +11,11 @@ function App() {
   const [password, setPassword] = useState("");
 
   let navigate = useNavigate();
-  
+
   // Set default value for authenticated and navigate
-  window.sessionStorage.setItem("authenticated", "false");
-  window.sessionStorage.setItem("username", "nouser");
-  window.sessionStorage.setItem("classification", "nouserclassification");
+  setSessionStorage("authenticated", "false");
+  setSessionStorage("username", "nouser");
+  setSessionStorage("classification", "nouserclassification");
 
   // Function for signing in users
   async function signIn() {
@@ -23,9 +24,9 @@ function App() {
       const user = await Auth.signIn(username, password);
 
       // Storing information needed for user
-      window.sessionStorage.setItem("username", username);
-      window.sessionStorage.setItem("authenticated", "true");
-      window.sessionStorage.setItem(
+      setSessionStorage("username", username);
+      setSessionStorage("authenticated", "true");
+      setSessionStorage(
         "classification",
         user.attributes["custom:Classification"]
       );

@@ -1,18 +1,14 @@
 import React, { useEffect } from "react";
 import { Auth } from "aws-amplify";
 import { useNavigate } from "react-router-dom";
-import { authCheckStaff } from "../../Components/UserInfoAndAuth";
+import {
+  authCheckStaff,
+  getSessionStorage,
+} from "../../Components/UserInfoAndAuth";
 
 function App() {
-  // try to set this all off to a component used in all Profile pages
-
   // Set default value for navigate
   let navigate = useNavigate();
-
-  // Set constants
-  const lowerCasedUserName = window.sessionStorage
-    .getItem("username")
-    .toLowerCase();
 
   // useEffect used for checking for authenticated and proper classification
   useEffect(() => {
@@ -33,7 +29,7 @@ function App() {
 
   return (
     <div>
-      <h1>Hello {lowerCasedUserName} welcome to your Staff Page</h1>
+      <h1>Hello {getSessionStorage("username")} welcome to your Staff Page</h1>
       <button
         onClick={() => {
           signOut();
