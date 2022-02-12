@@ -479,34 +479,70 @@ function Intake() {
 
         <span className="info-block">
           <label>Name of Main Contact Person: </label>
-          <input type="text" name="name" />
+          <input
+            type="text"
+            name="name"
+            onChange={(event) => {
+              setContactName(event.target.value);
+            }}
+          />
         </span>
 
         <span className="info-block">
           <label>Main Contact Person E-mail:</label>
-          <input type="text" name="name" />
+          <input
+            type="text"
+            name="name"
+            onChange={(event) => {
+              setContactEmail(event.target.value);
+            }}
+          />
         </span>
 
         <span className="info-block">
           <label>Main Contact Person Phone:</label>
-          <input type="tel" name="name" />
+          <input
+            type="tel"
+            name="name"
+            onChange={(event) => {
+              setContactPhone(event.target.value);
+            }}
+          />
         </span>
 
         <span className="info-block">
           <label>
             Name of On-site Contact Person (if different than above):
           </label>
-          <input type="text" name="name" />
+          <input
+            type="text"
+            name="name"
+            onChange={(event) => {
+              setOnSiteName(event.target.value);
+            }}
+          />
         </span>
 
         <span className="info-block">
           <label>On-site Contact Person E-mail: </label>
-          <input type="text" name="name" />
+          <input
+            type="text"
+            name="name"
+            onChange={(event) => {
+              setOnSiteEmail(event.target.value);
+            }}
+          />
         </span>
 
         <span className="info-block">
           <label>On-site Contact Person Mobile Number: </label>
-          <input type="text" name="name" />
+          <input
+            type="text"
+            name="name"
+            onChange={(event) => {
+              setOnSitePhone(event.target.value);
+            }}
+          />
         </span>
 
         <h1 className="head-section-header">Core Training Camp Needs</h1>
