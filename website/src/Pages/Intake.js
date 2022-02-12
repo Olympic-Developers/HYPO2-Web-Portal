@@ -24,21 +24,128 @@ function Intake() {
     }
   }
 
+  // TO-DO: Declare Camp_ID?
+
+  // GeneralIntake Table Declarations
   const [teamName, setTeamName] = useState("");
   const [startDate, setStartDate] = useState({ varOne: new Date() });
   const [endDate, setEndDate] = useState({ varTwo: new Date() });
   const [numPerson, setNumPerson] = useState(0);
   const [country, setCountry] = useState("");
+  const [contactName, setContactName] = useState("");
+  const [contactEmail, setContactEmail] = useState("");
+  const [contactPhone, setContactPhone] = useState("");
+  const [onSiteName, setOnSiteName] = useState("");
+  const [onSiteEmail, setOnSiteEmail] = useState("");
+  const [onSitePhone, setOnSitePhone] = useState("");
 
+  // CampCoreNeeds Table Declarations
+  const [hotelAccom, setHotelAccom] = useState(false);
+  const [condoAccom, setCondoAccom] = useState(0);
+  const [univCafeteria, setUnivCafeteria] = useState(false);
+  const [catering, setCatering] = useState(false);
+  const [charterTransport, setCharterTransport] = useState(false);
+  const [indivShuttle, setIndivShuttle] = useState(false);
+  const [rental, setRental] = useState(false);
+  const [permit, setPermit] = useState(false);
+  const [pool50M, setPool50M] = useState(0);
+  const [track400M, setTrack400M] = useState(false);
+  const [track300M, setTrack300M] = useState(false);
+  const [gym, setGym] = useState(false);
+  const [outdoorFieldGrass, setOutdoorFieldGrass] = useState(false);
+  const [outdoorFieldTurf, setOutdoorFieldTurf] = useState(false);
+  const [indoorFieldTurf, setIndoorFieldTurf] = useState(false);
+  const [courtSpace, setCourtSpace] = useState(false);
+  const [courtUsage, setCourtUsage] = useState(0);
+  const [antiGravTread, setAntiGravTread] = useState(false);
+
+  // AdditionalServices table Declarations
+  const [massageTherapy, setMassageTherapy] = useState(false);
+  const [physioTherapy, setPhysioTherapy] = useState(false);
+  const [strengthCond, setStrengthCond] = useState(false);
+  const [orthoCare, setOrthoCare] = useState(false);
+  const [primMedCare, setPrimMedCare] = useState(false);
+  const [hemoTest, setHemoTest] = useState(false);
+  const [compBloodProf, setCompBloodProf] = useState(false);
+  const [metaPanel, setMetaPanel] = useState(false);
+  const [TBIC, setTBIC] = useState(false);
+  const [creatineKinase, setCreatineKinase] = useState(false);
+  const [VO2Lactate, setVO2Lactate] = useState(false);
+  const [VO2Thresh, setVO2Thresh] = useState(false);
+  const [suppO2, setSuppO2] = useState(false);
+  const [intTrainDietAnalysis, setIntTrainDietAnalysis] = useState(false);
+  const [nutritionGroupPresWS, setNutritionGroupPresWS] = useState(false);
+  const [individualPyschConsult, setIndividualPyschConsult] = useState(false);
+  const [pyschGroupPresWS, setPyschGroupPresWS] = useState(false);
+  const [meetingSpace, setMeetingSpace] = useState(false);
+  const [equipStored, setEquipStored] = useState(false);
+  const [dayTripExcur, setDayTripExcur] = useState(false);
+  const [teamBuildExcer, setTeamBuildExcer] = useState(false);
+  const [otherInfo, setOtherInfo] = useState(false);
+  const [other, setOther] = useState("");
+
+  // Other Declarations
   const [sumList, setSumList] = useState([]);
 
   const submit = () => {
     Axios.post("http://localhost:3001/intake", {
+      // GeneralIntake Table Posts
       teamName: teamName,
       startDate: startDate,
       endDate: endDate,
       numPerson: numPerson,
       country: country,
+      contactName: contactName,
+      contactEmail: contactEmail,
+      contactPhone: contactPhone,
+      onSiteName: onSiteName,
+      onSiteEmail: onSiteEmail,
+      onSitePhone: onSitePhone,
+
+      // CoreCampNeeds Table Posts
+      hotelAccom: hotelAccom,
+      condoAccom: condoAccom,
+      univCafeteria: univCafeteria,
+      catering: catering,
+      charterTransport: charterTransport,
+      indivShuttle: indivShuttle,
+      rental: rental,
+      permit: permit,
+      pool50M: pool50M,
+      track400M: track400M,
+      track300M: track300M,
+      gym: gym,
+      outdoorFieldGrass: outdoorFieldGrass,
+      outdoorFieldTurf: outdoorFieldTurf,
+      indoorFieldTurf: indoorFieldTurf,
+      courtSpace: courtSpace,
+      courtUsage: courtUsage,
+      antiGravTread: antiGravTread,
+
+      // AdditionalServices Table Posts
+      massageTherapy: massageTherapy,
+      physioTherapy: physioTherapy,
+      strengthCond: strengthCond,
+      orthoCare: orthoCare,
+      primMedCare: primMedCare,
+      hemoTest: hemoTest,
+      compBloodProf: compBloodProf,
+      metaPanel: metaPanel,
+      TBIC: TBIC,
+      creatineKinase: creatineKinase,
+      VO2Lactate: VO2Lactate,
+      VO2Thresh: VO2Thresh,
+      suppO2: suppO2,
+      intTrainDietAnalysis: intTrainDietAnalysis,
+      nutritionGroupPresWS: nutritionGroupPresWS,
+      individualPyschConsult: individualPyschConsult,
+      pyschGroupPresWS: pyschGroupPresWS,
+      meetingSpace: meetingSpace,
+      equipStored: equipStored,
+      dayTripExcur: dayTripExcur,
+      teamBuildExcer: teamBuildExcer,
+      otherInfo: otherInfo,
+      other: other,
     }).then(() => {
       console.log("success");
     });
@@ -399,7 +506,7 @@ function Intake() {
 
         <span className="info-block">
           <label>On-site Contact Person Mobile Number: </label>
-          <input type="tel" name="name" />
+          <input type="text" name="name" />
         </span>
 
         <h1 className="head-section-header">Core Training Camp Needs</h1>
