@@ -44,6 +44,31 @@ app.post("/intake", (req, res) => {
   const courtSpace = req.body.courtSpace;
   const courtUsage = req.body.courtUsage;
   const antiGravTread = req.body.antiGravTread;
+  const massageTherapy = req.body.massageTherapy;
+  const physioTherapy = req.body.physioTherapy;
+  const strengthCond = req.body.strengthCond;
+  const orthoCare = req.body.orthoCare;
+  const primMedCare = req.body.primMedCare;
+  const hemoTest = req.body.hemoTest;
+  const compBloodProf = req.body.compBloodProf;
+  const metaPanel = req.body.metaPanel;
+  const TBIC = req.body.TBIC;
+  const creatineKinase = req.body.creatineKinase;
+  const VO2Lactate = req.body.VO2Lactate;
+  const VO2Thresh = req.body.VO2Thresh;
+  const LactateThresh = req.body.LactateThresh;
+  const suppO2 = req.body.suppO2;
+  const intTrainDietAnalysis = req.body.intTrainDietAnalysis;
+  const nutritionGroupPresWS = req.body.nutritionGroupPresWS;
+  const individualPyschConsult = req.body.individualPyschConsult;
+  const pyschGroupPresWS = req.body.pyschGroupPresWS;
+  const focusSession = req.body.focusSession;
+  const meetingSpace = req.body.meetingSpace;
+  const equipStored = req.body.equipStored;
+  const dayTripExcur = req.body.dayTripExcur;
+  const teamBuildExcer = req.body.teamBuildExcer;
+  const otherInfo = req.body.otherInfo;
+  const other = req.body.other;
 
   db.query(
     "INSERT INTO GeneralIntake(Team_Name, Camp_Date_Start, Camp_Date_End, Num_Personnel, Country, Contact_Name, Contact_Email, Contact_Phone, OnSite_Name, OnSite_Email, OnSite_Phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
@@ -90,6 +115,43 @@ app.post("/intake", (req, res) => {
       courtSpace,
       courtUsage,
       antiGravTread,
+    ],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send("Values Inserted");
+      }
+    }
+  );
+
+  db.query(
+    "INSERT INTO AdditionalServices (Team_Name, Massage_Therapy, Physio_Therapy, Strength_Cond, Ortho_Care, Prim_Med_Care, Hemo_Test, Comp_Blood_Prof, Meta_Panel, TIBC, Creatine_Kinase, other, VO2_Lactate, VO2_Thresh, Lactate_Thresh, Supp_O2, Int_train_diet_analysis, Nutrition_Group_Pres_WS, Pysch_Group_Pres_WS, Meeting_Space, Equip_Stored, Day_trip_Excur, Team_Build_Excer, otherInfo)VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    [
+      teamName,
+      massageTherapy,
+      physioTherapy,
+      strengthCond,
+      orthoCare,
+      primMedCare,
+      hemoTest,
+      compBloodProf,
+      metaPanel,
+      TBIC,
+      creatineKinase,
+      other,
+      VO2Lactate,
+      VO2Thresh,
+      LactateThresh,
+      suppO2,
+      intTrainDietAnalysis,
+      nutritionGroupPresWS,
+      pyschGroupPresWS,
+      meetingSpace,
+      equipStored,
+      dayTripExcur,
+      teamBuildExcer,
+      otherInfo,
     ],
     (err, result) => {
       if (err) {

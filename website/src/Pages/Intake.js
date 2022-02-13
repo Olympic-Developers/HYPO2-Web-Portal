@@ -72,11 +72,13 @@ function Intake() {
   const [creatineKinase, setCreatineKinase] = useState(false);
   const [VO2Lactate, setVO2Lactate] = useState(false);
   const [VO2Thresh, setVO2Thresh] = useState(false);
+  const [LactateThresh, setLactateThresh] = useState(false);
   const [suppO2, setSuppO2] = useState(false);
   const [intTrainDietAnalysis, setIntTrainDietAnalysis] = useState(false);
   const [nutritionGroupPresWS, setNutritionGroupPresWS] = useState(false);
   const [individualPyschConsult, setIndividualPyschConsult] = useState(false);
   const [pyschGroupPresWS, setPyschGroupPresWS] = useState(false);
+  const [focusSession, setFocusSession] = useState(false);
   const [meetingSpace, setMeetingSpace] = useState(false);
   const [equipStored, setEquipStored] = useState(false);
   const [dayTripExcur, setDayTripExcur] = useState(false);
@@ -135,11 +137,13 @@ function Intake() {
       creatineKinase: creatineKinase,
       VO2Lactate: VO2Lactate,
       VO2Thresh: VO2Thresh,
+      LactateThresh: LactateThresh,
       suppO2: suppO2,
       intTrainDietAnalysis: intTrainDietAnalysis,
       nutritionGroupPresWS: nutritionGroupPresWS,
       individualPyschConsult: individualPyschConsult,
       pyschGroupPresWS: pyschGroupPresWS,
+      focusSession: focusSession,
       meetingSpace: meetingSpace,
       equipStored: equipStored,
       dayTripExcur: dayTripExcur,
@@ -557,6 +561,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"hotelCheckBox"}
+            onChange={(event) => {
+              setHotelAccom(event.target.checked);
+            }}
           />
           <label>
             Hotel-style with full amenities (Located within walking distance to
@@ -577,6 +584,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"condoCheckBox"}
+            onChange={(event) => {
+              setCondoAccom(event.target.checked);
+            }}
           />
           <label>
             Condo/House with kitchen (NOT located within walking distance to
@@ -596,6 +606,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"cafeCheckBox"}
+            onChange={(event) => {
+              setUnivCafeteria(event.target.checked);
+            }}
           />
           <label>University cafeteria (all-you-can-eat buffet)</label>
 
@@ -610,6 +623,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"cateringCheckBox"}
+            onChange={(event) => {
+              setCatering(event.target.checked);
+            }}
           />
           <label>
             Catering with sport-nutrition-specific menu (formulated in
@@ -629,6 +645,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"charterCheckBox"}
+            onChange={(event) => {
+              setCharterTransport(event.target.checked);
+            }}
           />
           <label>
             Charter Transport from Phoenix or Flagstaff Airport (private charter
@@ -646,6 +665,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"shuttleCheckBox"}
+            onChange={(event) => {
+              setIndivShuttle(event.target.checked);
+            }}
           />
           <label>
             individual shuttle Transport from Phoenix or Flagstaff Airport (Max
@@ -663,6 +685,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"rentalCheckBox"}
+            onChange={(event) => {
+              setRental(event.target.checked);
+            }}
           />
           <label>Rental vehicles</label>
 
@@ -677,6 +702,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"uniParkingCheckBox"}
+            onChange={(event) => {
+              setPermit(event.target.checked);
+            }}
           />
           <label>
             University Parking Permit (required for any rental vehicles parked
@@ -706,6 +734,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"massageCheckBox"}
+            onChange={(event) => {
+              setMassageTherapy(event.target.checked);
+            }}
           />
           <label>Massage Therapy</label>
 
@@ -720,6 +751,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"physiotherapyCheckBox"}
+            onChange={(event) => {
+              setPhysioTherapy(event.target.checked);
+            }}
           />
           <label>Physiotherapy/Chiropractic Rehab/Prehab</label>
 
@@ -737,6 +771,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"strengthCoachCheckBox"}
+            onChange={(event) => {
+              setStrengthCond(event.target.checked);
+            }}
           />
           <label>Strength & Conditioning Coaching (Sport-Specific)</label>
 
@@ -754,6 +791,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"orthopaedicCheckBox"}
+            onChange={(event) => {
+              setOrthoCare(event.target.checked);
+            }}
           />
           <label>Orthopaedic Care</label>
 
@@ -771,6 +811,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"primaryMedicalCheckBox"}
+            onChange={(event) => {
+              setPrimMedCare(event.target.checked);
+            }}
           />
           <label>Primary Medical Care</label>
 
@@ -790,6 +833,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"hemoglobinCheckBox"}
+            onChange={(event) => {
+              setHemoTest(event.target.checked);
+            }}
           />
           <label>
             Total Hemoglobin Mass Testing (via CO Rebreathing method)
@@ -809,6 +855,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"hemoglobinCheckBox"}
+            onChange={(event) => {
+              setCompBloodProf(event.target.checked);
+            }}
           />
           <label>
             Complete Blood Profile (includes RBC, WBC, Hematocrit, Hemoglobin,
@@ -829,6 +878,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"metabolicCheckBox"}
+            onChange={(event) => {
+              setMetaPanel(event.target.checked);
+            }}
           />
           <label>
             Comprehensive Metabolic Panel (includes Albumin, Alkaline
@@ -850,6 +902,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"ferritinCheckBox"}
+            onChange={(event) => {
+              setTBIC(event.target.checked);
+            }}
           />
           <label>Ferritin/Iron/Total iron Binding Capacity (TIBC)</label>
 
@@ -864,6 +919,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"creatineCheckBox"}
+            onChange={(event) => {
+              setCreatineKinase(event.target.checked);
+            }}
           />
           <label>Creatine Kinase (CK/CPK)</label>
 
@@ -878,6 +936,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"otherBloodCheckBox"}
+            onChange={(event) => {
+              setOther(event.target.checked);
+            }}
           />
           <label>Other - Please specify</label>
 
@@ -897,6 +958,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"VO2LactateCheckBox"}
+            onChange={(event) => {
+              setVO2Lactate(event.target.checked);
+            }}
           />
           <label>VO2 & Lactate Combined</label>
 
@@ -914,6 +978,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"VO2CheckBox"}
+            onChange={(event) => {
+              setVO2Thresh(event.target.checked);
+            }}
           />
           <label>VO2 Threshold</label>
 
@@ -928,6 +995,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"lactateCheckBox"}
+            onChange={(event) => {
+              setLactateThresh(event.target.checked);
+            }}
           />
           <label>Lactate Threshold</label>
 
@@ -942,6 +1012,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"supplementalCheckBox"}
+            onChange={(event) => {
+              setSuppO2(event.target.checked);
+            }}
           />
           <label>Supplemental O2 for Training / Recovery</label>
 
@@ -961,6 +1034,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"integratedTrainingCheckBox"}
+            onChange={(event) => {
+              setIntTrainDietAnalysis(event.target.checked);
+            }}
           />
           <label>Integrated training and dietary analysis</label>
 
@@ -978,6 +1054,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"nutritionWorkshopCheckBox"}
+            onChange={(event) => {
+              setNutritionGroupPresWS(event.target.checked);
+            }}
           />
           <label>Group Presentation or Workshop</label>
 
@@ -997,6 +1076,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"individualConsultationCheckBox"}
+            onChange={(event) => {
+              setIndividualPyschConsult(event.target.checked);
+            }}
           />
           <label>Individual Consultation</label>
 
@@ -1014,6 +1096,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"mentalWorkshopCheckBox"}
+            onChange={(event) => {
+              setPyschGroupPresWS(event.target.checked);
+            }}
           />
           <label>Group Presentation or Workshop</label>
 
@@ -1031,6 +1116,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"focusSessionCheckBox"}
+            onChange={(event) => {
+              setFocusSession(event.target.checked);
+            }}
           />
           <label>Team Focus Session</label>
 
@@ -1050,6 +1138,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"meetingRoomCheckBox"}
+            onChange={(event) => {
+              setMeetingSpace(event.target.checked);
+            }}
           />
           <label>
             Meeting room Space (for team meetings, on-site physio, etc.)
@@ -1069,6 +1160,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"equipmentStoredCheckBox"}
+            onChange={(event) => {
+              setEquipStored(event.target.checked);
+            }}
           />
           <label>
             Equipment stored with Hypo2 (from previous training camp)
@@ -1088,6 +1182,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"dayTripCheckBox"}
+            onChange={(event) => {
+              setDayTripExcur(event.target.checked);
+            }}
           />
           <label>Day Trips / Excursions</label>
 
@@ -1102,6 +1199,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"teamExercisesCheckBox"}
+            onChange={(event) => {
+              setTeamBuildExcer(event.target.checked);
+            }}
           />
           <label>Team Building Exercises</label>
 
@@ -1119,6 +1219,9 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"miscOtherCheckBox"}
+            onChange={(event) => {
+              setOther(event.target.checked);
+            }}
           />
           <label>Other (please specify)</label>
 
