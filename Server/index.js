@@ -164,13 +164,16 @@ app.post("/intake", (req, res) => {
 });
 
 app.get("/summary", (req, res) => {
-  db.query("SELECT * FROM GeneralIntake", (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.send(result);
+  db.query(
+    "SELECT * FROM GeneralIntake ORDER BY Camp_ID DESC LIMIT 1",
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
     }
-  });
+  );
 });
 app.listen(3001, () => {
   console.log("yay, your server is running on port 3001");

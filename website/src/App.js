@@ -5,6 +5,7 @@ import SignIn from "./Pages/SignIn";
 import StaffProfile from "./Pages/Profile Pages/StaffProfile";
 import AdminProfile from "./Pages/Profile Pages/AdminProfile";
 import ClientProfile from "./Pages/Profile Pages/ClientProfile";
+import Summary from "./Pages/Summary";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/ClientProfile">
           <Route index={true} element={<ClientProfile />} />
           <Route index={false} path="Intake" element={<Intake />} />
+          <Route index={false} path="Summary" element={<Summary />} />
         </Route>
         <Route path="/AdminProfile" element={<AdminProfile />} />
         <Route path="/StaffProfile" element={<StaffProfile />} />
