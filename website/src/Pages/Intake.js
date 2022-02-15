@@ -28,8 +28,12 @@ function Intake() {
 
   // GeneralIntake Table Declarations
   const [teamName, setTeamName] = useState("");
-  const [startDate, setStartDate] = useState({ varOne: new Date() });
-  const [endDate, setEndDate] = useState({ varTwo: new Date() });
+  const [startDate, setStartDate] = useState({
+    varOne: new Date(),
+  });
+  const [endDate, setEndDate] = useState({
+    varTwo: new Date(),
+  });
   const [numPerson, setNumPerson] = useState(0);
   const [country, setCountry] = useState("");
   const [contactName, setContactName] = useState("");
@@ -721,15 +725,17 @@ function Intake() {
             type="checkbox"
             onClick={checkBoxUpdate}
             data-id={"pool50MCheckBox"}
-            onChange={(event) => {
-              setPool50M(event.target.checked);
-            }}
           />
           <label>50m Aquatic Center (10-lane LC pool)</label>
 
           <div id="pool50MCheckBoxInput" className="hidden-text details-block">
             <label>Number of Lanes Needed?</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setPool50M(event.target.value);
+              }}
+            />
           </div>
         </span>
 

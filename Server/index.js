@@ -95,7 +95,7 @@ app.post("/intake", (req, res) => {
   );
 
   db.query(
-    "INSERT INTO CoreCampNeeds (Team_Name, Hotel_Accom, Condo_Accom, Univ_Cafeteria, Catering, charter_transport, Indiv_shuttle, Rental, Pool50M, Track400M, Track300M, Gym, OutdoorFieldGrass, OutdoorFieldTurf, IndoorFieldTurf, CourtSpace, CourtUsage, AntiGravTread)VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    "INSERT INTO CoreCampNeeds (Team_Name, Hotel_Accom, Condo_Accom, Univ_Cafeteria, Catering, charter_transport, Indiv_shuttle, Rental, permit, Pool50M, Track400M, Track300M, Gym, OutdoorFieldGrass, OutdoorFieldTurf, IndoorFieldTurf, CourtSpace, CourtUsage, AntiGravTread)VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
     [
       teamName,
       hotelAccom,
@@ -105,6 +105,7 @@ app.post("/intake", (req, res) => {
       charterTransport,
       indivShuttle,
       rental,
+      permit,
       pool50M,
       track400M,
       track300M,
@@ -126,7 +127,7 @@ app.post("/intake", (req, res) => {
   );
 
   db.query(
-    "INSERT INTO AdditionalServices (Team_Name, Massage_Therapy, Physio_Therapy, Strength_Cond, Ortho_Care, Prim_Med_Care, Hemo_Test, Comp_Blood_Prof, Meta_Panel, TIBC, Creatine_Kinase, other, VO2_Lactate, VO2_Thresh, Lactate_Thresh, Supp_O2, Int_train_diet_analysis, Nutrition_Group_Pres_WS, Pysch_Group_Pres_WS, Meeting_Space, Equip_Stored, Day_trip_Excur, Team_Build_Excer, otherInfo)VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    "INSERT INTO AdditionalServices (Team_Name, Massage_Therapy, Physio_Therapy, Strength_Cond, Ortho_Care, Prim_Med_Care, Hemo_Test, Comp_Blood_Prof, Meta_Panel, TIBC, Creatine_Kinase, other, VO2_Lactate, VO2_Thresh, Lactate_Thresh, Supp_O2, Int_train_diet_analysis, Nutrition_Group_Pres_WS, Indiv_Pysch_consult, Pysch_Group_Pres_WS, Meeting_Space, Equip_Stored, Day_trip_Excur, Team_Build_Excer, otherInfo)VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
     [
       teamName,
       massageTherapy,
@@ -146,6 +147,7 @@ app.post("/intake", (req, res) => {
       suppO2,
       intTrainDietAnalysis,
       nutritionGroupPresWS,
+      individualPyschConsult,
       pyschGroupPresWS,
       meetingSpace,
       equipStored,
