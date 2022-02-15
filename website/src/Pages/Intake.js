@@ -87,7 +87,6 @@ function Intake() {
   const [other, setOther] = useState("");
 
   // Other Declarations
-  const [sumList, setSumList] = useState([]);
 
   const submit = () => {
     Axios.post("http://localhost:3001/intake", {
@@ -151,14 +150,9 @@ function Intake() {
       otherInfo: otherInfo,
       other: other,
     }).then(() => {
-      console.log("success");
+      console.log("Success");
     });
-  };
-
-  const getSummary = () => {
-    Axios.get("http://localhost:3001/summary", {}).then((response) => {
-      console.log(response);
-    });
+    navigate("/ClientProfile/Summary");
   };
 
   if (
@@ -166,7 +160,7 @@ function Intake() {
     getSessionStorage("classification").toLowerCase() === "client"
   ) {
     return (
-      <form>
+      <div>
         <h1>General Information</h1>
 
         <span className="info-block">
@@ -1408,11 +1402,7 @@ function Intake() {
         </span>
 
         <button onClick={submit}>Submit</button>
-        <button onClick={getSummary}>Summary</button>
-        {sumList.map((val, key) => {
-          return <div> {val.teamName} </div>;
-        })}
-      </form>
+      </div>
     );
   } else {
     return null;

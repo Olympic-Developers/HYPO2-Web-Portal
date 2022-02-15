@@ -71,7 +71,7 @@ app.post("/intake", (req, res) => {
   const other = req.body.other;
 
   db.query(
-    "INSERT INTO GeneralIntake(Team_Name, Camp_Date_Start, Camp_Date_End, Num_Personnel, Country, Contact_Name, Contact_Email, Contact_Phone, OnSite_Name, OnSite_Email, OnSite_Phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    "INSERT INTO GeneralIntake(Team_Name, Camp_Date_Start, Camp_Date_End, Num_Personnel, Country, Contact_Name, Contact_Email, Contact_Phone, OnSite_Name, OnSite_Email, OnSite_Phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
     [
       teamName,
       startDate,
@@ -89,7 +89,7 @@ app.post("/intake", (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        res.send("Values Inserted");
+        console.log("Values Inserted");
       }
     }
   );
@@ -120,7 +120,7 @@ app.post("/intake", (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        res.send("Values Inserted");
+        console.log("Values Inserted");
       }
     }
   );
@@ -163,14 +163,17 @@ app.post("/intake", (req, res) => {
   );
 });
 
-app.get("/summary", (req, res) => {
-  db.query("SELECT * FROM GeneralIntake", (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.send(result);
+app.get("/Summary", (req, res) => {
+  db.query(
+    "SELECT * FROM GeneralIntake Join CoreCampNeeds ON GeneralIntake.Team_Name = CoreCampNeeds.Team_Name Join AdditionalServices ON GeneralIntake.Team_Name = AdditionalServices.Team_Name ORDER BY GeneralIntake.Camp_ID DESC LIMIT 1",
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
     }
-  });
+  );
 });
 app.listen(3001, () => {
   console.log("yay, your server is running on port 3001");
