@@ -32,7 +32,7 @@ function Intake() {
   const [endDate, setEndDate] = useState({
     varTwo: new Date(),
   });
-  const [numPerson, setNumPerson] = useState(0);
+  const [numPerson, setNumPerson] = useState("");
   const [country, setCountry] = useState("");
   const [contactName, setContactName] = useState("");
   const [contactEmail, setContactEmail] = useState("");
@@ -97,7 +97,7 @@ function Intake() {
       // however when it is undefined
       startDate.varOne === undefined &&
       endDate.varTwo === undefined &&
-      numPerson !== 0 &&
+      numPerson !== "" &&
       country !== "" &&
       contactName !== "" &&
       contactEmail !== "" &&
@@ -210,7 +210,7 @@ function Intake() {
         <span className="info-block">
           <label>Number of Personnel: </label>
           <input
-            type="text"
+            type="number"
             name="name"
             onChange={(event) => {
               setNumPerson(event.target.value);

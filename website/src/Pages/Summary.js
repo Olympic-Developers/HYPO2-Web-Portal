@@ -10,6 +10,7 @@ function Summary() {
 
   useEffect(() => {
     authCheckClient(navigate);
+    getSummary();
   });
 
   const [sumList, setSumList] = useState([]);
@@ -19,9 +20,7 @@ function Summary() {
       setSumList(response.data);
     });
   };
-  useEffect(() => {
-    getSummary();
-  });
+
   if (
     getSessionStorage("authenticated") === "true" &&
     getSessionStorage("classification").toLowerCase() === "client"
