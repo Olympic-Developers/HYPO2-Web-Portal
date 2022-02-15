@@ -19,14 +19,15 @@ function Summary() {
       setSumList(response.data);
     });
   };
-
+  useEffect(() => {
+    getSummary();
+  });
   if (
     getSessionStorage("authenticated") === "true" &&
     getSessionStorage("classification").toLowerCase() === "client"
   ) {
     return (
       <div>
-        <button onClick={getSummary}>Testing</button>
         {sumList.map((val, key) => {
           return (
             <div>
