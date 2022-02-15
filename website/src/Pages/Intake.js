@@ -670,7 +670,7 @@ function Intake() {
             }}
           />
           <label>
-            individual shuttle Transport from Phoenix or Flagstaff Airport (Max
+            Individual shuttle Transport from Phoenix or Flagstaff Airport (Max
             capacity 14 people/shuttle)
           </label>
 
@@ -720,9 +720,182 @@ function Intake() {
           </div>
         </span>
 
+        <h3>Training Venues & Tools</h3>
+
+        <span className="info-block">
+          <input
+            type="checkbox"
+            onClick={checkBoxUpdate}
+            data-id={"pool50MCheckBox"}
+            onChange={(event) => {
+              setPool50M(event.target.checked);
+            }}
+          />
+          <label>50m Aquatic Center (10-lane LC pool)</label>
+
+          <div id="pool50MCheckBoxInput" className="hidden-text details-block">
+            <label>Number of Lanes Needed?</label>
+            <input type="text" />
+          </div>
+        </span>
+
+        <span className="info-block">
+          <input
+            type="checkbox"
+            onClick={checkBoxUpdate}
+            data-id={"track300MCheckBox"}
+            onChange={(event) => {
+              setTrack300M(event.target.checked);
+            }}
+          />
+          <label>300m Indoor Track (6-lane)</label>
+
+          <div
+            id="track300MCheckBoxInput"
+            className="hidden-text details-block"
+          >
+            <label>Amount of Usage Anticipated?</label>
+            <input type="text" />
+          </div>
+        </span>
+
+        <span className="info-block">
+          <input
+            type="checkbox"
+            onClick={checkBoxUpdate}
+            data-id={"track400MCheckBox"}
+            onChange={(event) => {
+              setTrack400M(event.target.checked);
+            }}
+          />
+          <label>400m Outdoor Track (8-lane)</label>
+
+          <div
+            id="track400MCheckBoxInput"
+            className="hidden-text details-block"
+          >
+            <label>Amount of Usage Anticipated?</label>
+            <input type="text" />
+          </div>
+        </span>
+
+        <span className="info-block">
+          <input
+            type="checkbox"
+            onClick={checkBoxUpdate}
+            data-id={"gymCheckBox"}
+            onChange={(event) => {
+              setGym(event.target.checked);
+            }}
+          />
+          <label>Gym (strength training/ cross training)</label>
+
+          <div id="gymCheckBoxInput" className="hidden-text details-block">
+            <label>Amount of Usage Anticipated?</label>
+            <input type="text" />
+          </div>
+        </span>
+
+        <span className="info-block">
+          <input
+            type="checkbox"
+            onClick={checkBoxUpdate}
+            data-id={"outdoorFieldGrassCheckBox"}
+            onChange={(event) => {
+              setOutdoorFieldGrass(event.target.checked);
+            }}
+          />
+          <label>Outdoor Fields (grass)</label>
+
+          <div
+            id="outdoorFieldGrassCheckBoxInput"
+            className="hidden-text details-block"
+          >
+            <label>details if needed:</label>
+            <input type="text" />
+          </div>
+        </span>
+
+        <span className="info-block">
+          <input
+            type="checkbox"
+            onClick={checkBoxUpdate}
+            data-id={"outdoorFieldTurfCheckBox"}
+            onChange={(event) => {
+              setOutdoorFieldTurf(event.target.checked);
+            }}
+          />
+          <label>Outdoor Fields (artificial turf)</label>
+          <div
+            id="outdoorFieldTurfCheckBoxInput"
+            className="hidden-text details-block"
+          >
+            <label>details if needed:</label>
+            <input type="text" />
+          </div>
+        </span>
+
+        <span className="info-block">
+          <input
+            type="checkbox"
+            onClick={checkBoxUpdate}
+            data-id={"indoorFieldTurfCheckBox"}
+            onChange={(event) => {
+              setIndoorFieldTurf(event.target.checked);
+            }}
+          />
+          <label>Indoor Fields (artificial turf only)</label>
+          <div
+            id="indoorFieldTurfCheckBoxInput"
+            className="hidden-text details-block"
+          >
+            <label>details if needed:</label>
+            <input type="text" />
+          </div>
+        </span>
+
+        <span className="info-block">
+          <input
+            type="checkbox"
+            onClick={checkBoxUpdate}
+            data-id={"courtSpaceCheckBox"}
+            onChange={(event) => {
+              setCourtSpace(event.target.checked);
+            }}
+          />
+          <label>Court Space (sport-specific)</label>
+          <div
+            id="courtSpaceCheckBoxInput"
+            className="hidden-text details-block"
+          >
+            <label>Number of Courts Needed?</label>
+            <input type="text" />
+          </div>
+        </span>
+
+        <span className="info-block">
+          <input
+            type="checkbox"
+            onClick={checkBoxUpdate}
+            data-id={"antiGravTreadCheckBox"}
+            onChange={(event) => {
+              setAntiGravTread(event.target.checked);
+            }}
+          />
+          <label>Alter G Anti-Gravity Treadmill</label>
+          <div
+            id="antiGravTreadCheckBoxInput"
+            className="hidden-text details-block"
+          >
+            <label>details if needed:</label>
+            <input type="text" />
+          </div>
+        </span>
+
         <h1 className="head-section-header">
           Additional High Performance Services
         </h1>
+
         <p className="sub-section-para">
           (please check all desired training camp options)
         </p>
@@ -854,18 +1027,18 @@ function Intake() {
           <input
             type="checkbox"
             onClick={checkBoxUpdate}
-            data-id={"hemoglobinCheckBox"}
+            data-id={"compBloodProfCheckBox"}
             onChange={(event) => {
               setCompBloodProf(event.target.checked);
             }}
           />
           <label>
             Complete Blood Profile (includes RBC, WBC, Hematocrit, Hemoglobin,
-            etc
+            etc.)
           </label>
 
           <div
-            id="hemoglobinCheckBoxInput"
+            id="compBloodProfCheckBoxInput"
             className="hidden-text details-block"
           >
             <label>details if needed:</label>
