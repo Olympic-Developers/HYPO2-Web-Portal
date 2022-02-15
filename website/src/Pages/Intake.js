@@ -152,8 +152,7 @@ function Intake() {
     }).then(() => {
       console.log("Success");
     });
-
-    navigate("/Summary");
+    navigate("/ClientProfile/Summary");
   };
 
   if (
@@ -161,7 +160,7 @@ function Intake() {
     getSessionStorage("classification").toLowerCase() === "client"
   ) {
     return (
-      <form>
+      <div>
         <h1>General Information</h1>
 
         <span className="info-block">
@@ -1230,8 +1229,7 @@ function Intake() {
         </span>
 
         <button onClick={submit}>Submit</button>
-        <button>Summary</button>
-      </form>
+      </div>
     );
   } else {
     return null;
