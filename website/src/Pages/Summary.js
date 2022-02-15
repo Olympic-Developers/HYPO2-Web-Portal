@@ -238,7 +238,7 @@ function Summary() {
                   return <div>Creatine Kinase Test: False</div>;
                 }
               })()}
-              <div>{val.other}</div>
+              <div>Other Information: {val.other}</div>
               <h4>Physiological Testing</h4>
               {(() => {
                 if (val.VO2_Lactate === 1) {

@@ -69,9 +69,10 @@ app.post("/intake", (req, res) => {
   const teamBuildExcer = req.body.teamBuildExcer;
   const otherInfo = req.body.otherInfo;
   const other = req.body.other;
+  const Status = req.body.status;
 
   db.query(
-    "INSERT INTO GeneralIntake(Team_Name, Camp_Date_Start, Camp_Date_End, Num_Personnel, Country, Contact_Name, Contact_Email, Contact_Phone, OnSite_Name, OnSite_Email, OnSite_Phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
+    "INSERT INTO GeneralIntake(Team_Name, Camp_Date_Start, Camp_Date_End, Num_Personnel, Country, Contact_Name, Contact_Email, Contact_Phone, OnSite_Name, OnSite_Email, OnSite_Phone, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
     [
       teamName,
       startDate,
@@ -84,6 +85,7 @@ app.post("/intake", (req, res) => {
       onSiteName,
       onSiteEmail,
       onSitePhone,
+      Status,
     ],
     (err, result) => {
       if (err) {

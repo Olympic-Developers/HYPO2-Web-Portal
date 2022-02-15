@@ -87,6 +87,7 @@ function Intake() {
   const [teamBuildExcer, setTeamBuildExcer] = useState(false);
   const [otherInfo, setOtherInfo] = useState(false);
   const [other, setOther] = useState(false);
+  const [status, setStatus] = useState("");
 
   // Other Declarations
 
@@ -163,6 +164,7 @@ function Intake() {
         teamBuildExcer: teamBuildExcer,
         otherInfo: otherInfo,
         other: other,
+        status: status,
       }).then(() => {
         console.log("Success");
       });
@@ -192,6 +194,7 @@ function Intake() {
             onChange={(event) => {
               setStartDate(event.target.value);
               setTeamName(getSessionStorage("username").toLowerCase());
+              setStatus("IN-PROGRESS");
             }}
           />
         </span>
@@ -876,7 +879,12 @@ function Intake() {
             className="hidden-text details-block"
           >
             <label>Number of Courts Needed?</label>
-            <input type="text" />
+            <input
+              type="number"
+              onChange={(event) => {
+                setCourtUsage(event.target.value);
+              }}
+            />
           </div>
         </span>
 
