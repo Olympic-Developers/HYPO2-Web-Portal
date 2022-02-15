@@ -24,8 +24,6 @@ function Intake() {
     }
   }
 
-  // TO-DO: Declare Camp_ID?
-
   // GeneralIntake Table Declarations
   const [teamName, setTeamName] = useState("");
   const [startDate, setStartDate] = useState({
@@ -88,7 +86,7 @@ function Intake() {
   const [dayTripExcur, setDayTripExcur] = useState(false);
   const [teamBuildExcer, setTeamBuildExcer] = useState(false);
   const [otherInfo, setOtherInfo] = useState(false);
-  const [other, setOther] = useState("");
+  const [other, setOther] = useState(false);
 
   // Other Declarations
 
@@ -1393,7 +1391,7 @@ function Intake() {
             onClick={checkBoxUpdate}
             data-id={"miscOtherCheckBox"}
             onChange={(event) => {
-              setOther(event.target.checked);
+              setOtherInfo(event.target.checked);
             }}
           />
           <label>Other (please specify)</label>
