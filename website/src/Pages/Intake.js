@@ -91,70 +91,85 @@ function Intake() {
   // Other Declarations
 
   const submit = () => {
-    Axios.post("http://localhost:3001/intake", {
-      // GeneralIntake Table Posts
-      teamName: teamName,
-      startDate: startDate,
-      endDate: endDate,
-      numPerson: numPerson,
-      country: country,
-      contactName: contactName,
-      contactEmail: contactEmail,
-      contactPhone: contactPhone,
-      onSiteName: onSiteName,
-      onSiteEmail: onSiteEmail,
-      onSitePhone: onSitePhone,
+    if (
+      teamName !== "" &&
+      // I know this looks weird but when the value is not set it is not undefined
+      // however when it is undefined
+      startDate.varOne === undefined &&
+      endDate.varTwo === undefined &&
+      numPerson !== 0 &&
+      country !== "" &&
+      contactName !== "" &&
+      contactEmail !== "" &&
+      contactPhone !== ""
+    ) {
+      Axios.post("http://localhost:3001/intake", {
+        // GeneralIntake Table Posts
+        teamName: teamName,
+        startDate: startDate,
+        endDate: endDate,
+        numPerson: numPerson,
+        country: country,
+        contactName: contactName,
+        contactEmail: contactEmail,
+        contactPhone: contactPhone,
+        onSiteName: onSiteName,
+        onSiteEmail: onSiteEmail,
+        onSitePhone: onSitePhone,
 
-      // CoreCampNeeds Table Posts
-      hotelAccom: hotelAccom,
-      condoAccom: condoAccom,
-      univCafeteria: univCafeteria,
-      catering: catering,
-      charterTransport: charterTransport,
-      indivShuttle: indivShuttle,
-      rental: rental,
-      permit: permit,
-      pool50M: pool50M,
-      track400M: track400M,
-      track300M: track300M,
-      gym: gym,
-      outdoorFieldGrass: outdoorFieldGrass,
-      outdoorFieldTurf: outdoorFieldTurf,
-      indoorFieldTurf: indoorFieldTurf,
-      courtSpace: courtSpace,
-      courtUsage: courtUsage,
-      antiGravTread: antiGravTread,
+        // CoreCampNeeds Table Posts
+        hotelAccom: hotelAccom,
+        condoAccom: condoAccom,
+        univCafeteria: univCafeteria,
+        catering: catering,
+        charterTransport: charterTransport,
+        indivShuttle: indivShuttle,
+        rental: rental,
+        permit: permit,
+        pool50M: pool50M,
+        track400M: track400M,
+        track300M: track300M,
+        gym: gym,
+        outdoorFieldGrass: outdoorFieldGrass,
+        outdoorFieldTurf: outdoorFieldTurf,
+        indoorFieldTurf: indoorFieldTurf,
+        courtSpace: courtSpace,
+        courtUsage: courtUsage,
+        antiGravTread: antiGravTread,
 
-      // AdditionalServices Table Posts
-      massageTherapy: massageTherapy,
-      physioTherapy: physioTherapy,
-      strengthCond: strengthCond,
-      orthoCare: orthoCare,
-      primMedCare: primMedCare,
-      hemoTest: hemoTest,
-      compBloodProf: compBloodProf,
-      metaPanel: metaPanel,
-      TBIC: TBIC,
-      creatineKinase: creatineKinase,
-      VO2Lactate: VO2Lactate,
-      VO2Thresh: VO2Thresh,
-      LactateThresh: LactateThresh,
-      suppO2: suppO2,
-      intTrainDietAnalysis: intTrainDietAnalysis,
-      nutritionGroupPresWS: nutritionGroupPresWS,
-      individualPyschConsult: individualPyschConsult,
-      pyschGroupPresWS: pyschGroupPresWS,
-      focusSession: focusSession,
-      meetingSpace: meetingSpace,
-      equipStored: equipStored,
-      dayTripExcur: dayTripExcur,
-      teamBuildExcer: teamBuildExcer,
-      otherInfo: otherInfo,
-      other: other,
-    }).then(() => {
-      console.log("Success");
-    });
-    navigate("/ClientProfile/Summary");
+        // AdditionalServices Table Posts
+        massageTherapy: massageTherapy,
+        physioTherapy: physioTherapy,
+        strengthCond: strengthCond,
+        orthoCare: orthoCare,
+        primMedCare: primMedCare,
+        hemoTest: hemoTest,
+        compBloodProf: compBloodProf,
+        metaPanel: metaPanel,
+        TBIC: TBIC,
+        creatineKinase: creatineKinase,
+        VO2Lactate: VO2Lactate,
+        VO2Thresh: VO2Thresh,
+        LactateThresh: LactateThresh,
+        suppO2: suppO2,
+        intTrainDietAnalysis: intTrainDietAnalysis,
+        nutritionGroupPresWS: nutritionGroupPresWS,
+        individualPyschConsult: individualPyschConsult,
+        pyschGroupPresWS: pyschGroupPresWS,
+        focusSession: focusSession,
+        meetingSpace: meetingSpace,
+        equipStored: equipStored,
+        dayTripExcur: dayTripExcur,
+        teamBuildExcer: teamBuildExcer,
+        otherInfo: otherInfo,
+        other: other,
+      }).then(() => {
+        console.log("Success");
+      });
+      navigate("/ClientProfile/Summary");
+    } else {
+      alert("You are missing one of the required values");
+    }
   };
 
   if (
@@ -166,14 +181,7 @@ function Intake() {
         <h1>General Information</h1>
 
         <span className="info-block">
-          <label>Team Name:</label>
-          <input
-            type="text"
-            name="name"
-            onChange={(event) => {
-              setTeamName(event.target.value);
-            }}
-          />
+          <h2>Team Name: {getSessionStorage("username").toLowerCase()}</h2>
         </span>
 
         <span className="info-block">
@@ -183,6 +191,7 @@ function Intake() {
             name="name"
             onChange={(event) => {
               setStartDate(event.target.value);
+              setTeamName(getSessionStorage("username").toLowerCase());
             }}
           />
         </span>
