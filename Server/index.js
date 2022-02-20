@@ -190,6 +190,21 @@ app.get("/AllCamps", (req, res) => {
   });
 });
 
+app.get("/UserCamps", (req, res) => {
+  let username = req.query.username;
+
+  db.query(
+    `SELECT * FROM GeneralIntake WHERE Team_Name = "${username}"`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
 app.listen(3001, () => {
   console.log("yay, your server is running on port 3001");
 });

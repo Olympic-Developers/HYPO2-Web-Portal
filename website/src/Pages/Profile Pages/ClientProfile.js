@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Auth } from "aws-amplify";
+import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 import {
   authCheckClient,
@@ -9,11 +10,22 @@ import {
 function App() {
   // Set default value for navigate
   let navigate = useNavigate();
+  const [sumList, setSumList] = useState([]);
 
   // useEffect used for checking for authenticated and proper classification
   useEffect(() => {
-    authCheckClient(navigate);
+    if (authCheckClient(navigate)) {
+      getCamps();
+    }
   });
+
+  const getCamps = () => {
+    Axios.get("http://localhost:3001/UserCamps", {
+      params: { username: getSessionStorage("username").toLowerCase() },
+    }).then((response) => {
+      setSumList(response.data);
+    });
+  };
 
   // For signing out users
   async function signOut() {
@@ -37,6 +49,21 @@ function App() {
           Hello {getSessionStorage("username").toLowerCase()} welcome to your
           Team Page
         </h1>
+
+        <div>
+          {sumList.map((val, key) => {
+            return (
+              <button style={{ border: "5px solid Black", display: "block" }}>
+                <h3>
+                  Camp: {val.Team_Name} - {val.Camp_ID} Status: {val.Status}
+                </h3>
+                <p>Start Date: {val.Camp_Date_Start}</p>
+                <p>End Date: {val.Camp_Date_End}</p>
+              </button>
+            );
+          })}
+        </div>
+
         <div>
           <button
             style={{ marginBottom: "10px " }}
@@ -47,6 +74,7 @@ function App() {
             Sign out
           </button>
         </div>
+
         <button
           onClick={() => {
             navigate("/ClientProfile/Intake");
