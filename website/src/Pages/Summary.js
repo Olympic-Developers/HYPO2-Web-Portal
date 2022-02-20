@@ -9,8 +9,9 @@ function Summary() {
   let navigate = useNavigate();
 
   useEffect(() => {
-    authCheckClient(navigate);
-    getSummary();
+    if (authCheckClient(navigate)) {
+      getSummary();
+    }
   });
 
   const [sumList, setSumList] = useState([]);
@@ -342,6 +343,14 @@ function Summary() {
             </div>
           );
         })}
+
+        <button
+          onClick={() => {
+            navigate("/ClientProfile");
+          }}
+        >
+          Back to Profile Page
+        </button>
       </div>
     );
   } else {

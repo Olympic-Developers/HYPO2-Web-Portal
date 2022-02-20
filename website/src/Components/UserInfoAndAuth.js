@@ -4,6 +4,7 @@ export const authCheckAdmin = (navigate) => {
   if (sessionStorage.length === 0) {
     // Redirect back to signIn page
     navigate("/");
+    return false;
   }
 
   // Takes care of protecting path from inside webpages
@@ -15,8 +16,11 @@ export const authCheckAdmin = (navigate) => {
     ) {
       // Redirect back one page
       navigate(-1);
+      return false;
     }
   }
+
+  return true;
 };
 
 export const authCheckClient = (navigate) => {
@@ -25,6 +29,7 @@ export const authCheckClient = (navigate) => {
   if (sessionStorage.length === 0) {
     // Redirect back to signIn page
     navigate("/");
+    return false;
   }
 
   // Takes care of protecting path from inside webpages
@@ -36,8 +41,11 @@ export const authCheckClient = (navigate) => {
     ) {
       // Redirect back one page
       navigate(-1);
+      return false;
     }
   }
+
+  return true;
 };
 
 export const authCheckStaff = (navigate) => {
@@ -46,6 +54,7 @@ export const authCheckStaff = (navigate) => {
   if (sessionStorage.length === 0) {
     // Redirect back to signIn page
     navigate("/");
+    return false;
   }
 
   // Takes care of protecting path from inside webpages
@@ -57,8 +66,11 @@ export const authCheckStaff = (navigate) => {
     ) {
       // Redirect back one page
       navigate(-1);
+      return false;
     }
   }
+
+  return true;
 };
 
 export const getSessionStorage = (variableName) => {

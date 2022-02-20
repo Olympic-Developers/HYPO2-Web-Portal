@@ -179,6 +179,17 @@ app.get("/Summary", (req, res) => {
     }
   );
 });
+
+app.get("/AllCamps", (req, res) => {
+  db.query("SELECT * FROM GeneralIntake", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
 app.listen(3001, () => {
   console.log("yay, your server is running on port 3001");
 });
