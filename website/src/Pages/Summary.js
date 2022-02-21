@@ -66,7 +66,7 @@ function Summary() {
                     </div>
                   );
                 } else {
-                  return <div>{val.Condo_Accom}</div>;
+                  return <div>Condo Accommodations: False</div>;
                 }
               })()}
               {(() => {
