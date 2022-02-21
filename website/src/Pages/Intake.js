@@ -43,50 +43,90 @@ function Intake() {
 
   // CampCoreNeeds Table Declarations
   const [hotelAccom, setHotelAccom] = useState(false);
+  const [hotelAccomInfo, setHotelAccomInfo] = useState("");
   const [condoAccom, setCondoAccom] = useState(0);
+  const [condoAccomInfo, setCondoAccomInfo] = useState("");
   const [univCafeteria, setUnivCafeteria] = useState(false);
+  const [univCafeteriaInfo, setunivCafeteriaInfo] = useState("");
   const [catering, setCatering] = useState(false);
+  const [cateringInfo, setCateringInfo] = useState("");
   const [charterTransport, setCharterTransport] = useState(false);
+  const [charterTransportInfo, setCharterTransportInfo] = useState("");
   const [indivShuttle, setIndivShuttle] = useState(false);
+  const [indivShuttleInfo, setIndivShuttleInfo] = useState("");
   const [rental, setRental] = useState(false);
+  const [rentalInfo, setRentalInfo] = useState("");
   const [permit, setPermit] = useState(false);
+  const [permitInfo, setPermitInfo] = useState("");
   const [pool50M, setPool50M] = useState(0);
   const [track400M, setTrack400M] = useState(false);
+  const [track400Info, setTrack400Info] = useState("");
   const [track300M, setTrack300M] = useState(false);
+  const [track300Info, setTrack300Info] = useState("");
   const [gym, setGym] = useState(false);
+  const [gymInfo, setGymInfo] = useState("");
   const [outdoorFieldGrass, setOutdoorFieldGrass] = useState(false);
+  const [OFGInfo, setOFGInfo] = useState("");
   const [outdoorFieldTurf, setOutdoorFieldTurf] = useState(false);
+  const [OFTInfo, setOFTInfo] = useState("");
   const [indoorFieldTurf, setIndoorFieldTurf] = useState(false);
+  const [IFTInfo, setIFTInfo] = useState("");
   const [courtSpace, setCourtSpace] = useState(false);
   const [courtUsage, setCourtUsage] = useState(0);
   const [antiGravTread, setAntiGravTread] = useState(false);
+  const [AGTInfo, setAGTInfo] = useState("");
 
   // AdditionalServices table Declarations
   const [massageTherapy, setMassageTherapy] = useState(false);
+  const [massageInfo, setMassageInfo] = useState("");
   const [physioTherapy, setPhysioTherapy] = useState(false);
+  const [physioInfo, setPhysioInfo] = useState("");
   const [strengthCond, setStrengthCond] = useState(false);
+  const [strengthInfo, setStrengthInfo] = useState("");
   const [orthoCare, setOrthoCare] = useState(false);
+  const [orthoInfo, setOrthoInfo] = useState("");
   const [primMedCare, setPrimMedCare] = useState(false);
+  const [primMedInfo, setPrimMedInfo] = useState("");
   const [hemoTest, setHemoTest] = useState(false);
+  const [hemoInfo, setHemoInfo] = useState("");
   const [compBloodProf, setCompBloodProf] = useState(false);
+  const [compBloodInfo, setcompBloodInfo] = useState("");
   const [metaPanel, setMetaPanel] = useState(false);
+  const [metaInfo, setMetaInfo] = useState("");
   const [TBIC, setTBIC] = useState(false);
+  const [TBICInfo, setTBICInfo] = useState("");
   const [creatineKinase, setCreatineKinase] = useState(false);
+  const [creatineKinaseInfo, setCreatineKinaseInfo] = useState("");
   const [VO2Lactate, setVO2Lactate] = useState(false);
+  const [VO2LactateInfo, setVO2LactateInfo] = useState("");
   const [VO2Thresh, setVO2Thresh] = useState(false);
+  const [VO2ThreshInfo, setVO2ThreshInfo] = useState("");
   const [LactateThresh, setLactateThresh] = useState(false);
+  const [LactateThreshInfo, setLactateThreshInfo] = useState("");
   const [suppO2, setSuppO2] = useState(false);
+  const [suppO2Info, setsuppO2Info] = useState("");
   const [intTrainDietAnalysis, setIntTrainDietAnalysis] = useState(false);
+  const [dietAnalysisInfo, setdietAnalysisInfo] = useState("");
   const [nutritionGroupPresWS, setNutritionGroupPresWS] = useState(false);
+  const [nutritionWSInfo, setNutritionWSInfo] = useState("");
   const [individualPyschConsult, setIndividualPyschConsult] = useState(false);
+  const [psychConsultInfo, setPsychConsultInfo] = useState("");
   const [pyschGroupPresWS, setPyschGroupPresWS] = useState(false);
+  const [psychWSInfo, setPsychWSInfo] = useState("");
   const [focusSession, setFocusSession] = useState(false);
+  const [focusInfo, setFocusInfo] = useState("");
   const [meetingSpace, setMeetingSpace] = useState(false);
+  const [meetingInfo, setMeetingInfo] = useState("");
   const [equipStored, setEquipStored] = useState(false);
+  const [equipInfo, setEquipInfo] = useState("");
   const [dayTripExcur, setDayTripExcur] = useState(false);
+  const [dayTripInfo, setDayTripInfo] = useState("");
   const [teamBuildExcer, setTeamBuildExcer] = useState(false);
+  const [teamBuildInfo, setTeamBuildInfo] = useState("");
   const [otherInfo, setOtherInfo] = useState(false);
+  const [otherInfoText, setOtherInfoText] = useState("");
   const [other, setOther] = useState(false);
+  const [otherText, setOtherText] = useState("");
   const [status, setStatus] = useState("");
 
   // Other Declarations
@@ -165,6 +205,48 @@ function Intake() {
         otherInfo: otherInfo,
         other: other,
         status: status,
+
+        //Info
+        hotelAccomInfo: hotelAccomInfo,
+        condoAccomInfo: condoAccomInfo,
+        univCafeteriaInfo: univCafeteriaInfo,
+        cateringInfo: cateringInfo,
+        charterTransportInfo: charterTransportInfo,
+        indivShuttleInfo: indivShuttleInfo,
+        rentalInfo: rentalInfo,
+        permitInfo: permitInfo,
+        track400Info: track400Info,
+        track300Info: track300Info,
+        gymInfo: gymInfo,
+        OFGInfo: OFGInfo,
+        OFTInfo: OFTInfo,
+        IFTInfo: IFTInfo,
+        AGTInfo: AGTInfo,
+        massageInfo: massageInfo,
+        physioInfo: physioInfo,
+        strengthInfo: strengthInfo,
+        orthoInfo: orthoInfo,
+        primMedInfo: primMedInfo,
+        hemoInfo: hemoInfo,
+        compBloodInfo: compBloodInfo,
+        metaInfo: metaInfo,
+        TBICInfo: TBICInfo,
+        creatineKinaseInfo: creatineKinaseInfo,
+        VO2LactateInfo: VO2LactateInfo,
+        VO2ThreshInfo: VO2ThreshInfo,
+        LactateThreshInfo: LactateThreshInfo,
+        suppO2Info: suppO2Info,
+        dietAnalysisInfo: dietAnalysisInfo,
+        nutritionWSInfo: nutritionWSInfo,
+        psychConsultInfo: psychConsultInfo,
+        psychWSInfo: psychWSInfo,
+        focusInfo: focusInfo,
+        meetingInfo: meetingInfo,
+        equipInfo: equipInfo,
+        dayTripInfo: dayTripInfo,
+        teamBuildInfo: teamBuildInfo,
+        otherText: otherText,
+        otherInfoText: otherInfoText,
       }).then(() => {
         console.log("Success");
       });
@@ -583,6 +665,9 @@ function Intake() {
             <input
               type="text"
               placeholder="How Many Units (each unit sleeps 2-3)"
+              onChange={(event) => {
+                setHotelAccomInfo(event.target.value);
+              }}
             />
           </div>
         </span>
@@ -603,7 +688,12 @@ function Intake() {
 
           <div id="condoCheckBoxInput" className="hidden-text details-block">
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setCondoAccomInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -622,7 +712,12 @@ function Intake() {
 
           <div id="cafeCheckBoxInput" className="hidden-text details-block">
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setunivCafeteriaInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -642,7 +737,12 @@ function Intake() {
 
           <div id="cateringCheckBoxInput" className="hidden-text details-block">
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setCateringInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -664,7 +764,12 @@ function Intake() {
 
           <div id="charterCheckBoxInput" className="hidden-text details-block">
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setCharterTransportInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -684,7 +789,12 @@ function Intake() {
 
           <div id="shuttleCheckBoxInput" className="hidden-text details-block">
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setIndivShuttleInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -701,7 +811,12 @@ function Intake() {
 
           <div id="rentalCheckBoxInput" className="hidden-text details-block">
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setRentalInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -724,7 +839,12 @@ function Intake() {
             className="hidden-text details-block"
           >
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setPermitInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -765,7 +885,12 @@ function Intake() {
             className="hidden-text details-block"
           >
             <label>Amount of Usage Anticipated?</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setTrack300Info(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -785,7 +910,12 @@ function Intake() {
             className="hidden-text details-block"
           >
             <label>Amount of Usage Anticipated?</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setTrack400Info(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -802,7 +932,12 @@ function Intake() {
 
           <div id="gymCheckBoxInput" className="hidden-text details-block">
             <label>Amount of Usage Anticipated?</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setGymInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -822,7 +957,12 @@ function Intake() {
             className="hidden-text details-block"
           >
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setOFGInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -841,7 +981,12 @@ function Intake() {
             className="hidden-text details-block"
           >
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setOFTInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -860,7 +1005,12 @@ function Intake() {
             className="hidden-text details-block"
           >
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setIFTInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -903,7 +1053,12 @@ function Intake() {
             className="hidden-text details-block"
           >
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setAGTInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -930,7 +1085,12 @@ function Intake() {
 
           <div id="massageCheckBoxInput" className="hidden-text details-block">
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setMassageInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -950,7 +1110,12 @@ function Intake() {
             className="hidden-text details-block"
           >
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setPhysioInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -970,7 +1135,12 @@ function Intake() {
             className="hidden-text details-block"
           >
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setStrengthInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -990,7 +1160,12 @@ function Intake() {
             className="hidden-text details-block"
           >
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setOrthoInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -1010,7 +1185,12 @@ function Intake() {
             className="hidden-text details-block"
           >
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setPrimMedInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -1034,7 +1214,12 @@ function Intake() {
             className="hidden-text details-block"
           >
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setHemoInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -1057,7 +1242,12 @@ function Intake() {
             className="hidden-text details-block"
           >
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setcompBloodInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -1081,7 +1271,12 @@ function Intake() {
             className="hidden-text details-block"
           >
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setMetaInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -1098,7 +1293,12 @@ function Intake() {
 
           <div id="ferritinCheckBoxInput" className="hidden-text details-block">
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setTBICInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -1115,7 +1315,12 @@ function Intake() {
 
           <div id="creatineCheckBoxInput" className="hidden-text details-block">
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setCreatineKinaseInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -1135,7 +1340,12 @@ function Intake() {
             className="hidden-text details-block"
           >
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setOtherText(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -1157,7 +1367,12 @@ function Intake() {
             className="hidden-text details-block"
           >
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setVO2LactateInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -1174,7 +1389,12 @@ function Intake() {
 
           <div id="VO2CheckBoxInput" className="hidden-text details-block">
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setVO2ThreshInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -1191,7 +1411,12 @@ function Intake() {
 
           <div id="lactateCheckBoxInput" className="hidden-text details-block">
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setLactateThreshInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -1211,7 +1436,12 @@ function Intake() {
             className="hidden-text details-block"
           >
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setsuppO2Info(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -1233,7 +1463,12 @@ function Intake() {
             className="hidden-text details-block"
           >
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setdietAnalysisInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -1253,7 +1488,12 @@ function Intake() {
             className="hidden-text details-block"
           >
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setNutritionWSInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -1275,7 +1515,12 @@ function Intake() {
             className="hidden-text details-block"
           >
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setPsychConsultInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -1295,7 +1540,12 @@ function Intake() {
             className="hidden-text details-block"
           >
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setPsychWSInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -1315,7 +1565,12 @@ function Intake() {
             className="hidden-text details-block"
           >
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setFocusInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -1339,7 +1594,12 @@ function Intake() {
             className="hidden-text details-block"
           >
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setMeetingInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -1361,7 +1621,12 @@ function Intake() {
             className="hidden-text details-block"
           >
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setEquipInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -1378,7 +1643,12 @@ function Intake() {
 
           <div id="dayTripCheckBoxInput" className="hidden-text details-block">
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setDayTripInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -1398,7 +1668,12 @@ function Intake() {
             className="hidden-text details-block"
           >
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setTeamBuildInfo(event.target.value);
+              }}
+            />
           </div>
         </span>
 
@@ -1418,7 +1693,12 @@ function Intake() {
             className="hidden-text details-block"
           >
             <label>details if needed:</label>
-            <input type="text" />
+            <input
+              type="text"
+              onChange={(event) => {
+                setOtherInfoText(event.target.value);
+              }}
+            />
           </div>
         </span>
 

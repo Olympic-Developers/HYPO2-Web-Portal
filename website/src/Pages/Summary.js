@@ -47,63 +47,99 @@ function Summary() {
               <h3>Core Camp Needs</h3>
               {(() => {
                 if (val.Hotel_Accom === 1) {
-                  return <div>Hotel Accommodations: True</div>;
+                  return (
+                    <div>
+                      <div>Hotel Accommodations: True</div>
+                      <div>Hotel Accommodation Notes: {val.hotelAccomInfo}</div>
+                    </div>
+                  );
                 } else {
                   return <div>Hotel Accommodations: False</div>;
                 }
               })()}
               {(() => {
                 if (val.Condo_Accom === 1) {
-                  return <div>Condo Accommodations: True</div>;
+                  return (
+                    <div>
+                      <div>Condo Accommodations: True</div>
+                      <div>Condo Accommodation Notes: {val.condoAccomInfo}</div>
+                    </div>
+                  );
                 } else {
-                  return <div>Condo Accommodations: False</div>;
+                  return <div>{val.Condo_Accom}</div>;
                 }
               })()}
               {(() => {
                 if (val.Univ_Cafeteria === 1) {
-                  return <div>University Cafeteria: True</div>;
+                  return (
+                    <div>
+                      <div>University Cafeteria: True</div>
+                      <div>University Cafeteria Notes: {val.cafeteriaInfo}</div>
+                    </div>
+                  );
                 } else {
                   return <div>University Cafeteria: False</div>;
                 }
               })()}
               {(() => {
                 if (val.Catering === 1) {
-                  return <div>Catering: True</div>;
-                } else {
-                  return <div>Catering: False</div>;
-                }
-              })()}
-              {(() => {
-                if (val.Catering === 1) {
-                  return <div>Catering: True</div>;
+                  return (
+                    <div>
+                      <div>Catering: True</div>
+                      <div>Catering Notes: {val.cateringInfo}</div>
+                    </div>
+                  );
                 } else {
                   return <div>Catering: False</div>;
                 }
               })()}
               {(() => {
                 if (val.charter_transport === 1) {
-                  return <div>Charter Transport: True</div>;
+                  return (
+                    <div>
+                      <div>Charter Transport: True</div>
+                      <div>Charter Transport Notes: {val.charterInfo}</div>
+                    </div>
+                  );
                 } else {
                   return <div>Charter Transport: False</div>;
                 }
               })()}
               {(() => {
                 if (val.Indiv_Shuttle === 1) {
-                  return <div>Individual Shuttle: True</div>;
+                  return (
+                    <div>
+                      <div>Individual Shuttle: True</div>
+                      <div>INdividual Shuttle Notes: {val.shuttleInfo}</div>
+                    </div>
+                  );
                 } else {
                   return <div>Individual Shuttle: False</div>;
                 }
               })()}
               {(() => {
                 if (val.Rental === 1) {
-                  return <div>Rental: True</div>;
+                  return (
+                    <div>
+                      <div> Rental: True</div>
+                      <div> Rental Notes: {val.rentalInfo}</div>
+                    </div>
+                  );
                 } else {
                   return <div>Rental: False</div>;
                 }
               })()}
               {(() => {
                 if (val.permit === 1) {
-                  return <div>University Parking Permit: True</div>;
+                  return (
+                    <div>
+                      <div> University Parking Permit: True</div>
+                      <div>
+                        {" "}
+                        University Parking Permit Notes: {val.permitInfo}
+                      </div>
+                    </div>
+                  );
                 } else {
                   return <div>University Paring Permit: False</div>;
                 }
@@ -112,42 +148,72 @@ function Summary() {
               <div>50M Aquatic Center Lanes: {val.Pool50M}</div>
               {(() => {
                 if (val.Track400M === 1) {
-                  return <div>Track 400M: True</div>;
+                  return (
+                    <div>
+                      <div> Track 400M: True</div>
+                      <div> Track 400M Notes: {val.track400Info}</div>
+                    </div>
+                  );
                 } else {
                   return <div>Track 400M: False</div>;
                 }
               })()}
               {(() => {
                 if (val.Track300M === 1) {
-                  return <div>Track 300M: True</div>;
+                  return (
+                    <div>
+                      <div> Track 300M: True</div>
+                      <div> Track 300M Notes: {val.track300Info}</div>
+                    </div>
+                  );
                 } else {
                   return <div>Track 300M: False</div>;
                 }
               })()}
               {(() => {
                 if (val.Gym === 1) {
-                  return <div>Gym: True</div>;
+                  return (
+                    <div>
+                      <div> Gym: True</div>
+                      <div> Gym Notes: {val.gymInfo}</div>
+                    </div>
+                  );
                 } else {
                   return <div>Gym: False</div>;
                 }
               })()}
               {(() => {
                 if (val.OutdoorFieldGrass === 1) {
-                  return <div>Outdoor Grass Field: True</div>;
+                  return (
+                    <div>
+                      <div> Outdoor Grass Field: True</div>
+                      <div> Outdoor Grass FieldNotes: {val.OFGInfo}</div>
+                    </div>
+                  );
                 } else {
                   return <div>Outdoor Grass Field: False</div>;
                 }
               })()}
               {(() => {
                 if (val.OutdoorFieldTurf === 1) {
-                  return <div>Outdoor Turf Field: True</div>;
+                  return (
+                    <div>
+                      <div> Outdoor Turf Field: True</div>
+                      <div> Outdoor Turf Field Notes: {val.OFTInfo}</div>
+                    </div>
+                  );
                 } else {
                   return <div>Outdoor Turf Field: False</div>;
                 }
               })()}
               {(() => {
                 if (val.IndoorFieldTurf === 1) {
-                  return <div>Indoor Turf Field: True</div>;
+                  return (
+                    <div>
+                      <div> Indoor Turf Field: True</div>
+                      <div> Indoor Turf Field Notes: {val.IFTInfo}</div>
+                    </div>
+                  );
                 } else {
                   return <div>Indoor Turf Field: False</div>;
                 }
@@ -162,7 +228,12 @@ function Summary() {
               <div>Court Usage: {val.CourtUsage}</div>
               {(() => {
                 if (val.AntiGravTread === 1) {
-                  return <div>Anti-Gravity Treadmill: True</div>;
+                  return (
+                    <div>
+                      <div> Anti Grav Treadmill: True</div>
+                      <div> Anti Grav Treadmill Notes: {val.AGTInfo}</div>
+                    </div>
+                  );
                 } else {
                   return <div>Anti-gravity Treadmill: False</div>;
                 }
@@ -170,35 +241,63 @@ function Summary() {
               <h3> Additional Services </h3>
               {(() => {
                 if (val.Massage_Therapy === 1) {
-                  return <div>Massage Therapy: True</div>;
+                  return (
+                    <div>
+                      <div> Massage Therapy: True</div>
+                      <div> Massage Therapy Notes: {val.massageInfo}</div>
+                    </div>
+                  );
                 } else {
                   return <div>Massage Therapy: False</div>;
                 }
               })()}
               {(() => {
                 if (val.Physio_Therapy === 1) {
-                  return <div>Physio Therapy: True</div>;
+                  return (
+                    <div>
+                      <div> Physio Therapy: True</div>
+                      <div> Physio Therapy Notes: {val.physioInfo}</div>
+                    </div>
+                  );
                 } else {
                   return <div>Physio Therapy: False</div>;
                 }
               })()}
               {(() => {
                 if (val.Strength_Cond === 1) {
-                  return <div>Strength and Conditioning: True</div>;
+                  return (
+                    <div>
+                      <div> Strength and Conditioning: True</div>
+                      <div>
+                        {" "}
+                        Strength and Conditioning Notes: {val.strengthInfo}
+                      </div>
+                    </div>
+                  );
                 } else {
                   return <div>Strength and Conditioning: False</div>;
                 }
               })()}
               {(() => {
                 if (val.Ortho_Care === 1) {
-                  return <div>Orthopedic Care: True</div>;
+                  return (
+                    <div>
+                      <div> Orthopedic Care: True</div>
+                      <div> Orthopedic Care Notes: {val.orthoInfo}</div>
+                    </div>
+                  );
                 } else {
                   return <div>Orthopedic Care: False</div>;
                 }
               })()}
               {(() => {
                 if (val.Prim_Med_Care === 1) {
-                  return <div>Primary Medical Care: True</div>;
+                  return (
+                    <div>
+                      <div> Primary Medical Care: True</div>
+                      <div> Primary Medical Care Notes: {val.primMedInfo}</div>
+                    </div>
+                  );
                 } else {
                   return <div>Primary Medical Care: False</div>;
                 }
@@ -206,35 +305,66 @@ function Summary() {
               <h4>Blood Testing / Biomarkers</h4>
               {(() => {
                 if (val.Hemo_Test === 1) {
-                  return <div>Hemoglobin Test: True</div>;
+                  return (
+                    <div>
+                      <div> Hemoglobin Test: True</div>
+                      <div> Hemoglobin Test Notes: {val.hemoInfo}</div>
+                    </div>
+                  );
                 } else {
                   return <div>Hemoglobin Test: False</div>;
                 }
               })()}
               {(() => {
                 if (val.Comp_Blood_Prof === 1) {
-                  return <div>Complete Blood Profile: True</div>;
+                  return (
+                    <div>
+                      <div> Complete Blood Profile: True</div>
+                      <div>
+                        {" "}
+                        Complete Blood Profile Notes: {val.compBloodInfo}
+                      </div>
+                    </div>
+                  );
                 } else {
                   return <div>Complete Blood Profile: False</div>;
                 }
               })()}
               {(() => {
                 if (val.Meta_Panel === 1) {
-                  return <div>Metabolism Panel: True</div>;
+                  return (
+                    <div>
+                      <div> Metabolism Panel: True</div>
+                      <div> Metabolism Panel Notes: {val.metaInfo}</div>
+                    </div>
+                  );
                 } else {
                   return <div>Metabolism Panel: False</div>;
                 }
               })()}
               {(() => {
                 if (val.TIBC === 1) {
-                  return <div>TIBC: True</div>;
+                  return (
+                    <div>
+                      <div> TIBC: True</div>
+                      <div> TIBC Notes: {val.TIBCInfo}</div>
+                    </div>
+                  );
                 } else {
                   return <div>TIBC: False</div>;
                 }
               })()}
               {(() => {
                 if (val.Creatine_Kinase === 1) {
-                  return <div>Creatine Kinase Test: True</div>;
+                  return (
+                    <div>
+                      <div> Creatine Kinase Test: True</div>
+                      <div>
+                        {" "}
+                        Creatine Kinase Test Notes: {val.creatineKinaseInfo}
+                      </div>
+                    </div>
+                  );
                 } else {
                   return <div>Creatine Kinase Test: False</div>;
                 }
@@ -243,28 +373,51 @@ function Summary() {
               <h4>Physiological Testing</h4>
               {(() => {
                 if (val.VO2_Lactate === 1) {
-                  return <div>VO2 Lactate Test: True</div>;
+                  return (
+                    <div>
+                      <div> VO2 Lactate Test: True</div>
+                      <div> VO2 Lactate Test Notes: {val.VO2LactateInfo}</div>
+                    </div>
+                  );
                 } else {
                   return <div>VO2 Lactate Test: False</div>;
                 }
               })()}
               {(() => {
                 if (val.VO2_Thresh === 1) {
-                  return <div>VO2 Threshold Test: True</div>;
+                  return (
+                    <div>
+                      <div> VO2 Threshold Test: True</div>
+                      <div> Vo2 Threshold Test Notes: {val.VO2ThreshInfo}</div>
+                    </div>
+                  );
                 } else {
                   return <div>VO2 Threshold Test: False</div>;
                 }
               })()}
               {(() => {
                 if (val.Lactate_Thresh === 1) {
-                  return <div>Lactate Threshold Test: True</div>;
+                  return (
+                    <div>
+                      <div> Lactate Threshold Test: True</div>
+                      <div>
+                        {" "}
+                        Lactate Threshold Test Notes: {val.LactateThreshInfo}
+                      </div>
+                    </div>
+                  );
                 } else {
                   return <div>Lactate Threshold Test: False</div>;
                 }
               })()}
               {(() => {
                 if (val.Supp_O2 === 1) {
-                  return <div>Supplemental O2: True</div>;
+                  return (
+                    <div>
+                      <div> Supplemental O2: True</div>
+                      <div> Supplemental O2 Notes: {val.suppO2Info}</div>
+                    </div>
+                  );
                 } else {
                   return <div>Supplemental O2: False</div>;
                 }
@@ -273,7 +426,14 @@ function Summary() {
               {(() => {
                 if (val.Int_train_diet_analysis === 1) {
                   return (
-                    <div>Integrated training and dietary analysis: True</div>
+                    <div>
+                      <div> Integrated training and dietary analysis: True</div>
+                      <div>
+                        {" "}
+                        Integrate training and dietary analysis Notes:{" "}
+                        {val.dietAnalysisInfo}
+                      </div>
+                    </div>
                   );
                 } else {
                   return (
@@ -283,7 +443,16 @@ function Summary() {
               })()}
               {(() => {
                 if (val.Nutrition_Group_Pres_WS === 1) {
-                  return <div>Nutrition Group Presentation Workshop: True</div>;
+                  return (
+                    <div>
+                      <div> Nutrition Group Presentation Workshop: True</div>
+                      <div>
+                        {" "}
+                        Nutrition Group Presentation Workshop Notes:{" "}
+                        {val.nutritionWSInfo}
+                      </div>
+                    </div>
+                  );
                 } else {
                   return (
                     <div>Nutrition Group Presentation Workshop: False</div>
@@ -293,49 +462,94 @@ function Summary() {
               <h4>Sport Psychology / Mental Performance</h4>
               {(() => {
                 if (val.Indiv_Pysch_consult === 1) {
-                  return <div>Individual Psych Consultation: True</div>;
+                  return (
+                    <div>
+                      <div> Individual Psych Consultation: True</div>
+                      <div>
+                        {" "}
+                        Individual Psych Consultation Notes:{" "}
+                        {val.psychConsultInfo}
+                      </div>
+                    </div>
+                  );
                 } else {
                   return <div>Individual Psych Consultation: False</div>;
                 }
               })()}
               {(() => {
                 if (val.Pysch_Group_Pres_WS === 1) {
-                  return <div>Psych Group Presentation Workshop: True</div>;
+                  return (
+                    <div>
+                      <div> Psych Group Presentation Workshop: True</div>
+                      <div>
+                        {" "}
+                        Psych Group Presentation Workshop Notes:{" "}
+                        {val.psychWSInfo}
+                      </div>
+                    </div>
+                  );
                 } else {
                   return <div>Psych Group Presentation Workshop: False</div>;
                 }
               })()}
               {(() => {
                 if (val.Meeting_Space === 1) {
-                  return <div>Meeting Space: True</div>;
+                  return (
+                    <div>
+                      <div> Meeting Space: True</div>
+                      <div> Meeting Space Notes: {val.meetingInfo}</div>
+                    </div>
+                  );
                 } else {
                   return <div>Meeting Space: False</div>;
                 }
               })()}
               {(() => {
                 if (val.Equip_Stored === 1) {
-                  return <div>Equipment Storage: True</div>;
+                  return (
+                    <div>
+                      <div> Equipment Storage: True</div>
+                      <div> Equipment Storage Notes: {val.equipInfo}</div>
+                    </div>
+                  );
                 } else {
                   return <div>Equipment Storage: False</div>;
                 }
               })()}
               {(() => {
                 if (val.Day_Trip_Excur === 1) {
-                  return <div>Day Trip Excursion: True</div>;
+                  return (
+                    <div>
+                      <div> Day Trip Excursion: True</div>
+                      <div> Day Trip Excursion Notes: {val.dayTripInfo}</div>
+                    </div>
+                  );
                 } else {
                   return <div>Day Trip Excursion: False</div>;
                 }
               })()}
               {(() => {
                 if (val.Team_Build_Excer === 1) {
-                  return <div>Team Building Exercise: True</div>;
+                  return (
+                    <div>
+                      <div> Team Building Exercise: True</div>
+                      <div>
+                        {" "}
+                        Team Building Exercise Notes: {val.teamBuildInfo}
+                      </div>
+                    </div>
+                  );
                 } else {
                   return <div>Team Building Exercise: False</div>;
                 }
               })()}
               {(() => {
                 if (val.otherInfo === 1) {
-                  return <div>Other Information: True</div>;
+                  return (
+                    <div>
+                      <div> Notes: {val.otherInfoText}</div>
+                    </div>
+                  );
                 } else {
                   return <div>Other Information: False</div>;
                 }

@@ -71,6 +71,47 @@ app.post("/intake", (req, res) => {
   const other = req.body.other;
   const Status = req.body.status;
 
+  const hotelAccomInfo = req.body.hotelAccomInfo;
+  const condoAccomInfo = req.body.condoAccomInfo;
+  const univCafeteriaInfo = req.body.univCafeteriaInfo;
+  const cateringInfo = req.body.cateringInfo;
+  const charterTransportInfo = req.body.charterTransportInfo;
+  const indivShuttleInfo = req.body.indivShuttleInfo;
+  const rentalInfo = req.body.rentalInfo;
+  const permitInfo = req.body.permitInfo;
+  const track400Info = req.body.track400Info;
+  const track300Info = req.body.track300Info;
+  const gymInfo = req.body.gymInfo;
+  const OFGInfo = req.body.OFGInfo;
+  const OFTInfo = req.body.OFTInfo;
+  const IFTInfo = req.body.IFTInfo;
+  const AGTInfo = req.body.AGTInfo;
+  const massageInfo = req.body.massageInfo;
+  const physioInfo = req.body.physioInfo;
+  const strengthInfo = req.body.strengthInfo;
+  const orthoInfo = req.body.orthoInfo;
+  const primMedInfo = req.body.primMedInfo;
+  const hemoInfo = req.body.hemoInfo;
+  const compBloodInfo = req.body.compBloodInfo;
+  const metaInfo = req.body.metaInfo;
+  const TBICInfo = req.body.TBICInfo;
+  const creatineKinaseInfo = req.body.creatineKinaseInfo;
+  const VO2LactateInfo = req.body.VO2LactateInfo;
+  const VO2ThreshInfo = req.body.VO2ThreshInfo;
+  const LactateThreshInfo = req.body.LactateThreshInfo;
+  const suppO2Info = req.body.suppO2Info;
+  const dietAnalysisInfo = req.body.dietAnalysisInfo;
+  const nutritionWSInfo = req.body.nutritionWSInfo;
+  const psychConsultInfo = req.body.psychConsultInfo;
+  const psychWSInfo = req.body.psychWSInfo;
+  const focusInfo = req.body.focusInfo;
+  const meetingInfo = req.body.meetingInfo;
+  const equipInfo = req.body.equipInfo;
+  const dayTripInfo = req.body.dayTripInfo;
+  const teamBuildInfo = req.body.teamBuildInfo;
+  const otherInfoText = req.body.otherInfoText;
+  const otherText = req.body.otherInfoText;
+
   db.query(
     "INSERT INTO GeneralIntake(Team_Name, Camp_Date_Start, Camp_Date_End, Num_Personnel, Country, Contact_Name, Contact_Email, Contact_Phone, OnSite_Name, OnSite_Email, OnSite_Phone, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
     [
@@ -165,11 +206,64 @@ app.post("/intake", (req, res) => {
       }
     }
   );
+  db.query(
+    "INSERT INTO IntakeInfo(Team_Name, hotelAccomInfo, condoAccomInfo, cafeteriaInfo, cateringInfo, charterInfo, shuttleInfo, rentalInfo, permitInfo, track400Info, track300Info, gymInfo, OFGInfo, OFTInfo, IFTInfo, AGTInfo, massageInfo, physioInfo, strengthInfo, orthoInfo, primMedInfo, hemoInfo, compBloodInfo, metaInfo, TIBCInfo, creatineKinaseInfo, otherText, VO2LactateInfo, VO2ThreshInfo, LactateThreshInfo, suppO2Info, dietAnalysisInfo, nutritionWSInfo, psychConsultInfo, psychWSInfo, focusInfo, meetingInfo, equipInfo, dayTripInfo, teamBuildInfo, otherInfoText) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
+    [
+      teamName,
+      hotelAccomInfo,
+      condoAccomInfo,
+      univCafeteriaInfo,
+      cateringInfo,
+      charterTransportInfo,
+      indivShuttleInfo,
+      rentalInfo,
+      permitInfo,
+      track400Info,
+      track300Info,
+      gymInfo,
+      OFGInfo,
+      OFTInfo,
+      IFTInfo,
+      AGTInfo,
+      massageInfo,
+      physioInfo,
+      strengthInfo,
+      orthoInfo,
+      primMedInfo,
+      hemoInfo,
+      compBloodInfo,
+      metaInfo,
+      TBICInfo,
+      creatineKinaseInfo,
+      otherText,
+      VO2LactateInfo,
+      VO2ThreshInfo,
+      LactateThreshInfo,
+      suppO2Info,
+      dietAnalysisInfo,
+      nutritionWSInfo,
+      psychConsultInfo,
+      psychWSInfo,
+      focusInfo,
+      meetingInfo,
+      equipInfo,
+      dayTripInfo,
+      teamBuildInfo,
+      otherInfoText,
+    ],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("Values Inserted");
+      }
+    }
+  );
 });
 
 app.get("/Summary", (req, res) => {
   db.query(
-    "SELECT * FROM GeneralIntake Join CoreCampNeeds ON GeneralIntake.Team_Name = CoreCampNeeds.Team_Name Join AdditionalServices ON GeneralIntake.Team_Name = AdditionalServices.Team_Name ORDER BY GeneralIntake.Camp_ID DESC LIMIT 1",
+    "SELECT * FROM GeneralIntake Join CoreCampNeeds ON GeneralIntake.Team_Name = CoreCampNeeds.Team_Name Join AdditionalServices ON GeneralIntake.Team_Name = AdditionalServices.Team_Name JOIN IntakeInfo ON GeneralIntake.Team_Name = IntakeInfo.Team_Name ORDER BY GeneralIntake.Camp_ID DESC LIMIT 1",
     (err, result) => {
       if (err) {
         console.log(err);
