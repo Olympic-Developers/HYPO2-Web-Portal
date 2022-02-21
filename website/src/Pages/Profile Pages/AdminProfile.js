@@ -49,9 +49,14 @@ function App() {
         </h1>
 
         <div>
-          {sumList.map((val, key) => {
+          {sumList.map((val) => {
             return (
-              <button style={{ border: "5px solid Black", display: "block" }}>
+              <button
+                key={val.Camp_ID}
+                disabled={val.clicked}
+                onClick={() => console.log(val.Camp_ID)}
+                style={{ border: "5px solid Black", display: "block" }}
+              >
                 <h3>
                   Camp: {val.Team_Name} - {val.Camp_ID} Status: {val.Status}
                 </h3>

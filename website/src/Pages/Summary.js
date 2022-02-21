@@ -28,9 +28,9 @@ function Summary() {
   ) {
     return (
       <div>
-        {sumList.map((val, key) => {
+        {sumList.map((val) => {
           return (
-            <div>
+            <div key={val.Camp_ID}>
               <h1>Camp Summary</h1>
               <h3>General Information</h3>
               <div>Team Name: {val.Team_Name}</div>
