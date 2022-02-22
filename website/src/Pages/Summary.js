@@ -6,22 +6,29 @@ import { useNavigate } from "react-router-dom";
 import { getSessionStorage } from "../Components/UserInfoAndAuth";
 
 function Summary() {
+  // Set default value for navigate
   let navigate = useNavigate();
 
+  // array for holding summary information
+  const [sumList, setSumList] = useState([]);
+
   useEffect(() => {
+    // checking if admin is the user trying to access this page
     if (authCheckClient(navigate)) {
+      // get all user's camp information
       getSummary();
     }
   });
 
-  const [sumList, setSumList] = useState([]);
-
+  // get summary information
   const getSummary = () => {
     Axios.get("http://localhost:3001/Summary").then((response) => {
+      // set values in array for holding summary information
       setSumList(response.data);
     });
   };
 
+  // checking if it is the correct user
   if (
     getSessionStorage("authenticated") === "true" &&
     getSessionStorage("classification").toLowerCase() === "client"
@@ -135,7 +142,6 @@ function Summary() {
                     <div>
                       <div> University Parking Permit: True</div>
                       <div>
-                        {" "}
                         University Parking Permit Notes: {val.permitInfo}
                       </div>
                     </div>
@@ -145,6 +151,7 @@ function Summary() {
                 }
               })()}
               <h4> Facilities</h4>
+              {/*Ask Camden if this is missing informatiosn*/}
               <div>50M Aquatic Center Lanes: {val.Pool50M}</div>
               {(() => {
                 if (val.Track400M === 1) {
@@ -269,7 +276,6 @@ function Summary() {
                     <div>
                       <div> Strength and Conditioning: True</div>
                       <div>
-                        {" "}
                         Strength and Conditioning Notes: {val.strengthInfo}
                       </div>
                     </div>
@@ -321,7 +327,6 @@ function Summary() {
                     <div>
                       <div> Complete Blood Profile: True</div>
                       <div>
-                        {" "}
                         Complete Blood Profile Notes: {val.compBloodInfo}
                       </div>
                     </div>
@@ -360,7 +365,6 @@ function Summary() {
                     <div>
                       <div> Creatine Kinase Test: True</div>
                       <div>
-                        {" "}
                         Creatine Kinase Test Notes: {val.creatineKinaseInfo}
                       </div>
                     </div>
@@ -401,7 +405,6 @@ function Summary() {
                     <div>
                       <div> Lactate Threshold Test: True</div>
                       <div>
-                        {" "}
                         Lactate Threshold Test Notes: {val.LactateThreshInfo}
                       </div>
                     </div>
@@ -429,8 +432,7 @@ function Summary() {
                     <div>
                       <div> Integrated training and dietary analysis: True</div>
                       <div>
-                        {" "}
-                        Integrate training and dietary analysis Notes:{" "}
+                        Integrate training and dietary analysis Notes:
                         {val.dietAnalysisInfo}
                       </div>
                     </div>
@@ -447,8 +449,7 @@ function Summary() {
                     <div>
                       <div> Nutrition Group Presentation Workshop: True</div>
                       <div>
-                        {" "}
-                        Nutrition Group Presentation Workshop Notes:{" "}
+                        Nutrition Group Presentation Workshop Notes:
                         {val.nutritionWSInfo}
                       </div>
                     </div>
@@ -466,8 +467,7 @@ function Summary() {
                     <div>
                       <div> Individual Psych Consultation: True</div>
                       <div>
-                        {" "}
-                        Individual Psych Consultation Notes:{" "}
+                        Individual Psych Consultation Notes:
                         {val.psychConsultInfo}
                       </div>
                     </div>
@@ -482,8 +482,7 @@ function Summary() {
                     <div>
                       <div> Psych Group Presentation Workshop: True</div>
                       <div>
-                        {" "}
-                        Psych Group Presentation Workshop Notes:{" "}
+                        Psych Group Presentation Workshop Notes:
                         {val.psychWSInfo}
                       </div>
                     </div>
@@ -534,7 +533,6 @@ function Summary() {
                     <div>
                       <div> Team Building Exercise: True</div>
                       <div>
-                        {" "}
                         Team Building Exercise Notes: {val.teamBuildInfo}
                       </div>
                     </div>
@@ -567,7 +565,9 @@ function Summary() {
         </button>
       </div>
     );
-  } else {
+  }
+  // not a proper user display nothing
+  else {
     return null;
   }
 }

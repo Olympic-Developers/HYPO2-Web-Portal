@@ -10,8 +10,8 @@ function App() {
   // Set default value for navigate
   let navigate = useNavigate();
 
-  // useEffect used for checking for authenticated and proper classification
   useEffect(() => {
+    // checking if staff is the user trying to access this page
     authCheckStaff(navigate);
   });
 
@@ -27,6 +27,7 @@ function App() {
     }
   }
 
+  // checking for proper user
   if (
     getSessionStorage("authenticated") === "true" &&
     getSessionStorage("classification").toLowerCase() === "staff"
@@ -46,7 +47,9 @@ function App() {
         </button>
       </div>
     );
-  } else {
+  }
+  // not a proper user display nothing
+  else {
     return null;
   }
 }

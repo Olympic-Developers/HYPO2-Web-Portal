@@ -1,3 +1,4 @@
+// Checking if Admin can enter page
 export const authCheckAdmin = (navigate) => {
   // Checking if there is any variables stored (takes care of protecting path
   // from outside webpages)
@@ -23,6 +24,7 @@ export const authCheckAdmin = (navigate) => {
   return true;
 };
 
+// Checking if Client can enter page
 export const authCheckClient = (navigate) => {
   // Checking if there is any variables stored (takes care of protecting path
   // from outside webpages)
@@ -48,6 +50,7 @@ export const authCheckClient = (navigate) => {
   return true;
 };
 
+// Checking if Staff can enter page
 export const authCheckStaff = (navigate) => {
   // Checking if there is any variables stored (takes care of protecting path
   // from outside webpages)

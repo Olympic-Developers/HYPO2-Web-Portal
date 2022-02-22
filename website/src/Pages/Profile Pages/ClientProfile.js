@@ -10,20 +10,25 @@ import {
 function App() {
   // Set default value for navigate
   let navigate = useNavigate();
-  const [sumList, setSumList] = useState([]);
 
-  // useEffect used for checking for authenticated and proper classification
+  // array for holding user camp information
+  const [userCampsList, setGetUserCamps] = useState([]);
+
   useEffect(() => {
+    // checking if admin is the user trying to access this page
     if (authCheckClient(navigate)) {
+      // get all user's camp information
       getCamps();
     }
   });
 
+  // to get information of all user's camps
   const getCamps = () => {
     Axios.get("http://localhost:3001/UserCamps", {
       params: { username: getSessionStorage("username").toLowerCase() },
     }).then((response) => {
-      setSumList(response.data);
+      // put information into getUserCampsList array
+      setGetUserCamps(response.data);
     });
   };
 
@@ -39,6 +44,7 @@ function App() {
     }
   }
 
+  // checking for proper user
   if (
     getSessionStorage("authenticated") === "true" &&
     getSessionStorage("classification").toLowerCase() === "client"
@@ -51,7 +57,7 @@ function App() {
         </h1>
 
         <div>
-          {sumList.map((val) => {
+          {userCampsList.map((val) => {
             return (
               <button
                 key={val.Camp_ID}
@@ -89,7 +95,9 @@ function App() {
         </button>
       </div>
     );
-  } else {
+  }
+  // not a proper user display nothing
+  else {
     return null;
   }
 }

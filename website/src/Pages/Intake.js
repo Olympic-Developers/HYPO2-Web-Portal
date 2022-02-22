@@ -6,20 +6,29 @@ import { useNavigate } from "react-router-dom";
 import { getSessionStorage } from "../Components/UserInfoAndAuth";
 
 function Intake() {
+  // Set default value for navigate
   let navigate = useNavigate();
 
   useEffect(() => {
+    // checking if client is the user trying to access this page
     authCheckClient(navigate);
   });
 
+  // function for hiding information blocks for check boxes
   function checkBoxUpdate(event) {
+    // get input
     let Input = document.getElementById(
       event.currentTarget.dataset.id + "Input"
     );
 
+    // checking if element is shown
     if (Input.style.display === "block") {
+      // hide element
       Input.style.display = "none";
-    } else {
+    }
+    // element is hidden
+    else {
+      // show element
       Input.style.display = "block";
     }
   }
@@ -129,9 +138,9 @@ function Intake() {
   const [otherText, setOtherText] = useState("");
   const [status, setStatus] = useState("");
 
-  // Other Declarations
-
+  // for submitting form and uploading form information to database
   const submit = () => {
+    // checking if required values are entered
     if (
       teamName !== "" &&
       // I know this looks weird but when the value is not set it is not undefined
@@ -144,6 +153,7 @@ function Intake() {
       contactEmail !== "" &&
       contactPhone !== ""
     ) {
+      // push info to database
       Axios.post("http://localhost:3001/intake", {
         // GeneralIntake Table Posts
         teamName: teamName,
@@ -252,10 +262,12 @@ function Intake() {
       });
       navigate("/ClientProfile/Summary");
     } else {
+      // let user know they are missing important information
       alert("You are missing one of the required values");
     }
   };
 
+  // checking for proper user
   if (
     getSessionStorage("authenticated") === "true" &&
     getSessionStorage("classification").toLowerCase() === "client"
@@ -276,7 +288,7 @@ function Intake() {
             onChange={(event) => {
               setStartDate(event.target.value);
               setTeamName(getSessionStorage("username").toLowerCase());
-              setStatus("IN-PROGRESS");
+              setStatus("Pending Camp Confirmation Needed");
             }}
           />
         </span>
@@ -1705,7 +1717,9 @@ function Intake() {
         <button onClick={submit}>Submit</button>
       </div>
     );
-  } else {
+  }
+  // not a proper user display nothing
+  else {
     return null;
   }
 }

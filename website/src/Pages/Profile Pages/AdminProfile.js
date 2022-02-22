@@ -11,17 +11,22 @@ function App() {
   // Set default value for navigate
   let navigate = useNavigate();
 
+  // array for holding all camps information
+  const [allCampList, setAllCampList] = useState([]);
+
   useEffect(() => {
+    // checking if admin is the user trying to access this page
     if (authCheckAdmin(navigate)) {
+      // get all camp information
       getAllCamps();
     }
   });
 
-  const [sumList, setSumList] = useState([]);
-
+  // to get information of all camps
   const getAllCamps = () => {
     Axios.get("http://localhost:3001/AllCamps").then((response) => {
-      setSumList(response.data);
+      // put information into allCampList array
+      setAllCampList(response.data);
     });
   };
 
@@ -37,6 +42,7 @@ function App() {
     }
   }
 
+  // checking for proper user
   if (
     getSessionStorage("authenticated") === "true" &&
     getSessionStorage("classification").toLowerCase() === "admin"
@@ -49,7 +55,7 @@ function App() {
         </h1>
 
         <div>
-          {sumList.map((val) => {
+          {allCampList.map((val) => {
             return (
               <button
                 key={val.Camp_ID}
@@ -76,7 +82,9 @@ function App() {
         </button>
       </div>
     );
-  } else {
+  }
+  // not a proper user display nothing
+  else {
     return null;
   }
 }

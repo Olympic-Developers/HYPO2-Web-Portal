@@ -10,6 +10,7 @@ function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  // Set default value for navigate
   let navigate = useNavigate();
 
   // Set default value for authenticated and navigate
