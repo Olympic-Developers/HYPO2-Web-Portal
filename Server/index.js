@@ -262,8 +262,9 @@ app.post("/intake", (req, res) => {
 });
 
 app.get("/Summary", (req, res) => {
+  let username = req.query.username;
   db.query(
-    "SELECT * FROM GeneralIntake Join CoreCampNeeds ON GeneralIntake.Team_Name = CoreCampNeeds.Team_Name Join AdditionalServices ON GeneralIntake.Team_Name = AdditionalServices.Team_Name JOIN IntakeInfo ON GeneralIntake.Team_Name = IntakeInfo.Team_Name ORDER BY GeneralIntake.Camp_ID DESC LIMIT 1",
+    `SELECT * FROM GeneralIntake Join CoreCampNeeds ON GeneralIntake.Camp_ID = CoreCampNeeds.Camp_ID Join AdditionalServices ON GeneralIntake.Camp_ID = AdditionalServices.Camp_ID JOIN IntakeInfo ON GeneralIntake.Camp_ID = IntakeInfo.Camp_ID where GeneralIntake.Team_Name = "${username}" ORDER BY GeneralIntake.Camp_ID DESC LIMIT 1`,
     (err, result) => {
       if (err) {
         console.log(err);
@@ -289,6 +290,22 @@ app.get("/UserCamps", (req, res) => {
 
   db.query(
     `SELECT * FROM GeneralIntake WHERE Team_Name = "${username}"`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result.userName);
+        res.send(result);
+      }
+    }
+  );
+});
+
+app.get("/CampInfo", (req, res) => {
+  let id = req.query.id;
+
+  db.query(
+    `SELECT * FROM GeneralIntake Join CoreCampNeeds ON GeneralIntake.Camp_ID = CoreCampNeeds.Camp_ID Join AdditionalServices ON GeneralIntake.Camp_ID = AdditionalServices.Camp_ID JOIN IntakeInfo ON GeneralIntake.Camp_ID = IntakeInfo.Camp_ID WHERE GeneralIntake.Camp_ID = "${id}"`,
     (err, result) => {
       if (err) {
         console.log(err);

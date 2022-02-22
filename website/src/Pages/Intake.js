@@ -873,7 +873,7 @@ function Intake() {
           <div id="pool50MCheckBoxInput" className="hidden-text details-block">
             <label>Number of Lanes Needed?</label>
             <input
-              type="text"
+              type="number"
               onChange={(event) => {
                 setPool50M(event.target.value);
               }}
