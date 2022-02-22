@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import {
   authCheckAdmin,
   getSessionStorage,
+  setSessionStorage,
 } from "../../Components/UserInfoAndAuth";
 
 function App() {
@@ -60,7 +61,11 @@ function App() {
               <button
                 key={val.Camp_ID}
                 disabled={val.clicked}
-                onClick={() => console.log(val.Camp_ID)}
+                onClick={() => {
+                  setSessionStorage("campNumber", val.Camp_ID);
+                  setSessionStorage("campProgressType", val.Status);
+                  navigate("/CampPage");
+                }}
                 style={{ border: "5px solid Black", display: "block" }}
               >
                 <h3>

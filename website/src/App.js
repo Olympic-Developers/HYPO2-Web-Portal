@@ -6,6 +6,7 @@ import StaffProfile from "./Pages/Profile Pages/StaffProfile";
 import AdminProfile from "./Pages/Profile Pages/AdminProfile";
 import ClientProfile from "./Pages/Profile Pages/ClientProfile";
 import Summary from "./Pages/Summary";
+import Camp from "./Pages/Camp";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         </Route>
         <Route path="/AdminProfile" element={<AdminProfile />} />
         <Route path="/StaffProfile" element={<StaffProfile />} />
+        <Route path="/CampPage" element={<Camp />} />
       </Routes>
     </Router>
   );

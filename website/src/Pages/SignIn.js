@@ -17,6 +17,8 @@ function App() {
   setSessionStorage("authenticated", "false");
   setSessionStorage("username", "nouser");
   setSessionStorage("classification", "nouserclassification");
+  setSessionStorage("campNumber", "0");
+  setSessionStorage("campProgressType", "nocamp");
 
   // Function for signing in users
   async function signIn() {
