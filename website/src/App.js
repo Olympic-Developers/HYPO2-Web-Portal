@@ -8,6 +8,7 @@ import ClientProfile from "./Pages/Profile Pages/ClientProfile";
 import Summary from "./Pages/Summary";
 import Camp from "./Pages/Camp";
 import PendingCamp from "./Pages/PendingCamps";
+import Event from "./Pages/Event";
 
 function App() {
   return (
@@ -24,7 +25,10 @@ function App() {
           <Route index={false} path="PendingCamps" element={<PendingCamp />} />
         </Route>
         <Route path="/StaffProfile" element={<StaffProfile />} />
-        <Route path="/CampPage" element={<Camp />} />
+        <Route path="/CampPage">
+          <Route index={true} element={<Camp />} />
+          <Route index={false} path="Event" element={<Event />} />
+        </Route>
       </Routes>
     </Router>
   );

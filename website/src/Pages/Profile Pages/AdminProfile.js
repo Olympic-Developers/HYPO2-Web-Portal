@@ -1,4 +1,10 @@
+import format from "date-fns/format";
+import getDay from "date-fns/getDay";
+import parse from "date-fns/parse";
+import startOfWeek from "date-fns/startOfWeek";
 import React, { useEffect } from "react";
+import { Calendar, dateFnsLocalizer } from "react-big-calendar";
+import "react-big-calendar/lib/css/react-big-calendar.css";
 import { Auth } from "aws-amplify";
 import { useNavigate } from "react-router-dom";
 import {
@@ -7,6 +13,27 @@ import {
 } from "../../Components/UserInfoAndAuth";
 
 function App() {
+  const locales = {
+    "en-US": require("date-fns/locale/en-US"),
+  };
+
+  const localizer = dateFnsLocalizer({
+    format,
+    parse,
+    startOfWeek,
+    getDay,
+    locales,
+  });
+
+  const events = [
+    {
+      title: "PlaceHolder",
+      allDay: true,
+      start: new Date(2022, 1, 23),
+      end: new Date(2022, 1, 23),
+    },
+  ];
+
   // Set default value for navigate
   let navigate = useNavigate();
 
@@ -73,6 +100,16 @@ function App() {
         >
           Sign out
         </button>
+
+        <h1>Master Calendar</h1>
+        <Calendar
+          localizer={localizer}
+          events={events}
+          startAccessor="start"
+          endAccessor="end"
+          style={{ height: 700, margin: "0px 25px" }}
+          onSelectEvent={() => navigate("/CampPage/Event")}
+        />
       </div>
     );
   }

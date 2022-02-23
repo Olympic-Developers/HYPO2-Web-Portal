@@ -1,4 +1,12 @@
+import format from "date-fns/format";
+import getDay from "date-fns/getDay";
+import parse from "date-fns/parse";
+import startOfWeek from "date-fns/startOfWeek";
 import React, { useState, useEffect } from "react";
+import { Calendar, dateFnsLocalizer } from "react-big-calendar";
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 import {
@@ -7,6 +15,27 @@ import {
 } from "../Components/UserInfoAndAuth";
 
 function App() {
+  const locales = {
+    "en-US": require("date-fns/locale/en-US"),
+  };
+
+  function handleAddEvent() {
+    setAllEvents([...allEvents, newEvent]);
+  }
+
+  const localizer = dateFnsLocalizer({
+    format,
+    parse,
+    startOfWeek,
+    getDay,
+    locales,
+  });
+
+  const events = [];
+
+  const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
+  const [allEvents, setAllEvents] = useState(events);
+
   let navigate = useNavigate();
 
   const [userInfo, setGetInfo] = useState([]);
@@ -501,6 +530,45 @@ function App() {
             </div>
           );
         })}
+
+        <h1>Setup Calendar</h1>
+
+        <div>
+          <input
+            type="text"
+            placeholder="Add Title"
+            value={newEvent.title}
+            onChange={(e) =>
+              setNewEvent({ ...newEvent, title: e.target.value })
+            }
+          />
+          <DatePicker
+            placeholderText="Start Date"
+            dateFormat="MM/dd/yyyy  EE hh:mm a"
+            showTimeSelect
+            selected={newEvent.start}
+            onChange={(start) => setNewEvent({ ...newEvent, start })}
+          />
+          <DatePicker
+            placeholderText="End Date"
+            dateFormat="MM/dd/yyyy  EE hh:mm a"
+            showTimeSelect
+            selected={newEvent.end}
+            onChange={(end) => setNewEvent({ ...newEvent, end })}
+          />
+          <button style={{ marginTop: "25px" }} onClick={handleAddEvent}>
+            Add Event
+          </button>
+        </div>
+
+        <Calendar
+          localizer={localizer}
+          events={allEvents}
+          startAccessor="start"
+          endAccessor="end"
+          style={{ height: 700 }}
+          onSelectEvent={() => navigate("/CampPage/Event")}
+        />
 
         <button
           onClick={() => {
