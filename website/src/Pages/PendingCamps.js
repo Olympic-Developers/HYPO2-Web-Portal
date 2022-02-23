@@ -1,18 +1,35 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Auth } from "aws-amplify";
+import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 import {
   authCheckAdmin,
   getSessionStorage,
-} from "../../Components/UserInfoAndAuth";
+  setSessionStorage,
+} from "../Components/UserInfoAndAuth";
 
 function App() {
   // Set default value for navigate
   let navigate = useNavigate();
 
+  // array for holding all camps information
+  const [allCampList, setAllCampList] = useState([]);
+
   useEffect(() => {
-    authCheckAdmin(navigate);
+    // checking if admin is the user trying to access this page
+    if (authCheckAdmin(navigate)) {
+      // get all camp information
+      getAllCamps();
+    }
   });
+
+  // to get information of all camps
+  const getAllCamps = () => {
+    Axios.get("http://localhost:3001/AllCamps").then((response) => {
+      // put information into allCampList array
+      setAllCampList(response.data);
+    });
+  };
 
   // For signing out users
   async function signOut() {
@@ -73,6 +90,28 @@ function App() {
         >
           Sign out
         </button>
+        <div>
+          {allCampList.map((val) => {
+            return (
+              <button
+                key={val.Camp_ID}
+                disabled={val.clicked}
+                onClick={() => {
+                  setSessionStorage("campNumber", val.Camp_ID);
+                  setSessionStorage("campProgressType", val.Status);
+                  navigate("/CampPage");
+                }}
+                style={{ border: "5px solid Black", display: "block" }}
+              >
+                <h3>
+                  Camp: {val.Team_Name} - {val.Camp_ID} Status: {val.Status}
+                </h3>
+                <p>Start Date: {val.Camp_Date_Start}</p>
+                <p>End Date: {val.Camp_Date_End}</p>
+              </button>
+            );
+          })}
+        </div>
       </div>
     );
   }

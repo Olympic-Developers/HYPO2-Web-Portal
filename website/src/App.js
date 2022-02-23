@@ -7,6 +7,7 @@ import AdminProfile from "./Pages/Profile Pages/AdminProfile";
 import ClientProfile from "./Pages/Profile Pages/ClientProfile";
 import Summary from "./Pages/Summary";
 import Camp from "./Pages/Camp";
+import PendingCamp from "./Pages/PendingCamps";
 
 function App() {
   return (
@@ -18,7 +19,10 @@ function App() {
           <Route index={false} path="Intake" element={<Intake />} />
           <Route index={false} path="Summary" element={<Summary />} />
         </Route>
-        <Route path="/AdminProfile" element={<AdminProfile />} />
+        <Route path="/AdminProfile">
+          <Route index={true} element={<AdminProfile />} />
+          <Route index={false} path="PendingCamps" element={<PendingCamp />} />
+        </Route>
         <Route path="/StaffProfile" element={<StaffProfile />} />
         <Route path="/CampPage" element={<Camp />} />
       </Routes>

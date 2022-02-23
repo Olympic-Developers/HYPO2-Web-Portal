@@ -48,9 +48,14 @@ function App() {
         <button onClick={backToCorrectHomePage}>return to home page</button>
       </div>
     );
-  } else {
+  } else if (
+    getSessionStorage("campProgressType") ===
+      "Pending Camp Confirmation Needed" &&
+    getSessionStorage("classification").toLowerCase() === "admin"
+  ) {
     return (
       <div>
+        <h1>Camp Setup</h1>
         {userInfo.map((val) => {
           return (
             <div key={val.Camp_ID}>
@@ -76,8 +81,6 @@ function App() {
                       <div>Hotel Accommodation Notes: {val.hotelAccomInfo}</div>
                     </div>
                   );
-                } else {
-                  return <div>Hotel Accommodations: False</div>;
                 }
               })()}
               {(() => {
@@ -88,8 +91,6 @@ function App() {
                       <div>Condo Accommodation Notes: {val.condoAccomInfo}</div>
                     </div>
                   );
-                } else {
-                  return <div>Condo Accommodations: False</div>;
                 }
               })()}
               {(() => {
@@ -100,8 +101,6 @@ function App() {
                       <div>University Cafeteria Notes: {val.cafeteriaInfo}</div>
                     </div>
                   );
-                } else {
-                  return <div>University Cafeteria: False</div>;
                 }
               })()}
               {(() => {
@@ -112,8 +111,6 @@ function App() {
                       <div>Catering Notes: {val.cateringInfo}</div>
                     </div>
                   );
-                } else {
-                  return <div>Catering: False</div>;
                 }
               })()}
               {(() => {
@@ -124,8 +121,6 @@ function App() {
                       <div>Charter Transport Notes: {val.charterInfo}</div>
                     </div>
                   );
-                } else {
-                  return <div>Charter Transport: False</div>;
                 }
               })()}
               {(() => {
@@ -136,8 +131,6 @@ function App() {
                       <div>INdividual Shuttle Notes: {val.shuttleInfo}</div>
                     </div>
                   );
-                } else {
-                  return <div>Individual Shuttle: False</div>;
                 }
               })()}
               {(() => {
@@ -148,8 +141,6 @@ function App() {
                       <div> Rental Notes: {val.rentalInfo}</div>
                     </div>
                   );
-                } else {
-                  return <div>Rental: False</div>;
                 }
               })()}
               {(() => {
@@ -162,13 +153,14 @@ function App() {
                       </div>
                     </div>
                   );
-                } else {
-                  return <div>University Paring Permit: False</div>;
                 }
               })()}
               <h4> Facilities</h4>
-              {/*Ask Camden if this is missing informatiosn*/}
-              <div>50M Aquatic Center Lanes: {val.Pool50M}</div>
+              {(() => {
+                if (val.Pool50M !== 0) {
+                  return <div>50M Aquatic Center Lanes: {val.Pool50M}</div>;
+                }
+              })()}
               {(() => {
                 if (val.Track400M === 1) {
                   return (
@@ -177,8 +169,6 @@ function App() {
                       <div> Track 400M Notes: {val.track400Info}</div>
                     </div>
                   );
-                } else {
-                  return <div>Track 400M: False</div>;
                 }
               })()}
               {(() => {
@@ -189,8 +179,6 @@ function App() {
                       <div> Track 300M Notes: {val.track300Info}</div>
                     </div>
                   );
-                } else {
-                  return <div>Track 300M: False</div>;
                 }
               })()}
               {(() => {
@@ -201,8 +189,6 @@ function App() {
                       <div> Gym Notes: {val.gymInfo}</div>
                     </div>
                   );
-                } else {
-                  return <div>Gym: False</div>;
                 }
               })()}
               {(() => {
@@ -213,8 +199,6 @@ function App() {
                       <div> Outdoor Grass FieldNotes: {val.OFGInfo}</div>
                     </div>
                   );
-                } else {
-                  return <div>Outdoor Grass Field: False</div>;
                 }
               })()}
               {(() => {
@@ -225,8 +209,6 @@ function App() {
                       <div> Outdoor Turf Field Notes: {val.OFTInfo}</div>
                     </div>
                   );
-                } else {
-                  return <div>Outdoor Turf Field: False</div>;
                 }
               })()}
               {(() => {
@@ -237,18 +219,18 @@ function App() {
                       <div> Indoor Turf Field Notes: {val.IFTInfo}</div>
                     </div>
                   );
-                } else {
-                  return <div>Indoor Turf Field: False</div>;
                 }
               })()}
               {(() => {
                 if (val.CourtSpace === 1) {
                   return <div>Court Space: True</div>;
-                } else {
-                  return <div>Court Space: False</div>;
                 }
               })()}
-              <div>Court Usage: {val.CourtUsage}</div>
+              {(() => {
+                if (val.CourtUsage !== 0) {
+                  return <div>Court Usage: {val.CourtUsage}</div>;
+                }
+              })()}
               {(() => {
                 if (val.AntiGravTread === 1) {
                   return (
@@ -257,8 +239,6 @@ function App() {
                       <div> Anti Grav Treadmill Notes: {val.AGTInfo}</div>
                     </div>
                   );
-                } else {
-                  return <div>Anti-gravity Treadmill: False</div>;
                 }
               })()}
               <h3> Additional Services </h3>
@@ -270,8 +250,6 @@ function App() {
                       <div> Massage Therapy Notes: {val.massageInfo}</div>
                     </div>
                   );
-                } else {
-                  return <div>Massage Therapy: False</div>;
                 }
               })()}
               {(() => {
@@ -282,8 +260,6 @@ function App() {
                       <div> Physio Therapy Notes: {val.physioInfo}</div>
                     </div>
                   );
-                } else {
-                  return <div>Physio Therapy: False</div>;
                 }
               })()}
               {(() => {
@@ -296,8 +272,6 @@ function App() {
                       </div>
                     </div>
                   );
-                } else {
-                  return <div>Strength and Conditioning: False</div>;
                 }
               })()}
               {(() => {
@@ -308,8 +282,6 @@ function App() {
                       <div> Orthopedic Care Notes: {val.orthoInfo}</div>
                     </div>
                   );
-                } else {
-                  return <div>Orthopedic Care: False</div>;
                 }
               })()}
               {(() => {
@@ -320,8 +292,6 @@ function App() {
                       <div> Primary Medical Care Notes: {val.primMedInfo}</div>
                     </div>
                   );
-                } else {
-                  return <div>Primary Medical Care: False</div>;
                 }
               })()}
               <h4>Blood Testing / Biomarkers</h4>
@@ -333,8 +303,6 @@ function App() {
                       <div> Hemoglobin Test Notes: {val.hemoInfo}</div>
                     </div>
                   );
-                } else {
-                  return <div>Hemoglobin Test: False</div>;
                 }
               })()}
               {(() => {
@@ -347,8 +315,6 @@ function App() {
                       </div>
                     </div>
                   );
-                } else {
-                  return <div>Complete Blood Profile: False</div>;
                 }
               })()}
               {(() => {
@@ -359,8 +325,6 @@ function App() {
                       <div> Metabolism Panel Notes: {val.metaInfo}</div>
                     </div>
                   );
-                } else {
-                  return <div>Metabolism Panel: False</div>;
                 }
               })()}
               {(() => {
@@ -371,8 +335,6 @@ function App() {
                       <div> TIBC Notes: {val.TIBCInfo}</div>
                     </div>
                   );
-                } else {
-                  return <div>TIBC: False</div>;
                 }
               })()}
               {(() => {
@@ -385,8 +347,6 @@ function App() {
                       </div>
                     </div>
                   );
-                } else {
-                  return <div>Creatine Kinase Test: False</div>;
                 }
               })()}
               <div>Other Information: {val.other}</div>
@@ -399,8 +359,6 @@ function App() {
                       <div> VO2 Lactate Test Notes: {val.VO2LactateInfo}</div>
                     </div>
                   );
-                } else {
-                  return <div>VO2 Lactate Test: False</div>;
                 }
               })()}
               {(() => {
@@ -411,8 +369,6 @@ function App() {
                       <div> Vo2 Threshold Test Notes: {val.VO2ThreshInfo}</div>
                     </div>
                   );
-                } else {
-                  return <div>VO2 Threshold Test: False</div>;
                 }
               })()}
               {(() => {
@@ -425,8 +381,6 @@ function App() {
                       </div>
                     </div>
                   );
-                } else {
-                  return <div>Lactate Threshold Test: False</div>;
                 }
               })()}
               {(() => {
@@ -437,8 +391,6 @@ function App() {
                       <div> Supplemental O2 Notes: {val.suppO2Info}</div>
                     </div>
                   );
-                } else {
-                  return <div>Supplemental O2: False</div>;
                 }
               })()}
               <h4>Sports Nutrition</h4>
@@ -453,10 +405,6 @@ function App() {
                       </div>
                     </div>
                   );
-                } else {
-                  return (
-                    <div>Integrated training and dietary analysis: False</div>
-                  );
                 }
               })()}
               {(() => {
@@ -469,10 +417,6 @@ function App() {
                         {val.nutritionWSInfo}
                       </div>
                     </div>
-                  );
-                } else {
-                  return (
-                    <div>Nutrition Group Presentation Workshop: False</div>
                   );
                 }
               })()}
@@ -488,8 +432,6 @@ function App() {
                       </div>
                     </div>
                   );
-                } else {
-                  return <div>Individual Psych Consultation: False</div>;
                 }
               })()}
               {(() => {
@@ -503,8 +445,6 @@ function App() {
                       </div>
                     </div>
                   );
-                } else {
-                  return <div>Psych Group Presentation Workshop: False</div>;
                 }
               })()}
               {(() => {
@@ -515,8 +455,6 @@ function App() {
                       <div> Meeting Space Notes: {val.meetingInfo}</div>
                     </div>
                   );
-                } else {
-                  return <div>Meeting Space: False</div>;
                 }
               })()}
               {(() => {
@@ -527,8 +465,6 @@ function App() {
                       <div> Equipment Storage Notes: {val.equipInfo}</div>
                     </div>
                   );
-                } else {
-                  return <div>Equipment Storage: False</div>;
                 }
               })()}
               {(() => {
@@ -539,8 +475,6 @@ function App() {
                       <div> Day Trip Excursion Notes: {val.dayTripInfo}</div>
                     </div>
                   );
-                } else {
-                  return <div>Day Trip Excursion: False</div>;
                 }
               })()}
               {(() => {
@@ -553,8 +487,6 @@ function App() {
                       </div>
                     </div>
                   );
-                } else {
-                  return <div>Team Building Exercise: False</div>;
                 }
               })()}
               {(() => {
@@ -564,8 +496,6 @@ function App() {
                       <div> Notes: {val.otherInfoText}</div>
                     </div>
                   );
-                } else {
-                  return <div>Other Information: False</div>;
                 }
               })()}
             </div>
@@ -574,11 +504,17 @@ function App() {
 
         <button
           onClick={() => {
-            navigate("/ClientProfile");
+            navigate("/AdminProfile/PendingCamps");
           }}
         >
           Back to Profile Page
         </button>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <h1>Camp Page</h1>
       </div>
     );
   }
