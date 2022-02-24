@@ -15,14 +15,15 @@ import {
 } from "../Components/UserInfoAndAuth";
 
 function App() {
+  useEffect(() => {
+    if (authCheckCamp(navigate)) {
+      getInfo();
+    }
+  });
+
   const locales = {
     "en-US": require("date-fns/locale/en-US"),
   };
-
-  function handleAddEvent() {
-    setAllEvents([...allEvents, newEvent]);
-  }
-
   const localizer = dateFnsLocalizer({
     format,
     parse,
@@ -32,19 +33,73 @@ function App() {
   });
 
   const events = [];
+  const [userInfo, setGetInfo] = useState([]);
 
-  const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
+  const [newEvent, setNewEvent] = useState({
+    // Only need for local
+    tempTitleForSelectBox: "",
+
+    // Store in the Database
+    userName: "",
+    campID: 0,
+    price: 0,
+    amountOfPeople: 0,
+    title: "",
+    comment: "",
+    start: "",
+    end: "",
+  });
   const [allEvents, setAllEvents] = useState(events);
 
   let navigate = useNavigate();
 
-  const [userInfo, setGetInfo] = useState([]);
+  function handleAddEvent() {
+    setAllEvents([...allEvents, newEvent]);
+    console.log(newEvent);
+  }
 
-  useEffect(() => {
-    if (authCheckCamp(navigate)) {
-      getInfo();
+  function displayAmountOfPeopleTextBox(event) {
+    const idOfService = event.target.value;
+    let Input = document.getElementById("amountOfPeople");
+
+    if (
+      idOfService === "Outdoor Fields Grass" ||
+      idOfService === "Outdoor Fields Artificial Turf" ||
+      idOfService === "Indoor Field" ||
+      idOfService === "Physiotherapy/Chiropractic Rehab/Prehab" ||
+      idOfService === "Orthopaedic Care" ||
+      idOfService === "Primary Medical Care" ||
+      idOfService === "Supplemental O2 for Training / Recovery" ||
+      idOfService === "Integrated Training and Dietary Analysis" ||
+      idOfService === "Group Presentation or Workshop" ||
+      idOfService === "Individual Consultation " ||
+      idOfService === "Team Focus Session" ||
+      idOfService === "Group Presentation or Workshop" ||
+      idOfService === "Other"
+    ) {
+      Input.style.display = "none";
+    } else {
+      Input.style.display = "block";
     }
-  });
+  }
+
+  function displayPriceTextBox(event) {
+    const idOfService = event.target.value;
+    let Input = document.getElementById("priceForService");
+
+    if (
+      idOfService === "Outdoor Fields Grass" ||
+      idOfService === "Outdoor Fields Artificial Turf" ||
+      idOfService === "Indoor Field" ||
+      idOfService === "Orthopaedic Care" ||
+      idOfService === "Primary Medical Care" ||
+      idOfService === "Other"
+    ) {
+      Input.style.display = "block";
+    } else {
+      Input.style.display = "none";
+    }
+  }
 
   function backToCorrectHomePage() {
     if (getSessionStorage("classification").toLowerCase() === "admin") {
@@ -54,14 +109,14 @@ function App() {
     }
   }
 
-  const getInfo = () => {
+  function getInfo() {
     Axios.get("http://localhost:3001/CampInfo", {
       params: { id: getSessionStorage("campNumber") },
     }).then((response) => {
       // put information into getUserCampsList array
       setGetInfo(response.data);
     });
-  };
+  }
 
   if (
     getSessionStorage("campProgressType") ===
@@ -168,6 +223,12 @@ function App() {
                     <div>
                       <div> Rental: True</div>
                       <div> Rental Notes: {val.rentalInfo}</div>
+                      <div id="priceForRental">
+                        <input
+                          type="number"
+                          placeholder="Price for Rental Car"
+                        ></input>
+                      </div>
                     </div>
                   );
                 }
@@ -534,14 +595,126 @@ function App() {
         <h1>Setup Calendar</h1>
 
         <div>
-          <input
-            type="text"
-            placeholder="Add Title"
-            value={newEvent.title}
-            onChange={(e) =>
-              setNewEvent({ ...newEvent, title: e.target.value })
-            }
-          />
+          <select
+            value={newEvent.tempTitle}
+            onChange={(event) => {
+              setNewEvent({
+                ...newEvent,
+                tempTitleForSelectBox: event.target.value,
+                title:
+                  userInfo[0].Team_Name +
+                  " - " +
+                  userInfo[0].Camp_ID +
+                  " - " +
+                  event.target.value,
+                userName: userInfo[0].Team_Name,
+                campID: userInfo[0].Camp_ID,
+              });
+
+              displayAmountOfPeopleTextBox(event);
+              displayPriceTextBox(event);
+            }}
+          >
+            <option value="50m Aquatic Center LC Lanes">
+              50m Aquatic Center LC Lanes
+            </option>
+
+            <option value="50m Aquatic Center SC Lanes">
+              50m Aquatic Center SC Lanes
+            </option>
+
+            <option value="400m Outdoor Track (8-lane)">
+              400m Outdoor Track (8-lane)
+            </option>
+            <option value="300m Indoor Track (6-lane)">
+              300m Indoor Track (6-lane)
+            </option>
+            <option value="University Gym">University Gym</option>
+            <option value="Hypo2 Gym">Hypo2 Gym</option>
+            <option value="Outdoor Fields Grass">Outdoor Fields Grass</option>
+            <option value="Outdoor Fields Artificial Turf">
+              Outdoor Fields Artificial Turf
+            </option>
+            <option value="Indoor Field">Indoor Field</option>
+            <option value="High Speed Treadmill">High Speed Treadmill</option>
+            <option value="Massage Therapy">Massage Therapy</option>
+            <option value="Physiotherapy/Chiropractic Rehab/Prehab">
+              Physiotherapy/Chiropractic Rehab/Prehab
+            </option>
+            <option value="Strength & Conditioning Coaching">
+              Strength & Conditioning Coaching
+            </option>
+            <option value="Orthopaedic Care">Orthopaedic Care</option>
+            <option value="Primary Medical Care">Primary Medical Care</option>
+            <option value="Total Hemoglobin Mass Testing">
+              Total Hemoglobin Mass Testing (via CO Rebreathing Method)
+            </option>
+            <option value="Complete Blood Profile (includes RBC, WBC, Hematocrit, Hemoglobin, etc.) ">
+              Complete Blood Profile (includes RBC, WBC, Hematocrit, Hemoglobin,
+              etc.)
+            </option>
+            <option value="Comprehensive Metabolic Panel">
+              Comprehensive Metabolic Panel
+            </option>
+            <option value="Ferritin/Iron/Total iron Binding Capacity">
+              Ferritin/Iron/Total iron Binding Capacity
+            </option>
+            <option value="Creatine Kinase (CK/CPK)">
+              Creatine Kinase (CK/CPK)
+            </option>
+            <option value="VO2 & Lactate Combined">
+              VO2 & Lactate Combined
+            </option>
+            <option value="VO2 Threshold">VO2 Threshold</option>
+            <option value="Lactate Threshold">Lactate Threshold</option>
+            <option value="Supplemental O2 for Training / Recovery">
+              Supplemental O2 for Training / Recovery
+            </option>
+            <option value="Integrated Training and Dietary Analysis ">
+              Integrated Training and Dietary Analysis
+            </option>
+            <option value="Group Presentation or Workshop">
+              Group Presentation or Workshop
+            </option>
+            <option value="Individual Consultation">
+              Individual Consultation
+            </option>
+            <option value="Team Focus Session">Team Focus Session</option>
+            <option value="Group Presentation or Workshop">
+              Group Presentation or Workshop
+            </option>
+            <option value="other">Other</option>
+          </select>
+
+          <div>
+            <textarea
+              placeholder="Comment if needed"
+              placename="Comments"
+              cols="50"
+              rows="10"
+            ></textarea>
+          </div>
+
+          <div id="amountOfPeople">
+            <input
+              type="number"
+              placeholder="Amount of people"
+              onChange={(event) =>
+                setNewEvent({ ...newEvent, amountOfPeople: event.target.value })
+              }
+            ></input>
+          </div>
+
+          <div id="priceForService" className="hidden-text">
+            <input
+              type="number"
+              placeholder="Price for service"
+              onChange={(event) =>
+                setNewEvent({ ...newEvent, price: event.target.value })
+              }
+            />
+          </div>
+
           <DatePicker
             placeholderText="Start Date"
             dateFormat="MM/dd/yyyy  EE hh:mm a"

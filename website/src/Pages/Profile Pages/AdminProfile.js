@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import {
   authCheckAdmin,
   getSessionStorage,
+  setSessionStorage,
 } from "../../Components/UserInfoAndAuth";
 
 function App() {
@@ -25,14 +26,7 @@ function App() {
     locales,
   });
 
-  const events = [
-    {
-      title: "PlaceHolder",
-      allDay: true,
-      start: new Date(2022, 1, 23),
-      end: new Date(2022, 1, 23),
-    },
-  ];
+  const events = [];
 
   // Set default value for navigate
   let navigate = useNavigate();
@@ -108,7 +102,10 @@ function App() {
           startAccessor="start"
           endAccessor="end"
           style={{ height: 700, margin: "0px 25px" }}
-          onSelectEvent={() => navigate("/CampPage/Event")}
+          onSelectEvent={(event) => {
+            setSessionStorage("campNumber", event.campID);
+            navigate("/CampPage/Event");
+          }}
         />
       </div>
     );
