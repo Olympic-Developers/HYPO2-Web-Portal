@@ -15,15 +15,27 @@ import {
 } from "../Components/UserInfoAndAuth";
 
 function App() {
-  useEffect(() => {
-    if (authCheckCamp(navigate)) {
-      getInfo();
-    }
+  const [didLoad, setDidLoad] = useState(false);
+  let navigate = useNavigate();
+  const events = [];
+  const [userInfo, setGetInfo] = useState([]);
+  const [allEvents, setAllEvents] = useState(events);
+
+  const [newEvent, setNewEvent] = useState({
+    userName: "",
+    campID: 0,
+    price: 0,
+    amountOfPeople: 0,
+    title: "",
+    comment: "",
+    start: new Date(),
+    end: new Date(),
   });
 
   const locales = {
     "en-US": require("date-fns/locale/en-US"),
   };
+
   const localizer = dateFnsLocalizer({
     format,
     parse,
@@ -32,26 +44,20 @@ function App() {
     locales,
   });
 
-  const events = [];
-  const [userInfo, setGetInfo] = useState([]);
-
-  const [newEvent, setNewEvent] = useState({
-    // Only need for local
-    tempTitleForSelectBox: "",
-
-    // Store in the Database
-    userName: "",
-    campID: 0,
-    price: 0,
-    amountOfPeople: 0,
-    title: "",
-    comment: "",
-    start: "",
-    end: "",
-  });
-  const [allEvents, setAllEvents] = useState(events);
-
-  let navigate = useNavigate();
+  useEffect(() => {
+    if (!didLoad) {
+      if (authCheckCamp(navigate)) {
+        getInfo();
+        // this is the idea for taking database information in and adding it to events
+        events.push({
+          title: "Vacation",
+          start: new Date(2022, 5, 7),
+          end: new Date(2022, 5, 10),
+        });
+        setDidLoad(true);
+      }
+    }
+  }, [didLoad, navigate, events]);
 
   function handleAddEvent() {
     setAllEvents([...allEvents, newEvent]);
@@ -152,6 +158,8 @@ function App() {
           const monthEnd = splitEndDate[1] - 1;
           const dayEnd = splitEndDate[2];
 
+          let tempTitle;
+          let tempStartDate = new Date(yearStart, monthStart, dayStart);
           return (
             <div key={val.Camp_ID}>
               <h1>Camp Setup</h1>
@@ -608,21 +616,16 @@ function App() {
 
               <div>
                 <select
-                  value={newEvent.tempTitle}
+                  value={tempTitle}
                   onChange={(event) => {
                     setNewEvent({
                       ...newEvent,
-                      tempTitleForSelectBox: event.target.value,
-                      title:
-                        userInfo[0].Team_Name +
-                        " - " +
-                        userInfo[0].Camp_ID +
-                        " - " +
-                        event.target.value,
-                      userName: userInfo[0].Team_Name,
-                      campID: userInfo[0].Camp_ID,
+                      title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                      userName: val.Team_Name,
+                      campID: val.Camp_ID,
                     });
 
+                    tempTitle = event.target.value;
                     displayAmountOfPeopleTextBox(event);
                     displayPriceTextBox(event);
                   }}
