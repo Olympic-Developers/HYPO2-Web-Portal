@@ -139,15 +139,31 @@ function App() {
   ) {
     return (
       <div>
-        <h1>Camp Setup</h1>
         {userInfo.map((val) => {
+          const splitStartDate = val.Camp_Date_Start.split(/[- : T]/);
+
+          const yearStart = splitStartDate[0];
+          const monthStart = splitStartDate[1] - 1;
+          const dayStart = splitStartDate[2];
+
+          const splitEndDate = val.Camp_Date_End.split(/[- : T]/);
+
+          const yearEnd = splitEndDate[0];
+          const monthEnd = splitEndDate[1] - 1;
+          const dayEnd = splitEndDate[2];
+
           return (
             <div key={val.Camp_ID}>
+              <h1>Camp Setup</h1>
               <h1>Camp Summary</h1>
               <h3>General Information</h3>
               <div>Team Name: {val.Team_Name}</div>
-              <div>Camp Start: {val.Camp_Date_Start}</div>
-              <div>Camp End: {val.Camp_Date_End}</div>
+              <div>
+                Camp Start: {monthStart + 1} /{dayStart}/ {yearStart}
+              </div>
+              <div>
+                Camp End: {monthEnd + 1}/{dayEnd}/{yearEnd}
+              </div>
               <div>Number of Personnel: {val.Num_Personnel}</div>
               <div>Country: {val.Country}</div>
               <div>Contact: {val.Contact_Name}</div>
@@ -588,168 +604,177 @@ function App() {
                   );
                 }
               })()}
+              <h1>Setup Calendar</h1>
+
+              <div>
+                <select
+                  value={newEvent.tempTitle}
+                  onChange={(event) => {
+                    setNewEvent({
+                      ...newEvent,
+                      tempTitleForSelectBox: event.target.value,
+                      title:
+                        userInfo[0].Team_Name +
+                        " - " +
+                        userInfo[0].Camp_ID +
+                        " - " +
+                        event.target.value,
+                      userName: userInfo[0].Team_Name,
+                      campID: userInfo[0].Camp_ID,
+                    });
+
+                    displayAmountOfPeopleTextBox(event);
+                    displayPriceTextBox(event);
+                  }}
+                >
+                  <option value="50m Aquatic Center LC Lanes">
+                    50m Aquatic Center LC Lanes
+                  </option>
+
+                  <option value="50m Aquatic Center SC Lanes">
+                    50m Aquatic Center SC Lanes
+                  </option>
+
+                  <option value="400m Outdoor Track (8-lane)">
+                    400m Outdoor Track (8-lane)
+                  </option>
+                  <option value="300m Indoor Track (6-lane)">
+                    300m Indoor Track (6-lane)
+                  </option>
+                  <option value="University Gym">University Gym</option>
+                  <option value="Hypo2 Gym">Hypo2 Gym</option>
+                  <option value="Outdoor Fields Grass">
+                    Outdoor Fields Grass
+                  </option>
+                  <option value="Outdoor Fields Artificial Turf">
+                    Outdoor Fields Artificial Turf
+                  </option>
+                  <option value="Indoor Field">Indoor Field</option>
+                  <option value="High Speed Treadmill">
+                    High Speed Treadmill
+                  </option>
+                  <option value="Massage Therapy">Massage Therapy</option>
+                  <option value="Physiotherapy/Chiropractic Rehab/Prehab">
+                    Physiotherapy/Chiropractic Rehab/Prehab
+                  </option>
+                  <option value="Strength & Conditioning Coaching">
+                    Strength & Conditioning Coaching
+                  </option>
+                  <option value="Orthopaedic Care">Orthopaedic Care</option>
+                  <option value="Primary Medical Care">
+                    Primary Medical Care
+                  </option>
+                  <option value="Total Hemoglobin Mass Testing">
+                    Total Hemoglobin Mass Testing (via CO Rebreathing Method)
+                  </option>
+                  <option value="Complete Blood Profile (includes RBC, WBC, Hematocrit, Hemoglobin, etc.) ">
+                    Complete Blood Profile (includes RBC, WBC, Hematocrit,
+                    Hemoglobin, etc.)
+                  </option>
+                  <option value="Comprehensive Metabolic Panel">
+                    Comprehensive Metabolic Panel
+                  </option>
+                  <option value="Ferritin/Iron/Total iron Binding Capacity">
+                    Ferritin/Iron/Total iron Binding Capacity
+                  </option>
+                  <option value="Creatine Kinase (CK/CPK)">
+                    Creatine Kinase (CK/CPK)
+                  </option>
+                  <option value="VO2 & Lactate Combined">
+                    VO2 & Lactate Combined
+                  </option>
+                  <option value="VO2 Threshold">VO2 Threshold</option>
+                  <option value="Lactate Threshold">Lactate Threshold</option>
+                  <option value="Supplemental O2 for Training / Recovery">
+                    Supplemental O2 for Training / Recovery
+                  </option>
+                  <option value="Integrated Training and Dietary Analysis ">
+                    Integrated Training and Dietary Analysis
+                  </option>
+                  <option value="Group Presentation or Workshop">
+                    Group Presentation or Workshop
+                  </option>
+                  <option value="Individual Consultation">
+                    Individual Consultation
+                  </option>
+                  <option value="Team Focus Session">Team Focus Session</option>
+                  <option value="Group Presentation or Workshop">
+                    Group Presentation or Workshop
+                  </option>
+                  <option value="Other">Other</option>
+                </select>
+
+                <div>
+                  <textarea
+                    placeholder="Comment if needed"
+                    placename="Comments"
+                    cols="50"
+                    rows="10"
+                  ></textarea>
+                </div>
+
+                <div id="amountOfPeople">
+                  <input
+                    type="number"
+                    placeholder="Amount of people"
+                    onChange={(event) =>
+                      setNewEvent({
+                        ...newEvent,
+                        amountOfPeople: event.target.value,
+                      })
+                    }
+                  ></input>
+                </div>
+
+                <div id="priceForService" className="hidden-text">
+                  <input
+                    type="number"
+                    placeholder="Price for service"
+                    onChange={(event) =>
+                      setNewEvent({ ...newEvent, price: event.target.value })
+                    }
+                  />
+                </div>
+
+                <DatePicker
+                  placeholderText="Start Date"
+                  dateFormat="MM/dd/yyyy  EE hh:mm a"
+                  showTimeSelect
+                  selected={newEvent.start}
+                  onChange={(start) => setNewEvent({ ...newEvent, start })}
+                />
+                <DatePicker
+                  placeholderText="End Date"
+                  dateFormat="MM/dd/yyyy  EE hh:mm a"
+                  showTimeSelect
+                  selected={newEvent.end}
+                  onChange={(end) => setNewEvent({ ...newEvent, end })}
+                />
+                <button style={{ marginTop: "25px" }} onClick={handleAddEvent}>
+                  Add Event
+                </button>
+              </div>
+
+              <Calendar
+                localizer={localizer}
+                events={allEvents}
+                startAccessor="start"
+                endAccessor="end"
+                defaultDate={new Date(yearStart, monthStart, dayStart)}
+                style={{ height: 700 }}
+                onSelectEvent={() => navigate("/CampPage/Event")}
+              />
+
+              <button
+                onClick={() => {
+                  navigate("/AdminProfile/PendingCamps");
+                }}
+              >
+                Back to Profile Page
+              </button>
             </div>
           );
         })}
-
-        <h1>Setup Calendar</h1>
-
-        <div>
-          <select
-            value={newEvent.tempTitle}
-            onChange={(event) => {
-              setNewEvent({
-                ...newEvent,
-                tempTitleForSelectBox: event.target.value,
-                title:
-                  userInfo[0].Team_Name +
-                  " - " +
-                  userInfo[0].Camp_ID +
-                  " - " +
-                  event.target.value,
-                userName: userInfo[0].Team_Name,
-                campID: userInfo[0].Camp_ID,
-              });
-
-              displayAmountOfPeopleTextBox(event);
-              displayPriceTextBox(event);
-            }}
-          >
-            <option value="50m Aquatic Center LC Lanes">
-              50m Aquatic Center LC Lanes
-            </option>
-
-            <option value="50m Aquatic Center SC Lanes">
-              50m Aquatic Center SC Lanes
-            </option>
-
-            <option value="400m Outdoor Track (8-lane)">
-              400m Outdoor Track (8-lane)
-            </option>
-            <option value="300m Indoor Track (6-lane)">
-              300m Indoor Track (6-lane)
-            </option>
-            <option value="University Gym">University Gym</option>
-            <option value="Hypo2 Gym">Hypo2 Gym</option>
-            <option value="Outdoor Fields Grass">Outdoor Fields Grass</option>
-            <option value="Outdoor Fields Artificial Turf">
-              Outdoor Fields Artificial Turf
-            </option>
-            <option value="Indoor Field">Indoor Field</option>
-            <option value="High Speed Treadmill">High Speed Treadmill</option>
-            <option value="Massage Therapy">Massage Therapy</option>
-            <option value="Physiotherapy/Chiropractic Rehab/Prehab">
-              Physiotherapy/Chiropractic Rehab/Prehab
-            </option>
-            <option value="Strength & Conditioning Coaching">
-              Strength & Conditioning Coaching
-            </option>
-            <option value="Orthopaedic Care">Orthopaedic Care</option>
-            <option value="Primary Medical Care">Primary Medical Care</option>
-            <option value="Total Hemoglobin Mass Testing">
-              Total Hemoglobin Mass Testing (via CO Rebreathing Method)
-            </option>
-            <option value="Complete Blood Profile (includes RBC, WBC, Hematocrit, Hemoglobin, etc.) ">
-              Complete Blood Profile (includes RBC, WBC, Hematocrit, Hemoglobin,
-              etc.)
-            </option>
-            <option value="Comprehensive Metabolic Panel">
-              Comprehensive Metabolic Panel
-            </option>
-            <option value="Ferritin/Iron/Total iron Binding Capacity">
-              Ferritin/Iron/Total iron Binding Capacity
-            </option>
-            <option value="Creatine Kinase (CK/CPK)">
-              Creatine Kinase (CK/CPK)
-            </option>
-            <option value="VO2 & Lactate Combined">
-              VO2 & Lactate Combined
-            </option>
-            <option value="VO2 Threshold">VO2 Threshold</option>
-            <option value="Lactate Threshold">Lactate Threshold</option>
-            <option value="Supplemental O2 for Training / Recovery">
-              Supplemental O2 for Training / Recovery
-            </option>
-            <option value="Integrated Training and Dietary Analysis ">
-              Integrated Training and Dietary Analysis
-            </option>
-            <option value="Group Presentation or Workshop">
-              Group Presentation or Workshop
-            </option>
-            <option value="Individual Consultation">
-              Individual Consultation
-            </option>
-            <option value="Team Focus Session">Team Focus Session</option>
-            <option value="Group Presentation or Workshop">
-              Group Presentation or Workshop
-            </option>
-            <option value="other">Other</option>
-          </select>
-
-          <div>
-            <textarea
-              placeholder="Comment if needed"
-              placename="Comments"
-              cols="50"
-              rows="10"
-            ></textarea>
-          </div>
-
-          <div id="amountOfPeople">
-            <input
-              type="number"
-              placeholder="Amount of people"
-              onChange={(event) =>
-                setNewEvent({ ...newEvent, amountOfPeople: event.target.value })
-              }
-            ></input>
-          </div>
-
-          <div id="priceForService" className="hidden-text">
-            <input
-              type="number"
-              placeholder="Price for service"
-              onChange={(event) =>
-                setNewEvent({ ...newEvent, price: event.target.value })
-              }
-            />
-          </div>
-
-          <DatePicker
-            placeholderText="Start Date"
-            dateFormat="MM/dd/yyyy  EE hh:mm a"
-            showTimeSelect
-            selected={newEvent.start}
-            onChange={(start) => setNewEvent({ ...newEvent, start })}
-          />
-          <DatePicker
-            placeholderText="End Date"
-            dateFormat="MM/dd/yyyy  EE hh:mm a"
-            showTimeSelect
-            selected={newEvent.end}
-            onChange={(end) => setNewEvent({ ...newEvent, end })}
-          />
-          <button style={{ marginTop: "25px" }} onClick={handleAddEvent}>
-            Add Event
-          </button>
-        </div>
-
-        <Calendar
-          localizer={localizer}
-          events={allEvents}
-          startAccessor="start"
-          endAccessor="end"
-          style={{ height: 700 }}
-          onSelectEvent={() => navigate("/CampPage/Event")}
-        />
-
-        <button
-          onClick={() => {
-            navigate("/AdminProfile/PendingCamps");
-          }}
-        >
-          Back to Profile Page
-        </button>
       </div>
     );
   } else {
