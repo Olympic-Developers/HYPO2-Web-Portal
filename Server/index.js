@@ -316,7 +316,7 @@ app.get("/CampInfo", (req, res) => {
   );
 });
 
-app.get("/Billing", (req, res) => {
+app.get("/Prices", (req, res) => {
   db.query("SELECT * FROM BillingIntake", (err, result) => {
     if (err) {
       console.log(err);

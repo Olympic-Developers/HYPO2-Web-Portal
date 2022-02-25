@@ -9,6 +9,7 @@ import Summary from "./Pages/Summary";
 import Camp from "./Pages/Camp";
 import PendingCamp from "./Pages/PendingCamps";
 import Event from "./Pages/Event";
+import UpdatePrices from "./Pages/UpdatePrice";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/AdminProfile">
           <Route index={true} element={<AdminProfile />} />
           <Route index={false} path="PendingCamps" element={<PendingCamp />} />
+          <Route index={false} path="UpdatePrices" element={<UpdatePrices />} />
         </Route>
         <Route path="/StaffProfile" element={<StaffProfile />} />
         <Route path="/CampPage">

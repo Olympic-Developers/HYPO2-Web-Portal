@@ -79,7 +79,12 @@ function App() {
         <button style={{ display: "inline", marginRight: "20px" }}>
           Past Camps
         </button>
-        <button style={{ display: "inline", marginRight: "20px" }}>
+        <button
+          style={{ display: "inline", marginRight: "20px" }}
+          onClick={() => {
+            navigate("/AdminProfile/UpdatePrices");
+          }}
+        >
           Update Prices Of Services
         </button>
         <button
