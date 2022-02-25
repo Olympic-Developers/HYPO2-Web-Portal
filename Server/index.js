@@ -316,6 +316,16 @@ app.get("/CampInfo", (req, res) => {
   );
 });
 
+app.get("/Billing", (req, res) => {
+  db.query("SELECT * FROM BillingIntake", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
 app.listen(3001, () => {
   console.log("yay, your server is running on port 3001");
 });
