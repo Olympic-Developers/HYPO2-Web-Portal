@@ -22,8 +22,6 @@ function App() {
   const [allEvents, setAllEvents] = useState(events);
 
   const [newEvent, setNewEvent] = useState({
-    userName: "",
-    campID: 0,
     price: 0,
     amountOfPeople: 0,
     title: "",
@@ -159,7 +157,6 @@ function App() {
           const dayEnd = splitEndDate[2];
 
           let tempTitle;
-          let tempStartDate = new Date(yearStart, monthStart, dayStart);
           return (
             <div key={val.Camp_ID}>
               <h1>Camp Setup</h1>
@@ -774,6 +771,25 @@ function App() {
                 }}
               >
                 Back to Profile Page
+              </button>
+
+              <button
+                onClick={() => {
+                  const initialTime = new Date(yearStart, monthStart, dayStart);
+                  const endTime = new Date(yearEnd, monthEnd, dayEnd);
+                  const rangeOfDates = [];
+
+                  for (
+                    let tempTime = initialTime;
+                    tempTime < endTime;
+                    tempTime.setDate(tempTime.getDate() + 1)
+                  ) {
+                    rangeOfDates.push((tempTime.getMonth() + 1).toString());
+                  }
+                  console.log(rangeOfDates);
+                }}
+              >
+                Confirm Camp
               </button>
             </div>
           );
