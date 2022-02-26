@@ -48,11 +48,7 @@ function App() {
       let index = 0;
 
       while (index < response.data.length) {
-        console.log(index);
-
         let splitStartDate = response.data[index].start.split(/[- : T]/);
-
-        console.log(splitStartDate);
 
         const yearStart = splitStartDate[0];
         const monthStart = splitStartDate[1] - 1;
@@ -73,8 +69,8 @@ function App() {
         const yearEnd = splitEndDate[0];
         const monthEnd = splitEndDate[1] - 1;
         const dayEnd = splitEndDate[2];
-        const hourEnd = splitStartDate[3];
-        const minuteEnd = splitStartDate[4];
+        const hourEnd = splitEndDate[3];
+        const minuteEnd = splitEndDate[4];
 
         response.data[index].end = new Date(
           yearEnd,

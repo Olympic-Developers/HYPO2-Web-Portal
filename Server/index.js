@@ -5,6 +5,7 @@ const cors = require("cors");
 
 app.use(cors());
 app.use(express.json());
+let moment = require("moment-timezone");
 
 const db = mysql.createConnection({
   user: "admin_hypo",
@@ -327,10 +328,21 @@ app.get("/Prices", (req, res) => {
 });
 
 app.post("/addEvent", (req, res) => {
+  console.log(
+    "NODEJS End Time: " +
+      moment.tz(req.body.actStartTime, "America/Phoenix").format()
+  );
+  console.log(
+    "NODEJS End Time: " +
+      moment.tz(req.body.actEndTime, "America/Phoenix").format()
+  );
+
   const Camp_ID = req.body.Camp_ID;
   const actClass = req.body.actClass;
-  const actStartTime = req.body.actStartTime;
-  const actEndTime = req.body.actEndTime;
+  const actStartTime = moment
+    .tz(req.body.actStartTime, "America/Phoenix")
+    .format();
+  const actEndTime = moment.tz(req.body.actEndTime, "America/Phoenix").format();
   const price = req.body.price;
   const attendees = req.body.attendees;
   const title = req.body.title;

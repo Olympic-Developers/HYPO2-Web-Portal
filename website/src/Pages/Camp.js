@@ -45,7 +45,7 @@ function App() {
   useEffect(() => {
     if (authCheckCamp(navigate)) {
       if (!needsUpdated) {
-        getAllCamps();
+        getUserCamps();
         setNeedsUpdated(true);
       }
       if (!didLoad) {
@@ -55,7 +55,7 @@ function App() {
     }
   }, [didLoad, navigate, events, needsUpdated]);
 
-  function getAllCamps() {
+  function getUserCamps() {
     Axios.get("http://localhost:3001/getUserEvent", {
       params: { id: getSessionStorage("campNumber") },
     }).then((response) => {
@@ -65,8 +65,6 @@ function App() {
 
       while (index < response.data.length) {
         let splitStartDate = response.data[index].start.split(/[- : T]/);
-
-        console.log(splitStartDate);
 
         const yearStart = splitStartDate[0];
         const monthStart = splitStartDate[1] - 1;
@@ -87,8 +85,8 @@ function App() {
         const yearEnd = splitEndDate[0];
         const monthEnd = splitEndDate[1] - 1;
         const dayEnd = splitEndDate[2];
-        const hourEnd = splitStartDate[3];
-        const minuteEnd = splitStartDate[4];
+        const hourEnd = splitEndDate[3];
+        const minuteEnd = splitEndDate[4];
 
         response.data[index].end = new Date(
           yearEnd,
@@ -103,25 +101,26 @@ function App() {
   }
 
   function postActivity() {
-    console.log(newEvent.end);
-
     Axios.post("http://localhost:3001/addEvent", {
       // GeneralIntake Table Posts
       Camp_ID: getSessionStorage("campNumber"),
       actClass: "none",
-      actStartTime: newEvent.start,
-      actEndTime: newEvent.end,
+      actStartTime: new Date(
+        newEvent.start.getTime() +
+          (-7 * 60 + newEvent.start.getTimezoneOffset()) * 60 * 1000
+      ),
+      actEndTime: new Date(
+        newEvent.end.getTime() +
+          (-7 * 60 + newEvent.end.getTimezoneOffset()) * 60 * 1000
+      ),
       price: newEvent.price,
       attendees: newEvent.amountOfPeople,
       title: newEvent.title,
       comment: newEvent.comment,
-    }).then(() => {
-      console.log("Success");
     });
   }
 
   function handleAddEvent() {
-    console.log(newEvent);
     setEvents([newEvent]);
     setNeedsUpdated(false);
     postActivity();
