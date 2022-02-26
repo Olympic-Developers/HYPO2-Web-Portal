@@ -4,154 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { authCheckAdmin } from "../Components/UserInfoAndAuth";
 
 function App() {
-  function currentPrice(colName) {
-    if (colName === "Hotel_Jan_Apr") {
-      colPrice = priceList[0].Hotel_Jan_Apr;
-    }
-    if (colName === "Hotel_May_Oct") {
-      colPrice = priceList[0].Hotel_May_Oct;
-    }
-    if (colName === "Hotel_Nov_Dec") {
-      colPrice = priceList[0].Hotel_Nov_Dec;
-    }
-    if (colName === "Extended_Hotel_Jan_Apr_Studio") {
-      colPrice = priceList[0].Extended_Hotel_Jan_Apr_Studio;
-    }
-    if (colName === "Extended_Hotel_Jan_Apr_2Bed") {
-      colPrice = priceList[0].Extended_Hotel_Jan_Apr_2Bed;
-    }
-    if (colName === "Extended_Hotel_May_Studio") {
-      colPrice = priceList[0].Extended_Hotel_May_Studio;
-    }
-    if (colName === "Extended_Hotel_May_2Bed") {
-      colPrice = priceList[0].Extended_Hotel_May_2Bed;
-    }
-    if (colName === "Extended_Hotel_June_July_Studio") {
-      colPrice = priceList[0].Extended_Hotel_June_July_Studio;
-    }
-    if (colName === "Extended_Hotel_June_July_2Bed") {
-      colPrice = priceList[0].Extended_Hotel_June_July_2Bed;
-    }
-    if (colName === "Extended_Hotel_Aug_Sep_Studio") {
-      colPrice = priceList[0].Extended_Hotel_Aug_Sep_Studio;
-    }
-    if (colName === "Extended_Hotel_Aug_Sep_2Bed") {
-      colPrice = priceList[0].Extended_Hotel_Aug_Sep_2Bed;
-    }
-    if (colName === "Extended_Hotel_Oct_Dec_Studio") {
-      colPrice = priceList[0].Extended_Hotel_Oct_Dec_Studio;
-    }
-    if (colName === "Extended_Hotel_Oct_Dec_2Bed") {
-      colPrice = priceList[0].Extended_Hotel_Oct_Dec_2Bed;
-    }
-    if (colName === "University_Cafeteria_Breakfast") {
-      colPrice = priceList[0].University_Cafeteria_Breakfast;
-    }
-    if (colName === "University_Cafeteria_Lunch") {
-      colPrice = priceList[0].University_Cafeteria_Lunch;
-    }
-    if (colName === "University_Cafeteria_Dinner") {
-      colPrice = priceList[0].University_Cafeteria_Dinner;
-    }
-    if (colName === "Catering_Sport_Ten_Less") {
-      colPrice = priceList[0].Catering_Sport_Ten_Less;
-    }
-    if (colName === "Catering_Sport_11_15") {
-      colPrice = priceList[0].Catering_Sport_11_15;
-    }
-    if (colName === "Catering_Sport_16_20") {
-      colPrice = priceList[0].Catering_Sport_16_20;
-    }
-    if (colName === "Catering_Sport_21_26") {
-      colPrice = priceList[0].Catering_Sport_21_26;
-    }
-    if (colName === "Catering_Sport_27") {
-      colPrice = priceList[0].Catering_Sport_27;
-    }
-    if (colName === "Charter_12") {
-      colPrice = priceList[0].Charter_12;
-    }
-    if (colName === "Charter_50") {
-      colPrice = priceList[0].Charter_50;
-    }
-    if (colName === "Individual_Shuttle") {
-      colPrice = priceList[0].Individual_Shuttle;
-    }
-    if (colName === "Rental_Vehicle") {
-      colPrice = priceList[0].Rental_Vehicle;
-    }
-    if (colName === "University_Parking") {
-      colPrice = priceList[0].University_Parking;
-    }
-    if (colName === "Aquatic_Center_LC") {
-      colPrice = priceList[0].Aquatic_Center_LC;
-    }
-    if (colName === "Aquatic_Center_SC") {
-      colPrice = priceList[0].Aquatic_Center_SC;
-    }
-    if (colName === "Outdoor_Track") {
-      colPrice = priceList[0].Outdoor_Track;
-    }
-    if (colName === "University_Gym") {
-      colPrice = priceList[0].University_Gym;
-    }
-    if (colName === "Hypo2_Gym") {
-      colPrice = priceList[0].Hypo2_Gym;
-    }
-    if (colName === "Outdoor_Fields") {
-      colPrice = priceList[0].Outdoor_Fields;
-    }
-    if (colName === "High_Speed_Treadmill") {
-      colPrice = priceList[0].High_Speed_Treadmill;
-    }
-    if (colName === "Massage_Therapy_1_10") {
-      colPrice = priceList[0].Massage_Therapy_1_10;
-    }
-    if (colName === "Massage_Therapy_10") {
-      colPrice = priceList[0].Massage_Therapy_10;
-    }
-    if (colName === "Physio_Chiro") {
-      colPrice = priceList[0].Physio_Chiro;
-    }
-    if (colName === "Strength_Conditioning_Coach") {
-      colPrice = priceList[0].Strength_Conditioning_Coach;
-    }
-    if (colName === "Orthopaedic_Care") {
-      colPrice = priceList[0].Orthopaedic_Care;
-    }
-    if (colName === "Primary_Medical_Care") {
-      colPrice = priceList[0].Primary_Medical_Care;
-    }
-    if (colName === "Hemoglobin_Mass_Testing") {
-      colPrice = priceList[0].Hemoglobin_Mass_Testing;
-    }
-    if (colName === "Metabolic_Profile") {
-      colPrice = priceList[0].Metabolic_Profile;
-    }
-    if (colName === "Ferritin_Iron_Binding_Capacity") {
-      colPrice = priceList[0].Ferritin_Iron_Binding_Capacity;
-    }
-    if (colName === "Other_Testing") {
-      colPrice = priceList[0].Other_Testing;
-    }
-    if (colName === "Supplemental_O2") {
-      colPrice = priceList[0].Supplemental_O2;
-    }
-    if (colName === "Integrated_Training_Dietary_Analysis") {
-      colPrice = priceList[0].Integrated_Training_Dietary_Analysis;
-    }
-    if (colName === "Group_Presentation_Workshop_Nutrition") {
-      colPrice = priceList[0].Group_Presentation_Workshop_Nutrition;
-    }
-    if (colName === "Group_Presentation_Workshop_Psychology") {
-      colPrice = priceList[0].Group_Presentation_Workshop_Psychology;
-    }
-    if (colName === "Tax") {
-      colPrice = priceList[0].Tax;
-    }
-
-    setPrice(colPrice);
-  }
   // Set default value for navigate
   let navigate = useNavigate();
 
@@ -165,8 +17,6 @@ function App() {
   }
   // array for holding all camps information
   const [priceList, setPriceList] = useState([]);
-
-  let colPrice = 0.0;
   let [colName, setColName] = useState("");
   const [price, setPrice] = useState(0);
   const [newPrice, setNewPrice] = useState(0);
@@ -196,9 +46,7 @@ function App() {
         name="updateBilling"
         onChange={(event) => {
           setColName(event.target.value);
-          console.log(event.target.value);
-          currentPrice(event.target.value);
-          // console.log(currentPrice(colName));
+          setPrice(priceList[0][event.target.value]);
         }}
       >
         <option value="Select Price Point">Select Price</option>
