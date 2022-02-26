@@ -326,6 +326,52 @@ app.get("/Prices", (req, res) => {
   });
 });
 
+app.post("/addEvent", (req, res) => {
+  const Camp_ID = req.body.Camp_ID;
+  const actClass = req.body.actClass;
+  const actStartTime = req.body.actStartTime;
+  const actEndTime = req.body.actEndTime;
+  const price = req.body.price;
+  const attendees = req.body.attendees;
+  const title = req.body.title;
+  const comment = req.body.comment;
+
+  db.query(
+    "INSERT INTO ScheduleTable VALUES (?,?,?,?,?,?,?,?);",
+    [
+      Camp_ID,
+      actClass,
+      actStartTime,
+      actEndTime,
+      price,
+      attendees,
+      title,
+      comment,
+    ],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
+app.get("/getEvent", (req, res) => {
+  let id = req.query.id;
+  db.query(
+    `SELECT * FROM ScheduleTable WHERE CAMP_ID = "${id}"`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
 app.listen(3001, () => {
   console.log("yay, your server is running on port 3001");
 });

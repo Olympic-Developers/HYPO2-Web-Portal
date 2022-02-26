@@ -57,9 +57,24 @@ function App() {
     }
   }, [didLoad, navigate, events]);
 
+  function postActivity() {
+    Axios.post("http://localhost:3001/addEvent", {
+      // GeneralIntake Table Posts
+      Camp_ID: getSessionStorage("campNumber"),
+      actClass: "none",
+      actStartTime: newEvent.start,
+      actEndTime: newEvent.end,
+      price: newEvent.price,
+      attendees: newEvent.amountOfPeople,
+      title: newEvent.title,
+      comment: newEvent.comment,
+    }).then(() => {
+      console.log("Success");
+    });
+  }
   function handleAddEvent() {
     setAllEvents([...allEvents, newEvent]);
-    console.log(newEvent);
+    postActivity();
   }
 
   function displayAmountOfPeopleTextBox(event) {
@@ -708,6 +723,12 @@ function App() {
                   <textarea
                     placeholder="Comment if needed"
                     placename="Comments"
+                    onChange={(event) => {
+                      setNewEvent({
+                        ...newEvent,
+                        comment: event.target.value,
+                      });
+                    }}
                     cols="50"
                     rows="10"
                   ></textarea>
