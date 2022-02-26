@@ -201,6 +201,7 @@ function App() {
           // console.log(currentPrice(colName));
         }}
       >
+        <option value="Select Price Point">Select Price</option>
         <option value="Hotel_Jan_Apr">Hotel_Jan_Apr</option>
         <option value="Hotel_May_Oct">Hotel_May_Oct</option>
         <option value="Hotel_Nov_Dec">Hotel_Nov_Dec</option>
