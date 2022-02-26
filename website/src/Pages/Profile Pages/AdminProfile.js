@@ -42,52 +42,50 @@ function App() {
   }, [didLoad, navigate]);
 
   function getAllCamps() {
-    Axios.get("http://localhost:3001/getAllEvent", {
-      params: { id: 1 },
-    })
-      .then((response) => {
-        getEvents(response.data);
+    Axios.get("http://localhost:3001/getAllEvent").then((response) => {
+      getEvents(response.data);
 
-        let index = 0;
+      let index = 0;
 
-        while (index < response.data.length) {
-          console.log(index);
+      while (index < response.data.length) {
+        console.log(index);
 
-          let splitStartDate = response.data[index].start.split(/[- : T]/);
+        let splitStartDate = response.data[index].start.split(/[- : T]/);
 
-          const yearStart = splitStartDate[0];
-          const monthStart = splitStartDate[1] - 1;
-          const dayStart = splitStartDate[2];
-          const hourStart = splitStartDate[3];
-          const minuteStart = splitStartDate[4];
+        console.log(splitStartDate);
 
-          response.data[index].start = new Date(
-            yearStart,
-            monthStart,
-            dayStart,
-            hourStart,
-            minuteStart
-          );
+        const yearStart = splitStartDate[0];
+        const monthStart = splitStartDate[1] - 1;
+        const dayStart = splitStartDate[2];
+        const hourStart = splitStartDate[3];
+        const minuteStart = splitStartDate[4];
 
-          const splitEndDate = response.data[index].end.split(/[- : T]/);
+        response.data[index].start = new Date(
+          yearStart,
+          monthStart,
+          dayStart,
+          hourStart,
+          minuteStart
+        );
 
-          const yearEnd = splitEndDate[0];
-          const monthEnd = splitEndDate[1] - 1;
-          const dayEnd = splitEndDate[2];
-          const hourEnd = splitStartDate[3];
-          const minuteEnd = splitStartDate[4];
+        const splitEndDate = response.data[index].end.split(/[- : T]/);
 
-          response.data[index].end = new Date(
-            yearEnd,
-            monthEnd,
-            dayEnd,
-            hourEnd,
-            minuteEnd
-          );
-          index++;
-        }
-      })
-      .then(() => {});
+        const yearEnd = splitEndDate[0];
+        const monthEnd = splitEndDate[1] - 1;
+        const dayEnd = splitEndDate[2];
+        const hourEnd = splitStartDate[3];
+        const minuteEnd = splitStartDate[4];
+
+        response.data[index].end = new Date(
+          yearEnd,
+          monthEnd,
+          dayEnd,
+          hourEnd,
+          minuteEnd
+        );
+        index++;
+      }
+    });
   }
 
   // For signing out users

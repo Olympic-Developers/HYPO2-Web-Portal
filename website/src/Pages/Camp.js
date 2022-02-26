@@ -16,10 +16,10 @@ import {
 
 function App() {
   const [didLoad, setDidLoad] = useState(false);
+  const [needsUpdated, setNeedsUpdated] = useState(false);
   let navigate = useNavigate();
-  const events = [];
+  const [events, setEvents] = useState([]);
   const [userInfo, setGetInfo] = useState([]);
-  const [allEvents, setAllEvents] = useState(events);
 
   const [newEvent, setNewEvent] = useState({
     price: 0,
@@ -43,15 +43,68 @@ function App() {
   });
 
   useEffect(() => {
-    if (!didLoad) {
-      if (authCheckCamp(navigate)) {
+    if (authCheckCamp(navigate)) {
+      if (!needsUpdated) {
+        getAllCamps();
+        setNeedsUpdated(true);
+      }
+      if (!didLoad) {
         getInfo();
         setDidLoad(true);
       }
     }
-  }, [didLoad, navigate, events]);
+  }, [didLoad, navigate, events, needsUpdated]);
+
+  function getAllCamps() {
+    Axios.get("http://localhost:3001/getUserEvent", {
+      params: { id: getSessionStorage("campNumber") },
+    }).then((response) => {
+      setEvents(response.data);
+
+      let index = 0;
+
+      while (index < response.data.length) {
+        let splitStartDate = response.data[index].start.split(/[- : T]/);
+
+        console.log(splitStartDate);
+
+        const yearStart = splitStartDate[0];
+        const monthStart = splitStartDate[1] - 1;
+        const dayStart = splitStartDate[2];
+        const hourStart = splitStartDate[3];
+        const minuteStart = splitStartDate[4];
+
+        response.data[index].start = new Date(
+          yearStart,
+          monthStart,
+          dayStart,
+          hourStart,
+          minuteStart
+        );
+
+        const splitEndDate = response.data[index].end.split(/[- : T]/);
+
+        const yearEnd = splitEndDate[0];
+        const monthEnd = splitEndDate[1] - 1;
+        const dayEnd = splitEndDate[2];
+        const hourEnd = splitStartDate[3];
+        const minuteEnd = splitStartDate[4];
+
+        response.data[index].end = new Date(
+          yearEnd,
+          monthEnd,
+          dayEnd,
+          hourEnd,
+          minuteEnd
+        );
+        index++;
+      }
+    });
+  }
 
   function postActivity() {
+    console.log(newEvent.end);
+
     Axios.post("http://localhost:3001/addEvent", {
       // GeneralIntake Table Posts
       Camp_ID: getSessionStorage("campNumber"),
@@ -66,8 +119,11 @@ function App() {
       console.log("Success");
     });
   }
+
   function handleAddEvent() {
-    setAllEvents([...allEvents, newEvent]);
+    console.log(newEvent);
+    setEvents([newEvent]);
+    setNeedsUpdated(false);
     postActivity();
   }
 
@@ -627,8 +683,6 @@ function App() {
                     setNewEvent({
                       ...newEvent,
                       title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
-                      userName: val.Team_Name,
-                      campID: val.Camp_ID,
                     });
 
                     tempTitle = event.target.value;
@@ -772,7 +826,7 @@ function App() {
 
               <Calendar
                 localizer={localizer}
-                events={allEvents}
+                events={events}
                 startAccessor="start"
                 endAccessor="end"
                 defaultDate={new Date(yearStart, monthStart, dayStart)}

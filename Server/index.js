@@ -358,7 +358,17 @@ app.post("/addEvent", (req, res) => {
   );
 });
 
-app.get("/getEvent", (req, res) => {
+app.get("/getAllEvent", (req, res) => {
+  db.query("SELECT * FROM ScheduleTable", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.get("/getUserEvent", (req, res) => {
   let id = req.query.id;
   db.query(
     `SELECT * FROM ScheduleTable WHERE CAMP_ID = "${id}"`,
@@ -370,16 +380,6 @@ app.get("/getEvent", (req, res) => {
       }
     }
   );
-});
-
-app.get("/getAllEvent", (req, res) => {
-  db.query("SELECT * FROM ScheduleTable", (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.send(result);
-    }
-  });
 });
 
 app.post("/sendPrice", (req, res) => {
