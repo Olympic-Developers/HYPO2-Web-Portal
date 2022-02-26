@@ -46,12 +46,6 @@ function App() {
     if (!didLoad) {
       if (authCheckCamp(navigate)) {
         getInfo();
-        // this is the idea for taking database information in and adding it to events
-        events.push({
-          title: "Vacation",
-          start: new Date(2022, 5, 7),
-          end: new Date(2022, 5, 10),
-        });
         setDidLoad(true);
       }
     }

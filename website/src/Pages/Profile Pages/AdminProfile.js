@@ -2,7 +2,8 @@ import format from "date-fns/format";
 import getDay from "date-fns/getDay";
 import parse from "date-fns/parse";
 import startOfWeek from "date-fns/startOfWeek";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import Axios from "axios";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { Auth } from "aws-amplify";
@@ -26,14 +27,68 @@ function App() {
     locales,
   });
 
-  const events = [];
-
   // Set default value for navigate
+  const [events, getEvents] = useState([]);
   let navigate = useNavigate();
+  const [didLoad, setDidLoad] = useState(false);
 
   useEffect(() => {
-    authCheckAdmin(navigate);
-  });
+    if (!didLoad) {
+      if (authCheckAdmin(navigate)) {
+        getAllCamps();
+        setDidLoad(true);
+      }
+    }
+  }, [didLoad, navigate]);
+
+  function getAllCamps() {
+    Axios.get("http://localhost:3001/getAllEvent", {
+      params: { id: 1 },
+    })
+      .then((response) => {
+        getEvents(response.data);
+
+        let index = 0;
+
+        while (index < response.data.length) {
+          console.log(index);
+
+          let splitStartDate = response.data[index].start.split(/[- : T]/);
+
+          const yearStart = splitStartDate[0];
+          const monthStart = splitStartDate[1] - 1;
+          const dayStart = splitStartDate[2];
+          const hourStart = splitStartDate[3];
+          const minuteStart = splitStartDate[4];
+
+          response.data[index].start = new Date(
+            yearStart,
+            monthStart,
+            dayStart,
+            hourStart,
+            minuteStart
+          );
+
+          const splitEndDate = response.data[index].end.split(/[- : T]/);
+
+          const yearEnd = splitEndDate[0];
+          const monthEnd = splitEndDate[1] - 1;
+          const dayEnd = splitEndDate[2];
+          const hourEnd = splitStartDate[3];
+          const minuteEnd = splitStartDate[4];
+
+          response.data[index].end = new Date(
+            yearEnd,
+            monthEnd,
+            dayEnd,
+            hourEnd,
+            minuteEnd
+          );
+          index++;
+        }
+      })
+      .then(() => {});
+  }
 
   // For signing out users
   async function signOut() {

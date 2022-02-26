@@ -372,6 +372,16 @@ app.get("/getEvent", (req, res) => {
   );
 });
 
+app.get("/getAllEvent", (req, res) => {
+  db.query("SELECT * FROM ScheduleTable", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
 app.post("/sendPrice", (req, res) => {
   const newPrice = req.body.newPrice;
   const colName = req.body.colName;
