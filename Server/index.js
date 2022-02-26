@@ -372,6 +372,22 @@ app.get("/getEvent", (req, res) => {
   );
 });
 
+app.post("/sendPrice", (req, res) => {
+  const newPrice = req.body.newPrice;
+  const colName = req.body.colName;
+
+  db.query(
+    `UPDATE BillingIntake SET ${colName} = ${newPrice} WHERE CAMP_ID = 0;`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
 app.listen(3001, () => {
   console.log("yay, your server is running on port 3001");
 });
