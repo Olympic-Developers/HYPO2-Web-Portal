@@ -12,6 +12,7 @@ import Axios from "axios";
 import {
   getSessionStorage,
   authCheckCamp,
+  setSessionStorage,
 } from "../Components/UserInfoAndAuth";
 
 function App() {
@@ -203,6 +204,21 @@ function App() {
     return (
       <div>
         {userInfo.map((val) => {
+          function getDateRanges() {
+            const initialTime = new Date(yearStart, monthStart, dayStart);
+            const endTime = new Date(yearEnd, monthEnd, dayEnd);
+            const rangeOfDates = [];
+
+            for (
+              let tempTime = initialTime;
+              tempTime < endTime;
+              tempTime.setDate(tempTime.getDate() + 1)
+            ) {
+              rangeOfDates.push((tempTime.getMonth() + 1).toString());
+            }
+            console.log(rangeOfDates);
+          }
+
           const splitStartDate = val.Camp_Date_Start.split(/[- : T]/);
 
           const yearStart = splitStartDate[0];
@@ -838,18 +854,17 @@ function App() {
 
               <button
                 onClick={() => {
-                  const initialTime = new Date(yearStart, monthStart, dayStart);
-                  const endTime = new Date(yearEnd, monthEnd, dayEnd);
-                  const rangeOfDates = [];
+                  const CampID = getSessionStorage("campNumber");
 
-                  for (
-                    let tempTime = initialTime;
-                    tempTime < endTime;
-                    tempTime.setDate(tempTime.getDate() + 1)
-                  ) {
-                    rangeOfDates.push((tempTime.getMonth() + 1).toString());
-                  }
-                  console.log(rangeOfDates);
+                  console.log(CampID);
+
+                  Axios.post("http://localhost:3001/setCampStatus", {
+                    campID: CampID,
+                    status: "Camp Confirmed",
+                  }).then(() => {
+                    setSessionStorage("campProgressType", "Camp Confirmed");
+                    window.location.reload(false);
+                  });
                 }}
               >
                 Confirm Camp

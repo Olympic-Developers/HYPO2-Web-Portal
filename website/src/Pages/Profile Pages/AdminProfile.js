@@ -126,7 +126,12 @@ function App() {
         <button style={{ display: "inline", marginRight: "20px" }}>
           Camps That Need Assistance
         </button>
-        <button style={{ display: "inline", marginRight: "20px" }}>
+        <button
+          style={{ display: "inline", marginRight: "20px" }}
+          onClick={() => {
+            navigate("/AdminProfile/ConfirmedCamps");
+          }}
+        >
           Confirmed Camps
         </button>
         <button style={{ display: "inline", marginRight: "20px" }}>

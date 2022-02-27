@@ -276,14 +276,19 @@ app.get("/Summary", (req, res) => {
   );
 });
 
-app.get("/AllCamps", (req, res) => {
-  db.query("SELECT * FROM GeneralIntake", (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.send(result);
+app.get("/getCampsByStatus", (req, res) => {
+  let status = req.query.status;
+
+  db.query(
+    `SELECT * FROM GeneralIntake WHERE Status = "${status}"`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
     }
-  });
+  );
 });
 
 app.get("/UserCamps", (req, res) => {
@@ -295,7 +300,6 @@ app.get("/UserCamps", (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        console.log(result.userName);
         res.send(result);
       }
     }
@@ -328,15 +332,6 @@ app.get("/Prices", (req, res) => {
 });
 
 app.post("/addEvent", (req, res) => {
-  console.log(
-    "NODEJS End Time: " +
-      moment.tz(req.body.actStartTime, "America/Phoenix").format()
-  );
-  console.log(
-    "NODEJS End Time: " +
-      moment.tz(req.body.actEndTime, "America/Phoenix").format()
-  );
-
   const Camp_ID = req.body.Camp_ID;
   const actClass = req.body.actClass;
   const actStartTime = moment
@@ -400,6 +395,22 @@ app.post("/sendPrice", (req, res) => {
 
   db.query(
     `UPDATE BillingIntake SET ${colName} = ${newPrice} WHERE CAMP_ID = 0;`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
+app.post("/setCampStatus", (req, res) => {
+  const status = req.body.status;
+  const campID = req.body.campID;
+
+  db.query(
+    `UPDATE GeneralIntake SET Status = "${status}" WHERE CAMP_ID = ${campID};`,
     (err, result) => {
       if (err) {
         console.log(err);

@@ -26,7 +26,7 @@ function App() {
   // to get information of all camps
   const getAllCamps = () => {
     Axios.get("http://localhost:3001/getCampsByStatus", {
-      params: { status: "Pending Camp Confirmation Needed" },
+      params: { status: "Camp Confirmed" },
     }).then((response) => {
       // put information into allCampList array
       setAllCampList(response.data);
@@ -75,12 +75,7 @@ function App() {
         <button style={{ display: "inline", marginRight: "20px" }}>
           Camps That Need Assistance
         </button>
-        <button
-          style={{ display: "inline", marginRight: "20px" }}
-          onClick={() => {
-            navigate("/AdminProfile/ConfirmedCamps");
-          }}
-        >
+        <button style={{ display: "inline", marginRight: "20px" }}>
           Confirmed Camps
         </button>
         <button style={{ display: "inline", marginRight: "20px" }}>
