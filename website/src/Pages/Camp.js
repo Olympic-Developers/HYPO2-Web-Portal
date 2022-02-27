@@ -14,6 +14,7 @@ import {
   authCheckCamp,
   setSessionStorage,
 } from "../Components/UserInfoAndAuth";
+import { parseWithOptions } from "date-fns/fp";
 
 function App() {
   const [didLoad, setDidLoad] = useState(false);
@@ -146,6 +147,12 @@ function App() {
       Input.style.display = "block";
     }
   }
+
+  const handleSelected = (event) => {
+    setSessionStorage("eventComments", event.Comments);
+    setSessionStorage("eventTitle", event.title);
+    navigate("/CampPage/Event");
+  };
 
   function displayPriceTextBox(event) {
     const idOfService = event.target.value;
@@ -843,7 +850,7 @@ function App() {
                 endAccessor="end"
                 defaultDate={new Date(yearStart, monthStart, dayStart)}
                 style={{ height: 700 }}
-                onSelectEvent={() => navigate("/CampPage/Event")}
+                onSelectEvent={handleSelected}
               />
 
               <button

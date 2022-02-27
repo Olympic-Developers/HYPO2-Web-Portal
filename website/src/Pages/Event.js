@@ -1,14 +1,23 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import {
+  getSessionStorage,
+  authCheckCamp,
+  setSessionStorage,
+} from "../Components/UserInfoAndAuth";
 
 function App() {
   // Set default value for navigate
   let navigate = useNavigate();
 
+  let comment = getSessionStorage("eventComments");
+  let title = getSessionStorage("eventTitle");
+
   return (
     <div>
-      <h1>Event Page (Event name here)</h1>
-      <p>Comments:</p>
+      <h1>Event Page</h1>
+      <h1>{title}</h1>
+      <p>Comments: {comment}</p>
       {/*Show this button for only admins when the schedule block has status of request*/}
       <button
         style={{ display: "inline", marginRight: "20px" }}

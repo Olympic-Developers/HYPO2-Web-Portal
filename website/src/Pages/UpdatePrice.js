@@ -155,6 +155,13 @@ function App() {
       >
         Submit
       </button>
+      <button
+        onClick={() => {
+          navigate("/adminProfile");
+        }}
+      >
+        Back to Profile
+      </button>
     </div>
   );
 }
