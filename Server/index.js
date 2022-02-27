@@ -265,7 +265,7 @@ app.post("/intake", (req, res) => {
 app.get("/Summary", (req, res) => {
   let username = req.query.username;
   db.query(
-    `SELECT * FROM GeneralIntake Join CoreCampNeeds ON GeneralIntake.Camp_ID = CoreCampNeeds.Camp_ID Join AdditionalServices ON GeneralIntake.Camp_ID = AdditionalServices.Camp_ID JOIN IntakeInfo ON GeneralIntake.Camp_ID = IntakeInfo.Camp_ID where GeneralIntake.Team_Name = "${username}" ORDER BY GeneralIntake.Camp_ID DESC LIMIT 1`,
+    `SELECT * FROM GeneralIntake Left Join CoreCampNeeds ON GeneralIntake.Camp_ID = CoreCampNeeds.Camp_ID Left Join AdditionalServices ON GeneralIntake.Camp_ID = AdditionalServices.Camp_ID Left JOIN IntakeInfo ON GeneralIntake.Camp_ID = IntakeInfo.Camp_ID where GeneralIntake.Team_Name = "${username}" ORDER BY GeneralIntake.Camp_ID DESC Limit 1`,
     (err, result) => {
       if (err) {
         console.log(err);
