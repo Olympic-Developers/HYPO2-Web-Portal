@@ -344,7 +344,7 @@ app.post("/addEvent", (req, res) => {
   const comment = req.body.comment;
 
   db.query(
-    "INSERT INTO ScheduleTable VALUES (?,?,?,?,?,?,?,?);",
+    "INSERT INTO ScheduleTable VALUES (?,?,?,?,?,?,?,?,?);",
     [
       Camp_ID,
       actClass,
@@ -354,6 +354,7 @@ app.post("/addEvent", (req, res) => {
       attendees,
       title,
       comment,
+      "",
     ],
     (err, result) => {
       if (err) {

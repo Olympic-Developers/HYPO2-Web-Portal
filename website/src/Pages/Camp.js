@@ -14,7 +14,8 @@ import {
   authCheckCamp,
   setSessionStorage,
 } from "../Components/UserInfoAndAuth";
-import { parseWithOptions } from "date-fns/fp";
+import { isThisHour } from "date-fns";
+import roundToNearestMinutesWithOptions from "date-fns/esm/fp/roundToNearestMinutesWithOptions/index.js";
 
 function App() {
   const [didLoad, setDidLoad] = useState(false);
@@ -853,12 +854,8 @@ function App() {
                 onSelectEvent={handleSelected}
               />
 
-              <button
-                onClick={() => {
-                  navigate("/AdminProfile/PendingCamps");
-                }}
-              >
-                Back to Profile Page
+              <button onClick={backToCorrectHomePage}>
+                return to home page
               </button>
 
               <button
@@ -891,7 +888,51 @@ function App() {
   ) {
     return (
       <div>
-        <h1>Camp Page</h1>
+        {userInfo.map((val) => {
+          const splitStartDate = val.Camp_Date_Start.split(/[- : T]/);
+
+          const yearStart = splitStartDate[0];
+          const monthStart = splitStartDate[1] - 1;
+          const dayStart = splitStartDate[2];
+
+          const splitEndDate = val.Camp_Date_End.split(/[- : T]/);
+
+          const yearEnd = splitEndDate[0];
+          const monthEnd = splitEndDate[1] - 1;
+          const dayEnd = splitEndDate[2];
+
+          return (
+            <div>
+              <h1>
+                Camp Page {val.Team_Name} - {val.Camp_ID}
+              </h1>
+
+              <button>Home Camp Page</button>
+              <button>Roster</button>
+              <button>Summary</button>
+              <button>billing</button>
+              <span>
+                {getSessionStorage("classification").toLowerCase() ===
+                "admin" ? (
+                  <button>Admin Permissions</button>
+                ) : null}
+              </span>
+              <Calendar
+                localizer={localizer}
+                events={events}
+                startAccessor="start"
+                endAccessor="end"
+                defaultDate={new Date(yearStart, monthStart, dayStart)}
+                style={{ height: 700 }}
+                onSelectEvent={handleSelected}
+              />
+
+              <button onClick={backToCorrectHomePage}>
+                return to home page
+              </button>
+            </div>
+          );
+        })}
       </div>
     );
   } else {

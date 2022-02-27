@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
+import { Auth } from "aws-amplify";
 import { useNavigate } from "react-router-dom";
-import { authCheckAdmin } from "../Components/UserInfoAndAuth";
+import {
+  authCheckAdmin,
+  getSessionStorage,
+} from "../Components/UserInfoAndAuth";
 
 function App() {
   // Set default value for navigate
@@ -21,6 +25,18 @@ function App() {
   let [colName, setColName] = useState("");
   const [price, setPrice] = useState(0);
   const [newPrice, setNewPrice] = useState(0);
+
+  // For signing out users
+  async function signOut() {
+    try {
+      // signOut users
+      await Auth.signOut();
+      // put user back on sign in page
+      navigate("/");
+    } catch {
+      console.log("error signing out: ");
+    }
+  }
 
   useEffect(() => {
     if (!didLoad) {
@@ -42,6 +58,59 @@ function App() {
 
   return (
     <div>
+      <div>
+        <h1>
+          Hello {getSessionStorage("username").toLowerCase()} welcome to your
+          Admin Page
+        </h1>
+        <button
+          style={{ display: "inline", marginRight: "20px" }}
+          onClick={() => {
+            navigate("/AdminProfile");
+          }}
+        >
+          Home
+        </button>
+        <button
+          style={{ display: "inline", marginRight: "20px" }}
+          onClick={() => {
+            navigate("/AdminProfile/PendingCamps");
+          }}
+        >
+          Pending Camps
+        </button>
+        <button style={{ display: "inline", marginRight: "20px" }}>
+          Camps That Need Assistance
+        </button>
+        <button
+          style={{ display: "inline", marginRight: "20px" }}
+          onClick={() => {
+            navigate("/AdminProfile/ConfirmedCamps");
+          }}
+        >
+          Confirmed Camps
+        </button>
+        <button style={{ display: "inline", marginRight: "20px" }}>
+          Past Camps
+        </button>
+        <button
+          style={{ display: "inline", marginRight: "20px" }}
+          onClick={() => {
+            navigate("/AdminProfile/UpdatePrices");
+          }}
+        >
+          Update Prices Of Services
+        </button>
+        <button
+          style={{ display: "inline", marginRight: "20px" }}
+          onClick={() => {
+            signOut();
+          }}
+        >
+          Sign out
+        </button>
+      </div>
+
       <p style={{ display: "inline", marginRight: "5px" }}>
         Update Price of Services
       </p>
@@ -154,13 +223,6 @@ function App() {
         }}
       >
         Submit
-      </button>
-      <button
-        onClick={() => {
-          navigate("/adminProfile");
-        }}
-      >
-        Back to Profile
       </button>
     </div>
   );

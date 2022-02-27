@@ -1,10 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  getSessionStorage,
-  authCheckCamp,
-  setSessionStorage,
-} from "../Components/UserInfoAndAuth";
+import { getSessionStorage } from "../Components/UserInfoAndAuth";
 
 function App() {
   // Set default value for navigate
