@@ -8,17 +8,21 @@ import { getSessionStorage } from "../Components/UserInfoAndAuth";
 function Summary() {
   // Set default value for navigate
   let navigate = useNavigate();
+  const [didLoad, setDidLoad] = useState(false);
 
   // array for holding summary information
   const [sumList, setSumList] = useState([]);
 
   useEffect(() => {
-    // checking if admin is the user trying to access this page
-    if (authCheckClient(navigate)) {
-      // get all user's camp information
-      getSummary();
+    if (!didLoad) {
+      // checking if admin is the user trying to access this page
+      if (authCheckClient(navigate)) {
+        // get all user's camp information
+        getSummary();
+        setDidLoad(true);
+      }
     }
-  });
+  }, [navigate, didLoad]);
 
   // get summary information
   const getSummary = () => {

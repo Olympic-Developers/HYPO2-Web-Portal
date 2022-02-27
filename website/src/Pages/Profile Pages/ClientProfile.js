@@ -11,17 +11,21 @@ import {
 function App() {
   // Set default value for navigate
   let navigate = useNavigate();
+  const [didLoad, setDidLoad] = useState(false);
 
   // array for holding user camp information
   const [userCampsList, setGetUserCamps] = useState([]);
 
   useEffect(() => {
     // checking if admin is the user trying to access this page
-    if (authCheckClient(navigate)) {
-      // get all user's camp information
-      getCamps();
+    if (!didLoad) {
+      if (authCheckClient(navigate)) {
+        // get all user's camp information
+        getCamps();
+        setDidLoad(true);
+      }
     }
-  });
+  }, [didLoad, navigate]);
 
   // to get information of all user's camps
   const getCamps = () => {

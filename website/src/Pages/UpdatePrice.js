@@ -6,6 +6,7 @@ import { authCheckAdmin } from "../Components/UserInfoAndAuth";
 function App() {
   // Set default value for navigate
   let navigate = useNavigate();
+  const [didLoad, setDidLoad] = useState(false);
 
   function sendNewPrice() {
     Axios.post("http://localhost:3001/sendPrice", {
@@ -22,12 +23,15 @@ function App() {
   const [newPrice, setNewPrice] = useState(0);
 
   useEffect(() => {
-    // checking if admin is the user trying to access this page
-    if (authCheckAdmin(navigate)) {
-      // get all camp information
-      getPrice();
+    if (!didLoad) {
+      // checking if admin is the user trying to access this page
+      if (authCheckAdmin(navigate)) {
+        // get all camp information
+        getPrice();
+        setDidLoad(true);
+      }
     }
-  });
+  }, [navigate, didLoad]);
 
   const getPrice = () => {
     Axios.get("http://localhost:3001/Prices").then((response) => {

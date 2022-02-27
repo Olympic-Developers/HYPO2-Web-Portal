@@ -183,6 +183,7 @@ function App() {
   }
 
   if (
+    getSessionStorage("authenticated") === "true" &&
     getSessionStorage("campProgressType") ===
       "Pending Camp Confirmation Needed" &&
     getSessionStorage("classification").toLowerCase() === "client"
@@ -197,6 +198,7 @@ function App() {
       </div>
     );
   } else if (
+    getSessionStorage("authenticated") === "true" &&
     getSessionStorage("campProgressType") ===
       "Pending Camp Confirmation Needed" &&
     getSessionStorage("classification").toLowerCase() === "admin"
@@ -874,13 +876,19 @@ function App() {
         })}
       </div>
     );
-  } else {
+  } else if (
+    getSessionStorage("authenticated") === "true" &&
+    getSessionStorage("campProgressType") === "Camp Confirmed" &&
+    (getSessionStorage("classification").toLowerCase() === "admin" ||
+      getSessionStorage("classification").toLowerCase() === "client")
+  ) {
     return (
       <div>
         <h1>Camp Page</h1>
       </div>
     );
+  } else {
+    return null;
   }
 }
-
 export default App;

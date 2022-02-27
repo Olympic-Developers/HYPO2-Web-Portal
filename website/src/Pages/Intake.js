@@ -258,9 +258,9 @@ function Intake() {
         otherText: otherText,
         otherInfoText: otherInfoText,
       }).then(() => {
+        navigate("/ClientProfile/Summary");
         console.log("Success");
       });
-      navigate("/ClientProfile/Summary");
     } else {
       // let user know they are missing important information
       alert("You are missing one of the required values");
