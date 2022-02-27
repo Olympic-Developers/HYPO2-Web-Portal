@@ -16,7 +16,6 @@ import {
 
 function App() {
   const [didLoad, setDidLoad] = useState(false);
-  const [needsUpdated, setNeedsUpdated] = useState(false);
   let navigate = useNavigate();
   const [events, setEvents] = useState([]);
   const [userInfo, setGetInfo] = useState([]);
@@ -43,17 +42,14 @@ function App() {
   });
 
   useEffect(() => {
-    if (authCheckCamp(navigate)) {
-      if (!needsUpdated) {
+    if (!didLoad) {
+      if (authCheckCamp(navigate)) {
         getUserCamps();
-        setNeedsUpdated(true);
-      }
-      if (!didLoad) {
         getInfo();
         setDidLoad(true);
       }
     }
-  }, [didLoad, navigate, events, needsUpdated]);
+  }, [didLoad, navigate]);
 
   function getUserCamps() {
     Axios.get("http://localhost:3001/getUserEvent", {
@@ -121,8 +117,7 @@ function App() {
   }
 
   function handleAddEvent() {
-    setEvents([newEvent]);
-    setNeedsUpdated(false);
+    setEvents([...events, newEvent]);
     postActivity();
   }
 
