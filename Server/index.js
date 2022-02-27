@@ -310,7 +310,7 @@ app.get("/CampInfo", (req, res) => {
   let id = req.query.id;
 
   db.query(
-    `SELECT * FROM GeneralIntake Join CoreCampNeeds ON GeneralIntake.Camp_ID = CoreCampNeeds.Camp_ID Join AdditionalServices ON GeneralIntake.Camp_ID = AdditionalServices.Camp_ID JOIN IntakeInfo ON GeneralIntake.Camp_ID = IntakeInfo.Camp_ID WHERE GeneralIntake.Camp_ID = "${id}"`,
+    `SELECT * FROM GeneralIntake Left Join CoreCampNeeds ON GeneralIntake.Camp_ID = CoreCampNeeds.Camp_ID Left Join AdditionalServices ON GeneralIntake.Camp_ID = AdditionalServices.Camp_ID Left JOIN IntakeInfo ON GeneralIntake.Camp_ID = IntakeInfo.Camp_ID WHERE GeneralIntake.Camp_ID = "${id}"`,
     (err, result) => {
       if (err) {
         console.log(err);
