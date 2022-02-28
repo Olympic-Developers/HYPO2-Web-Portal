@@ -428,9 +428,10 @@ app.post("/setCampStatus", (req, res) => {
 app.post("/setEventRequest", (req, res) => {
   const id = req.body.id;
   const request = req.body.request;
-
+  console.log(id);
+  console.log(request);
   db.query(
-    `UPDATE ScheduleTable SET request = "${request}" WHERE CAMP_ID = ${id};`,
+    `UPDATE ScheduleTable SET request = TRUE WHERE EventID = ${id};`,
     (err, result) => {
       if (err) {
         console.log(err);

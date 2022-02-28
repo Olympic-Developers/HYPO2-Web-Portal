@@ -158,7 +158,7 @@ function App() {
 
   const eventStyleGetter = (event) => ({
     style: {
-      backgroundColor: event.request ? "green" : "red",
+      backgroundColor: event.request ? "red" : "green",
     },
   });
 

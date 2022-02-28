@@ -84,6 +84,12 @@ function App() {
     });
   }
 
+  const eventStyleGetter = (event) => ({
+    style: {
+      backgroundColor: event.request ? "red" : "green",
+    },
+  });
+
   // For signing out users
   async function signOut() {
     try {
@@ -170,6 +176,7 @@ function App() {
             setSessionStorage("campNumber", event.campID);
             navigate("/CampPage/Event");
           }}
+          eventPropGetter={eventStyleGetter}
         />
       </div>
     );

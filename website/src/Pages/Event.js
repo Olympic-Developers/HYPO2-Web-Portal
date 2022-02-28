@@ -18,14 +18,14 @@ function App() {
       campID: CampID,
       status: "Needs Assistance",
     }).then(() => {
-      console.log(event);
       setSessionStorage("campProgressType", "Needs Assistance");
     });
 
-    Axios.post("http://localhost:3001/setEventRequest",{
+    Axios.post("http://localhost:3001/setEventRequest", {
       id: event.EventID,
-      request: true
+      request: true,
     }).then(() => {
+      console.log("success");
     });
   }
   return (
