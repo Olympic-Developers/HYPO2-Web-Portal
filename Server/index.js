@@ -344,8 +344,6 @@ app.post("/addEvent", (req, res) => {
   const comment = req.body.comment;
   const request = req.body.request;
 
-  console.log(request);
-
   db.query(
     "INSERT INTO ScheduleTable(Camp_ID, Activity_Class, start, end, Price, Attendees, title, Comments, request) VALUES (?,?,?,?,?,?,?,?,?);",
     [
@@ -363,7 +361,6 @@ app.post("/addEvent", (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        console.log(request);
         res.send(result);
       }
     }
@@ -427,12 +424,24 @@ app.post("/setCampStatus", (req, res) => {
 });
 app.post("/setEventRequest", (req, res) => {
   const id = req.body.id;
-  const r = req.body.request;
-  console.log(id);
-  console.log(r);
+  const request = req.body.request;
 
   db.query(
-    `UPDATE ScheduleTable SET request = REPLACE(request, 'No Request', '${r}') WHERE EventID = ${id};`,
+    `UPDATE ScheduleTable SET request = "${request}" WHERE EventID = ${id};`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
+app.get("/getSingleEventInfo", (req, res) => {
+  let id = req.query.id;
+  db.query(
+    `SELECT * FROM ScheduleTable WHERE EventID = "${id}"`,
     (err, result) => {
       if (err) {
         console.log(err);
