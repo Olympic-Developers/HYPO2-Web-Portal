@@ -12,6 +12,7 @@ import Event from "./Pages/Event";
 import UpdatePrices from "./Pages/UpdatePrice";
 import ConfirmedCamps from "./Pages/ConfirmedCamps";
 import CampSummary from "./Pages/CampSummary";
+import NeedsAssistanceCamps from "./Pages/NeedsAssistanceCamps";
 
 function App() {
   return (
@@ -31,6 +32,11 @@ function App() {
             index={false}
             path="ConfirmedCamps"
             element={<ConfirmedCamps />}
+          />
+          <Route
+            index={false}
+            path="NeedsAssistance"
+            element={<NeedsAssistanceCamps />}
           />
         </Route>
         <Route path="/StaffProfile" element={<StaffProfile />} />

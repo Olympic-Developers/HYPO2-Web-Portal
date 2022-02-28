@@ -342,9 +342,12 @@ app.post("/addEvent", (req, res) => {
   const attendees = req.body.attendees;
   const title = req.body.title;
   const comment = req.body.comment;
+  const request = req.body.request;
+
+  console.log(request);
 
   db.query(
-    "INSERT INTO ScheduleTable VALUES (?,?,?,?,?,?,?,?,?);",
+    "INSERT INTO ScheduleTable(Camp_ID, Activity_Class, start, end, Price, Attendees, title, Comments, request) VALUES (?,?,?,?,?,?,?,?,?);",
     [
       Camp_ID,
       actClass,
@@ -354,12 +357,13 @@ app.post("/addEvent", (req, res) => {
       attendees,
       title,
       comment,
-      "",
+      request,
     ],
     (err, result) => {
       if (err) {
         console.log(err);
       } else {
+        console.log(request);
         res.send(result);
       }
     }
@@ -412,6 +416,21 @@ app.post("/setCampStatus", (req, res) => {
 
   db.query(
     `UPDATE GeneralIntake SET Status = "${status}" WHERE CAMP_ID = ${campID};`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+app.post("/setEventRequest", (req, res) => {
+  const id = req.body.id;
+  const request = req.body.request;
+
+  db.query(
+    `UPDATE ScheduleTable SET request = "${request}" WHERE CAMP_ID = ${id};`,
     (err, result) => {
       if (err) {
         console.log(err);

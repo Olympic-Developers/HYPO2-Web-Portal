@@ -1,19 +1,38 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { getSessionStorage } from "../Components/UserInfoAndAuth";
+import {
+  getSessionStorage,
+  setSessionStorage,
+} from "../Components/UserInfoAndAuth";
+import Axios from "axios";
 
 function App() {
   // Set default value for navigate
   let navigate = useNavigate();
 
-  let comment = getSessionStorage("eventComments");
-  let title = getSessionStorage("eventTitle");
+  let event = JSON.parse(getSessionStorage("event"));
+  const CampID = getSessionStorage("campNumber");
 
+  function changeStatus() {
+    Axios.post("http://localhost:3001/setCampStatus", {
+      campID: CampID,
+      status: "Needs Assistance",
+    }).then(() => {
+      console.log(event);
+      setSessionStorage("campProgressType", "Needs Assistance");
+    });
+
+    Axios.post("http://localhost:3001/setEventRequest",{
+      id: event.EventID,
+      request: true
+    }).then(() => {
+    });
+  }
   return (
     <div>
       <h1>Event Page</h1>
-      <h1>{title}</h1>
-      <p>Comments: {comment}</p>
+      <h1>{event.title}</h1>
+      <p>Comments: {event.Comments}</p>
       {/*Show this button for only admins when the schedule block has status of request*/}
       <button
         style={{ display: "inline", marginRight: "20px" }}
@@ -28,9 +47,10 @@ function App() {
         style={{ display: "inline", marginRight: "20px" }}
         onClick={() => {
           // To camp page
+          changeStatus();
         }}
       >
-        Delete
+        Request Removal
       </button>
       <button
         style={{ display: "inline", marginRight: "20px" }}

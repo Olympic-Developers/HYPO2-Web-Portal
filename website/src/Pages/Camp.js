@@ -28,6 +28,7 @@ function App() {
     comment: "",
     start: new Date(),
     end: new Date(),
+    request: false,
   });
 
   const locales = {
@@ -114,6 +115,7 @@ function App() {
       attendees: newEvent.amountOfPeople,
       title: newEvent.title,
       comment: newEvent.comment,
+      request: newEvent.request,
     });
   }
 
@@ -150,8 +152,15 @@ function App() {
   const handleSelected = (event) => {
     setSessionStorage("eventComments", event.Comments);
     setSessionStorage("eventTitle", event.title);
+    setSessionStorage("event", JSON.stringify(event));
     navigate("/CampPage/Event");
   };
+
+  const eventStyleGetter = (event) => ({
+    style: {
+      backgroundColor: event.request ? "green" : "red",
+    },
+  });
 
   function displayPriceTextBox(event) {
     const idOfService = event.target.value;
@@ -849,6 +858,7 @@ function App() {
                 endAccessor="end"
                 defaultDate={new Date(yearStart, monthStart, dayStart)}
                 style={{ height: 700 }}
+                eventPropGetter={eventStyleGetter}
                 onSelectEvent={handleSelected}
               />
 
@@ -880,8 +890,8 @@ function App() {
     );
   } else if (
     getSessionStorage("authenticated") === "true" &&
-    getSessionStorage("campProgressType") !==
-      "Pending Camp Confirmation Needed" &&
+    (getSessionStorage("campProgressType") === "Camp Confirmed" ||
+      getSessionStorage("campProgressType") === "Needs Assistance") &&
     (getSessionStorage("classification").toLowerCase() === "admin" ||
       getSessionStorage("classification").toLowerCase() === "client")
   ) {
@@ -930,6 +940,7 @@ function App() {
                 endAccessor="end"
                 defaultDate={new Date(yearStart, monthStart, dayStart)}
                 style={{ height: 700 }}
+                eventPropGetter={eventStyleGetter}
                 onSelectEvent={handleSelected}
               />
 
