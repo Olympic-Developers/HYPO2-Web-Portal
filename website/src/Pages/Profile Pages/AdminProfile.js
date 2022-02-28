@@ -107,6 +107,11 @@ function App() {
     }
   }
 
+  const handleSelected = (event) => {
+    setSessionStorage("event", JSON.stringify(event));
+    navigate("/CampPage/Event");
+  };
+
   // checking for proper user
   if (
     getSessionStorage("authenticated") === "true" &&
@@ -177,10 +182,7 @@ function App() {
           startAccessor="start"
           endAccessor="end"
           style={{ height: 700, margin: "0px 25px" }}
-          onSelectEvent={(event) => {
-            setSessionStorage("campNumber", event.campID);
-            navigate("/CampPage/Event");
-          }}
+          onSelectEvent={handleSelected}
           eventPropGetter={eventStyleGetter}
         />
       </div>
