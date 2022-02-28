@@ -28,7 +28,7 @@ function App() {
     comment: "",
     start: new Date(),
     end: new Date(),
-    request: false,
+    request: "No Request",
   });
 
   const locales = {
@@ -150,15 +150,18 @@ function App() {
   }
 
   const handleSelected = (event) => {
-    setSessionStorage("eventComments", event.Comments);
-    setSessionStorage("eventTitle", event.title);
     setSessionStorage("event", JSON.stringify(event));
     navigate("/CampPage/Event");
   };
 
   const eventStyleGetter = (event) => ({
     style: {
-      backgroundColor: event.request ? "red" : "green",
+      backgroundColor:
+        event.request === "Removal"
+          ? "red"
+          : event.request === "Request New"
+          ? "grey"
+          : "green",
     },
   });
 

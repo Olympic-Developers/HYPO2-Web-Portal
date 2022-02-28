@@ -23,7 +23,7 @@ function App() {
 
     Axios.post("http://localhost:3001/setEventRequest", {
       id: event.EventID,
-      request: true,
+      request: "Removal",
     }).then(() => {
       console.log("success");
     });
