@@ -111,7 +111,6 @@ function App() {
             return (
               <button
                 key={val.Camp_ID}
-                disabled={val.clicked}
                 onClick={() => {
                   setSessionStorage("campNumber", val.Camp_ID);
                   setSessionStorage("campProgressType", val.Status);

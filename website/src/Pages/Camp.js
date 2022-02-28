@@ -14,8 +14,6 @@ import {
   authCheckCamp,
   setSessionStorage,
 } from "../Components/UserInfoAndAuth";
-import { isThisHour } from "date-fns";
-import roundToNearestMinutesWithOptions from "date-fns/esm/fp/roundToNearestMinutesWithOptions/index.js";
 
 function App() {
   const [didLoad, setDidLoad] = useState(false);
@@ -882,7 +880,8 @@ function App() {
     );
   } else if (
     getSessionStorage("authenticated") === "true" &&
-    getSessionStorage("campProgressType") === "Camp Confirmed" &&
+    getSessionStorage("campProgressType") !==
+      "Pending Camp Confirmation Needed" &&
     (getSessionStorage("classification").toLowerCase() === "admin" ||
       getSessionStorage("classification").toLowerCase() === "client")
   ) {
@@ -902,15 +901,22 @@ function App() {
           const dayEnd = splitEndDate[2];
 
           return (
-            <div>
+            <div key={val.Camp_ID}>
               <h1>
                 Camp Page {val.Team_Name} - {val.Camp_ID}
               </h1>
 
-              <button>Home Camp Page</button>
-              <button>Roster</button>
-              <button>Summary</button>
-              <button>billing</button>
+              <button disabled={val.clicked}>Home Camp Page</button>
+              <button disabled={val.clicked}>Roster</button>
+              <button
+                disabled={val.clicked}
+                onClick={() => {
+                  navigate("/CampPage/Summary");
+                }}
+              >
+                Summary
+              </button>
+              <button disabled={val.clicked}>billing</button>
               <span>
                 {getSessionStorage("classification").toLowerCase() ===
                 "admin" ? (
