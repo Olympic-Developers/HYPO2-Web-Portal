@@ -37,7 +37,8 @@ function App() {
   // checking if it is the correct user
   if (
     getSessionStorage("authenticated") === "true" &&
-    getSessionStorage("classification").toLowerCase() === "client"
+    (getSessionStorage("classification").toLowerCase() === "client" ||
+      getSessionStorage("classification").toLowerCase() === "admin")
   ) {
     return (
       <div>
