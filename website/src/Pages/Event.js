@@ -80,7 +80,7 @@ function App() {
           }
 
           return (
-            <div>
+            <div key={val.EventID}>
               <h1>Event: {val.title}</h1>
               <p>Comment: {val.Comments}</p>
 

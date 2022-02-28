@@ -108,7 +108,9 @@ function App() {
   }
 
   const handleSelected = (event) => {
-    setSessionStorage("event", JSON.stringify(event));
+    setSessionStorage("campNumber", event.Camp_ID);
+    setSessionStorage("campProgressType", event.Status);
+    setSessionStorage("eventNumber", event.EventID);
     navigate("/CampPage/Event");
   };
 
