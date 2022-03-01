@@ -452,6 +452,20 @@ app.get("/getSingleEventInfo", (req, res) => {
   );
 });
 
+app.delete("/deleteSingleEvent/:id", (req, res) => {
+  let id = req.params.id;
+  db.query(
+    `DELETE FROM ScheduleTable WHERE EventID = "${id}"`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
 app.listen(3001, () => {
   console.log("yay, your server is running on port 3001");
 });

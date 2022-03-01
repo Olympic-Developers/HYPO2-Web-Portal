@@ -121,7 +121,12 @@ function App() {
 
   function handleAddEvent() {
     if (getSessionStorage("classification").toLowerCase() === "client") {
-      console.log("got here");
+      Axios.post("http://localhost:3001/setCampStatus", {
+        campID: getSessionStorage("campNumber"),
+        status: "Needs Assistance",
+      }).then(() => {
+        setSessionStorage("campProgressType", "Needs Assistance");
+      });
       newEvent.request = "Request New";
     } else {
       newEvent.request = "No Request";
@@ -129,6 +134,7 @@ function App() {
 
     setEvents([...events, newEvent]);
     postActivity();
+    setDidLoad(false);
   }
 
   function displayAmountOfPeopleTextBox(event) {

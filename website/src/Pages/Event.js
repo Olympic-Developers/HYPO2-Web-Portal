@@ -12,15 +12,37 @@ function App() {
   let navigate = useNavigate();
   const [singleEvent, setSingleEvent] = useState([]);
   const [didLoad, setDidLoad] = useState(false);
+  const [events, setEvents] = useState([]);
+  const [singleEventFlag, setsSingleEventFlag] = useState(false);
 
   useEffect(() => {
     if (!didLoad) {
       if (authCheckCamp(navigate)) {
         getSingleEvent();
+        getUserCamps();
         setDidLoad(true);
       }
     }
   }, [didLoad, navigate]);
+
+  function checkCampsForConfirmedRequests() {
+    let index = 0;
+
+    while (index < events.length) {
+      if (events[index].request !== "No Request") {
+        if (
+          events[index].EventID !== Number(getSessionStorage("eventNumber"))
+        ) {
+          console.log("got here");
+          return false;
+        }
+      }
+
+      index++;
+    }
+
+    return true;
+  }
 
   // get information for event we are looking at
   function getSingleEvent() {
@@ -29,10 +51,39 @@ function App() {
     }).then((response) => {
       // put information into getUserCampsList array
       setSingleEvent(response.data);
+      setsSingleEventFlag(true);
     });
   }
 
-  if (
+  function getUserCamps() {
+    Axios.get("http://localhost:3001/getUserEvent", {
+      params: { id: getSessionStorage("campNumber") },
+    }).then((response) => {
+      setEvents(response.data);
+    });
+  }
+
+  if (singleEvent.length === 0) {
+    return (
+      <div>
+        <p>
+          {singleEventFlag ? (
+            <div>
+              <h1>Event was deleted and no longer exist</h1>
+
+              <button
+                onClick={() => {
+                  navigate(-1);
+                }}
+              >
+                Back to Calendar
+              </button>
+            </div>
+          ) : null}
+        </p>
+      </div>
+    );
+  } else if (
     getSessionStorage("authenticated") === "true" &&
     (getSessionStorage("classification").toLowerCase() === "client" ||
       getSessionStorage("classification").toLowerCase() === "admin")
@@ -66,17 +117,30 @@ function App() {
               id: val.EventID,
               request: "No Request",
             }).then(() => {
+              if (checkCampsForConfirmedRequests()) {
+                Axios.post("http://localhost:3001/setCampStatus", {
+                  campID: getSessionStorage("campNumber"),
+                  status: "Camp Confirmed",
+                });
+              }
               setDidLoad(false);
-              // check all other events for camp and if no camps have events with request
-              // type of Removal or Request New set camp status to confirmed
             });
           }
 
           function deleteEventForever() {
-            // delete event that is clicked on
-            // check all other events for camp and if no camps have events with request
-            // type of Removal or Request New set camp status to confirmed
-            // reroute user back to where they came fromm
+            Axios.delete(
+              `http://localhost:3001/deleteSingleEvent/${val.EventID}`
+            ).then(() => {
+              if (checkCampsForConfirmedRequests()) {
+                Axios.post("http://localhost:3001/setCampStatus", {
+                  campID: getSessionStorage("campNumber"),
+                  status: "Camp Confirmed",
+                });
+                setSessionStorage("Camp Confirmed", "Needs Assistance");
+                window.location.reload(false);
+                setSingleEvent(null);
+              }
+            });
           }
 
           return (
@@ -162,12 +226,6 @@ function App() {
                   >
                     cancel request for addition
                   </button>
-                ) : null}
-              </div>
-
-              <div>
-                {val === null ? (
-                  <p>Event has been delete and no longer </p>
                 ) : null}
               </div>
 
