@@ -117,16 +117,22 @@ function App() {
                 Return To Home Page
               </button>
 
+              <h1>Roster</h1>
+
               {rosterList.map((val) => {
+                const birthDateSplit = val.Birth_Date.split(/[- : T]/);
+
+                const year = birthDateSplit[0];
+                const month = birthDateSplit[1] - 1;
+                const day = birthDateSplit[2];
                 return (
                   <div>
                     Name: {val.Name} Role: {val.Role} Gender:
-                    {val.Gender.toLowerCase()}
+                    {val.Gender.toLowerCase()} Date of Birth: {month}/{day}/
+                    {year}
                   </div>
                 );
               })}
-
-              <h1>Roster</h1>
 
               <div>
                 <span className="roster">
@@ -173,7 +179,14 @@ function App() {
                     <option value="FEMALE">FEMALE</option>
                   </select>
                 </span>
-                <button onClick={sendRoster}>Submit</button>
+                <button
+                  onClick={() => {
+                    sendRoster();
+                    window.location.reload(false);
+                  }}
+                >
+                  Submit
+                </button>
               </div>
             </div>
           );
@@ -232,16 +245,23 @@ function App() {
               <button onClick={backToCorrectHomePage}>
                 Return To Home Page
               </button>
+
+              <h1>ROSTER</h1>
             </div>
           );
         })}
 
-        <h1>ROSTER</h1>
         {rosterList.map((val) => {
+          const birthDateSplit = val.Birth_Date.split(/[- : T]/);
+
+          const year = birthDateSplit[0];
+          const month = birthDateSplit[1] - 1;
+          const day = birthDateSplit[2];
+
           return (
             <div>
               Name: {val.Name} Role: {val.Role} Gender:
-              {val.Gender.toLowerCase()}
+              {val.Gender.toLowerCase()} Date of Birth: {month}/{day}/{year}
             </div>
           );
         })}
