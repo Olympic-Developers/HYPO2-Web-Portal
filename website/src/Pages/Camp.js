@@ -936,7 +936,14 @@ function App() {
               </h1>
 
               <button disabled={val.clicked}>Home Camp Page</button>
-              <button disabled={val.clicked}>Roster</button>
+              <button
+                disabled={val.clicked}
+                onClick={() => {
+                  navigate("/CampPage/Roster");
+                }}
+              >
+                Roster
+              </button>
               <button
                 disabled={val.clicked}
                 onClick={() => {

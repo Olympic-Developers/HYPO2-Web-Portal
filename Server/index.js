@@ -466,6 +466,39 @@ app.delete("/deleteSingleEvent/:id", (req, res) => {
   );
 });
 
+app.get("/getRoster", (req, res) => {
+  let id = req.query.id;
+  db.query(`SELECT * FROM Roster WHERE Camp_ID = "${id}"`, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.post("/sendRoster", (req, res) => {
+  const id = req.body.id;
+  const name = req.body.name;
+  const role = req.body.role;
+  const birth = req.body.birth;
+  const gender = req.body.gender;
+  console.log(id, name, role, birth, gender);
+
+  db.query(
+    `INSERT INTO Roster(CAMP_ID, Name, Role, Birth_Date, Gender) VALUES(?,?,?,?,?);`,
+    [id, name, role, birth, gender],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        console.log(id, name, role, birth, gender);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
 app.listen(3001, () => {
   console.log("yay, your server is running on port 3001");
 });
