@@ -134,7 +134,6 @@ function App() {
 
     setEvents([...events, newEvent]);
     postActivity();
-    setDidLoad(false);
   }
 
   function displayAmountOfPeopleTextBox(event) {
