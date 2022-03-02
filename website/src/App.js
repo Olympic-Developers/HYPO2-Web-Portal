@@ -14,6 +14,9 @@ import ConfirmedCamps from "./Pages/ConfirmedCamps";
 import CampSummary from "./Pages/CampSummary";
 import NeedsAssistanceCamps from "./Pages/NeedsAssistanceCamps";
 import Roster from "./Pages/Roster";
+import PastCamps from "./Pages/PastCamp";
+import Billing from "./Pages/Billing";
+import AdminPermissions from "./Pages/AdminPermissions";
 
 function App() {
   return (
@@ -39,6 +42,7 @@ function App() {
             path="NeedsAssistance"
             element={<NeedsAssistanceCamps />}
           />
+          <Route index={false} path="PastCamps" element={<PastCamps />} />
         </Route>
         <Route path="/StaffProfile" element={<StaffProfile />} />
         <Route path="/CampPage">
@@ -46,6 +50,12 @@ function App() {
           <Route index={false} path="Event" element={<Event />} />
           <Route index={false} path="Summary" element={<CampSummary />} />
           <Route index={false} path="Roster" element={<Roster />} />
+          <Route index={false} path="Billing" element={<Billing />} />
+          <Route
+            index={false}
+            path="AdminPermissions"
+            element={<AdminPermissions />}
+          />
         </Route>
       </Routes>
     </Router>

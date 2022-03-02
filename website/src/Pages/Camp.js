@@ -935,9 +935,14 @@ function App() {
                 Camp Page {val.Team_Name} - {val.Camp_ID}
               </h1>
 
-              <button disabled={val.clicked}>Home Camp Page</button>
               <button
-                disabled={val.clicked}
+                onClick={() => {
+                  navigate("/CampPage");
+                }}
+              >
+                Home Camp Page
+              </button>
+              <button
                 onClick={() => {
                   navigate("/CampPage/Roster");
                 }}
@@ -945,20 +950,35 @@ function App() {
                 Roster
               </button>
               <button
-                disabled={val.clicked}
                 onClick={() => {
                   navigate("/CampPage/Summary");
                 }}
               >
                 Summary
               </button>
-              <button disabled={val.clicked}>billing</button>
+              <button
+                onClick={() => {
+                  navigate("/CampPage/Billing");
+                }}
+              >
+                Billing
+              </button>
               <span>
                 {getSessionStorage("classification").toLowerCase() ===
                 "admin" ? (
-                  <button>Admin Permissions</button>
+                  <button
+                    onClick={() => {
+                      navigate("/CampPage/AdminPermissions");
+                    }}
+                  >
+                    Admin Permissions
+                  </button>
                 ) : null}
               </span>
+
+              <button onClick={backToCorrectHomePage}>
+                Return To Home Page
+              </button>
 
               <div>
                 <select
@@ -1118,10 +1138,6 @@ function App() {
                 eventPropGetter={eventStyleGetter}
                 onSelectEvent={handleSelected}
               />
-
-              <button onClick={backToCorrectHomePage}>
-                return to home page
-              </button>
             </div>
           );
         })}

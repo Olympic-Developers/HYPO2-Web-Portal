@@ -24,6 +24,14 @@ function App() {
     }
   }, [navigate, didLoad]);
 
+  function backToCorrectHomePage() {
+    if (getSessionStorage("classification").toLowerCase() === "admin") {
+      navigate("/AdminProfile");
+    } else {
+      navigate("/ClientProfile");
+    }
+  }
+
   // get summary information
   function getInfo() {
     Axios.get("http://localhost:3001/CampInfo", {
@@ -56,7 +64,13 @@ function App() {
               >
                 Home Camp Page
               </button>
-              <button>Roster</button>
+              <button
+                onClick={() => {
+                  navigate("/CampPage/Roster");
+                }}
+              >
+                Roster
+              </button>
               <button
                 onClick={() => {
                   navigate("/CampPage/Summary");
@@ -64,13 +78,29 @@ function App() {
               >
                 Summary
               </button>
-              <button>billing</button>
+              <button
+                onClick={() => {
+                  navigate("/CampPage/Billing");
+                }}
+              >
+                Billing
+              </button>
               <span>
                 {getSessionStorage("classification").toLowerCase() ===
                 "admin" ? (
-                  <button>Admin Permissions</button>
+                  <button
+                    onClick={() => {
+                      navigate("/CampPage/AdminPermissions");
+                    }}
+                  >
+                    Admin Permissions
+                  </button>
                 ) : null}
               </span>
+
+              <button onClick={backToCorrectHomePage}>
+                Return To Home Page
+              </button>
 
               <h3>General Information</h3>
               <div>Team Name: {val.Team_Name}</div>

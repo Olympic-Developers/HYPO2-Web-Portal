@@ -76,7 +76,12 @@ function App() {
         >
           Pending Camps
         </button>
-        <button style={{ display: "inline", marginRight: "20px" }}>
+        <button
+          style={{ display: "inline", marginRight: "20px" }}
+          onClick={() => {
+            navigate("/AdminProfile/NeedsAssistance");
+          }}
+        >
           Camps That Need Assistance
         </button>
         <button
@@ -87,7 +92,12 @@ function App() {
         >
           Confirmed Camps
         </button>
-        <button style={{ display: "inline", marginRight: "20px" }}>
+        <button
+          style={{ display: "inline", marginRight: "20px" }}
+          onClick={() => {
+            navigate("/AdminProfile/PastCamps");
+          }}
+        >
           Past Camps
         </button>
         <button

@@ -30,7 +30,7 @@ function App() {
   // to get information of all camps
   const getAllCamps = () => {
     Axios.get("http://localhost:3001/getCampsByStatus", {
-      params: { status: "Camp Confirmed" },
+      params: { status: "Past Camp" },
     }).then((response) => {
       // put information into allCampList array
       setAllCampList(response.data);
