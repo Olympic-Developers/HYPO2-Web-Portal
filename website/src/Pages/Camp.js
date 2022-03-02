@@ -26,8 +26,8 @@ function App() {
     amountOfPeople: 0,
     title: "",
     comment: "",
-    start: new Date(),
-    end: new Date(),
+    start: null,
+    end: null,
     request: "",
   });
 
@@ -120,20 +120,28 @@ function App() {
   }
 
   function handleAddEvent() {
-    if (getSessionStorage("classification").toLowerCase() === "client") {
-      Axios.post("http://localhost:3001/setCampStatus", {
-        campID: getSessionStorage("campNumber"),
-        status: "Needs Assistance",
-      }).then(() => {
-        setSessionStorage("campProgressType", "Needs Assistance");
-      });
-      newEvent.request = "Request New";
-    } else {
-      newEvent.request = "No Request";
-    }
+    if (newEvent.start !== null && newEvent.end !== null) {
+      if (Date.parse(newEvent.start) < Date.parse(newEvent.end)) {
+        if (getSessionStorage("classification").toLowerCase() === "client") {
+          Axios.post("http://localhost:3001/setCampStatus", {
+            campID: getSessionStorage("campNumber"),
+            status: "Needs Assistance",
+          }).then(() => {
+            setSessionStorage("campProgressType", "Needs Assistance");
+          });
+          newEvent.request = "Request New";
+        } else {
+          newEvent.request = "No Request";
+        }
 
-    setEvents([...events, newEvent]);
-    postActivity();
+        postActivity();
+        setDidLoad(false);
+      } else {
+        alert("Please make sure the end date is after the start date");
+      }
+    } else {
+      alert("Please make sure to enter a start and end date");
+    }
   }
 
   function displayAmountOfPeopleTextBox(event) {
