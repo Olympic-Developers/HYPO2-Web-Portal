@@ -4,6 +4,7 @@ import Axios from "axios";
 import {
   getSessionStorage,
   authCheckCamp,
+  setSessionStorage,
 } from "../Components/UserInfoAndAuth";
 
 function App() {
@@ -88,7 +89,39 @@ function App() {
 
             <button onClick={backToCorrectHomePage}>Return To Home Page</button>
 
-            <h1>Admin Permissions</h1>
+            <h3>Archive This Camp</h3>
+            <p>
+              When you archive the camp the camp will no longer be able to be
+              edited this process can not be undone.
+            </p>
+            <button
+              onClick={() => {
+                Axios.post("http://localhost:3001/setCampStatus", {
+                  campID: getSessionStorage("campNumber"),
+                  status: "Past Camp",
+                }).then(() => {
+                  setSessionStorage("campProgressType", "Past Camp");
+                  navigate(-1);
+                });
+              }}
+            >
+              Archive Camp
+            </button>
+
+            <h3>Delete This Camp</h3>
+            <p>
+              When you delete this camp all information will be lost and can not
+              be gotten back The camp page, schedule and intake information and
+              all other information about this camp will gone this process can
+              not be undone.
+            </p>
+            <button
+              onClick={() => {
+                console.log("out logic here for nuking the camp information");
+              }}
+            >
+              Delete Camp
+            </button>
           </div>
         );
       })}

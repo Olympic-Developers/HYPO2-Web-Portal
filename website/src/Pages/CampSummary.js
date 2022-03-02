@@ -87,7 +87,8 @@ function App() {
               </button>
               <span>
                 {getSessionStorage("classification").toLowerCase() ===
-                "admin" ? (
+                  "admin" &&
+                getSessionStorage("campProgressType") !== "Past Camp" ? (
                   <button
                     onClick={() => {
                       navigate("/CampPage/AdminPermissions");

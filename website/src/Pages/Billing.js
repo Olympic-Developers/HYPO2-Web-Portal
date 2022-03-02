@@ -75,7 +75,8 @@ function App() {
               Billing
             </button>
             <span>
-              {getSessionStorage("classification").toLowerCase() === "admin" ? (
+              {getSessionStorage("classification").toLowerCase() === "admin" &&
+              getSessionStorage("campProgressType") !== "Past Camp" ? (
                 <button
                   onClick={() => {
                     navigate("/CampPage/AdminPermissions");

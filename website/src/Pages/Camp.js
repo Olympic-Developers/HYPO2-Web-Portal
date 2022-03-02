@@ -1143,6 +1143,75 @@ function App() {
         })}
       </div>
     );
+  } else if (
+    getSessionStorage("authenticated") === "true" &&
+    getSessionStorage("campProgressType") === "Past Camp" &&
+    (getSessionStorage("classification").toLowerCase() === "admin" ||
+      getSessionStorage("classification").toLowerCase() === "client")
+  ) {
+    return (
+      <div>
+        {userInfo.map((val) => {
+          const splitStartDate = val.Camp_Date_Start.split(/[- : T]/);
+
+          const yearStart = splitStartDate[0];
+          const monthStart = splitStartDate[1] - 1;
+          const dayStart = splitStartDate[2];
+
+          return (
+            <div>
+              <h1>
+                Camp Page {val.Team_Name} - {val.Camp_ID}
+              </h1>
+
+              <button
+                onClick={() => {
+                  navigate("/CampPage");
+                }}
+              >
+                Home Camp Page
+              </button>
+              <button
+                onClick={() => {
+                  navigate("/CampPage/Roster");
+                }}
+              >
+                Roster
+              </button>
+              <button
+                onClick={() => {
+                  navigate("/CampPage/Summary");
+                }}
+              >
+                Summary
+              </button>
+              <button
+                onClick={() => {
+                  navigate("/CampPage/Billing");
+                }}
+              >
+                Billing
+              </button>
+
+              <button onClick={backToCorrectHomePage}>
+                Return To Home Page
+              </button>
+
+              <Calendar
+                localizer={localizer}
+                events={events}
+                startAccessor="start"
+                endAccessor="end"
+                defaultDate={new Date(yearStart, monthStart, dayStart)}
+                style={{ height: 700 }}
+                eventPropGetter={eventStyleGetter}
+                onSelectEvent={handleSelected}
+              />
+            </div>
+          );
+        })}
+      </div>
+    );
   } else {
     return null;
   }

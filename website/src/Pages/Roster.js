@@ -64,7 +64,12 @@ function App() {
     });
   }
 
-  if (getSessionStorage("classification").toLowerCase() === "client") {
+  if (
+    getSessionStorage("authenticated") === "true" &&
+    getSessionStorage("campProgressType") !== "Past Camp" &&
+    (getSessionStorage("classification").toLowerCase() === "admin" ||
+      getSessionStorage("classification").toLowerCase() === "client")
+  ) {
     return (
       <div>
         {userInfo.map((val) => {
@@ -193,7 +198,12 @@ function App() {
         })}
       </div>
     );
-  } else {
+  } else if (
+    getSessionStorage("authenticated") === "true" &&
+    getSessionStorage("campProgressType") === "Past Camp" &&
+    (getSessionStorage("classification").toLowerCase() === "admin" ||
+      getSessionStorage("classification").toLowerCase() === "client")
+  ) {
     return (
       <div>
         {userInfo.map((val) => {
@@ -230,18 +240,7 @@ function App() {
               >
                 Billing
               </button>
-              <span>
-                {getSessionStorage("classification").toLowerCase() ===
-                "admin" ? (
-                  <button
-                    onClick={() => {
-                      navigate("/CampPage/AdminPermissions");
-                    }}
-                  >
-                    Admin Permissions
-                  </button>
-                ) : null}
-              </span>
+
               <button onClick={backToCorrectHomePage}>
                 Return To Home Page
               </button>
@@ -252,21 +251,17 @@ function App() {
         })}
 
         {rosterList.map((val) => {
-          const birthDateSplit = val.Birth_Date.split(/[- : T]/);
-
-          const year = birthDateSplit[0];
-          const month = birthDateSplit[1] - 1;
-          const day = birthDateSplit[2];
-
           return (
             <div>
               Name: {val.Name} Role: {val.Role} Gender:
-              {val.Gender.toLowerCase()} Date of Birth: {month}/{day}/{year}
+              {val.Gender.toLowerCase()}
             </div>
           );
         })}
       </div>
     );
+  } else {
+    return null;
   }
 }
 
