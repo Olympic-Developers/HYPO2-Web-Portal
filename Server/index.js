@@ -486,7 +486,7 @@ app.post("/sendRoster", (req, res) => {
   console.log(id, name, role, birth, gender);
 
   db.query(
-    `INSERT INTO Roster(CAMP_ID, Name, Role, Birth_Date, Gender) VALUES(?,?,?,?,?);`,
+    `INSERT INTO Roster(Camp_ID, Name, Role, Birth_Date, Gender) VALUES(?,?,?,?,?);`,
     [id, name, role, birth, gender],
     (err, result) => {
       if (err) {
