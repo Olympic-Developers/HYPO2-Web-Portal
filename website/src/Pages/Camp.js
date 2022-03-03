@@ -273,6 +273,92 @@ function App() {
           const dayEnd = splitEndDate[2];
 
           let tempTitle;
+
+          function setTitleAndActivityClass(event) {
+            if (tempTitle === "Massage Therapy") {
+              setNewEvent({
+                ...newEvent,
+                title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                activityClass: "Massage Therapy",
+              });
+            }
+            // For Sport Psychology / Mental Performance
+            else if (
+              tempTitle === "Mental Group Presentation or Workshop" ||
+              tempTitle === "Team Focus Session" ||
+              tempTitle === "Individual Consultation"
+            ) {
+              setNewEvent({
+                ...newEvent,
+                title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                activityClass: "Sport Psychology / Mental Performance",
+              });
+            }
+            // For Blood Testing
+            else if (
+              tempTitle === "Total Hemoglobin Mass Testing" ||
+              tempTitle ===
+                "Complete Blood Profile (includes RBC, WBC, Hematocrit, Hemoglobin, etc.)" ||
+              tempTitle === "Comprehensive Metabolic Panel" ||
+              tempTitle === "Ferritin/Iron/Total iron Binding Capacity" ||
+              tempTitle === "Creatine Kinase (CK/CPK)"
+            ) {
+              setNewEvent({
+                ...newEvent,
+                title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                activityClass: "Blood Testing",
+              });
+            }
+            // For Physiological Testing
+            else if (
+              tempTitle === "VO2 & Lactate Combined" ||
+              tempTitle === "VO2 Threshold" ||
+              tempTitle === "Lactate Threshold" ||
+              tempTitle === "Supplemental O2 for Training / Recovery"
+            ) {
+              setNewEvent({
+                ...newEvent,
+                title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                activityClass: "Physiological Testing",
+              });
+            }
+            // For Physiotherapy/Chiropractic Rehab/Prehab
+            else if (tempTitle === "Physiotherapy/Chiropractic Rehab/Prehab") {
+              setNewEvent({
+                ...newEvent,
+                title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                activityClass: "Physiotherapy/Chiropractic Rehab/Prehab",
+              });
+            }
+            // For Strength & Conditioning Coaching
+            else if (tempTitle === "Strength & Conditioning Coaching") {
+              setNewEvent({
+                ...newEvent,
+                title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                activityClass: "Strength & Conditioning Coaching",
+              });
+            }
+            // For Sport Nutrition
+            else if (
+              tempTitle === "Integrated Training and Dietary Analysis" ||
+              tempTitle === "Nutrition Group Presentation or Workshop"
+            ) {
+              setNewEvent({
+                ...newEvent,
+                title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                activityClass: "Sport Nutrition",
+              });
+            }
+            // For no job title
+            else {
+              setNewEvent({
+                ...newEvent,
+                title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                activityClass: "None",
+              });
+            }
+          }
+
           return (
             <div key={val.Camp_ID}>
               <h1>Camp Setup</h1>
@@ -732,95 +818,7 @@ function App() {
                   value={tempTitle}
                   onChange={(event) => {
                     tempTitle = event.target.value;
-                    // For Massage therapy
-                    if (tempTitle === "Massage Therapy") {
-                      setNewEvent({
-                        ...newEvent,
-                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
-                        activityClass: "Massage Therapy",
-                      });
-                    }
-                    // For Sport Psychology / Mental Performance
-                    else if (
-                      tempTitle === "Mental Group Presentation or Workshop" ||
-                      tempTitle === "Team Focus Session" ||
-                      tempTitle === "Individual Consultation"
-                    ) {
-                      setNewEvent({
-                        ...newEvent,
-                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
-                        activityClass: "Sport Psychology / Mental Performance",
-                      });
-                    }
-                    // For Blood Testing
-                    else if (
-                      tempTitle === "Total Hemoglobin Mass Testing" ||
-                      tempTitle ===
-                        "Complete Blood Profile (includes RBC, WBC, Hematocrit, Hemoglobin, etc.)" ||
-                      tempTitle === "Comprehensive Metabolic Panel" ||
-                      tempTitle ===
-                        "Ferritin/Iron/Total iron Binding Capacity" ||
-                      tempTitle === "Creatine Kinase (CK/CPK)"
-                    ) {
-                      setNewEvent({
-                        ...newEvent,
-                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
-                        activityClass: "Blood Testing",
-                      });
-                    }
-                    // For Physiological Testing
-                    else if (
-                      tempTitle === "VO2 & Lactate Combined" ||
-                      tempTitle === "VO2 Threshold" ||
-                      tempTitle === "Lactate Threshold" ||
-                      tempTitle === "Supplemental O2 for Training / Recovery"
-                    ) {
-                      setNewEvent({
-                        ...newEvent,
-                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
-                        activityClass: "Physiological Testing",
-                      });
-                    }
-                    // For Physiotherapy/Chiropractic Rehab/Prehab
-                    else if (
-                      tempTitle === "Physiotherapy/Chiropractic Rehab/Prehab"
-                    ) {
-                      setNewEvent({
-                        ...newEvent,
-                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
-                        activityClass:
-                          "Physiotherapy/Chiropractic Rehab/Prehab",
-                      });
-                    }
-                    // For Strength & Conditioning Coaching
-                    else if (tempTitle === "Strength & Conditioning Coaching") {
-                      setNewEvent({
-                        ...newEvent,
-                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
-                        activityClass: "Strength & Conditioning Coaching",
-                      });
-                    }
-                    // For Sport Nutrition
-                    else if (
-                      tempTitle ===
-                        "Integrated Training and Dietary Analysis" ||
-                      tempTitle === "Nutrition Group Presentation or Workshop"
-                    ) {
-                      setNewEvent({
-                        ...newEvent,
-                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
-                        activityClass: "Sport Nutrition",
-                      });
-                    }
-                    // For no job title
-                    else {
-                      setNewEvent({
-                        ...newEvent,
-                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
-                        activityClass: "None",
-                      });
-                    }
-                    tempTitle = event.target.value;
+                    setTitleAndActivityClass(event);
                     displayAmountOfPeopleTextBox(event);
                     displayPriceTextBox(event);
                   }}
@@ -1014,6 +1012,91 @@ function App() {
 
           let tempTitle;
 
+          function setTitleAndActivityClass(event) {
+            if (tempTitle === "Massage Therapy") {
+              setNewEvent({
+                ...newEvent,
+                title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                activityClass: "Massage Therapy",
+              });
+            }
+            // For Sport Psychology / Mental Performance
+            else if (
+              tempTitle === "Mental Group Presentation or Workshop" ||
+              tempTitle === "Team Focus Session" ||
+              tempTitle === "Individual Consultation"
+            ) {
+              setNewEvent({
+                ...newEvent,
+                title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                activityClass: "Sport Psychology / Mental Performance",
+              });
+            }
+            // For Blood Testing
+            else if (
+              tempTitle === "Total Hemoglobin Mass Testing" ||
+              tempTitle ===
+                "Complete Blood Profile (includes RBC, WBC, Hematocrit, Hemoglobin, etc.)" ||
+              tempTitle === "Comprehensive Metabolic Panel" ||
+              tempTitle === "Ferritin/Iron/Total iron Binding Capacity" ||
+              tempTitle === "Creatine Kinase (CK/CPK)"
+            ) {
+              setNewEvent({
+                ...newEvent,
+                title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                activityClass: "Blood Testing",
+              });
+            }
+            // For Physiological Testing
+            else if (
+              tempTitle === "VO2 & Lactate Combined" ||
+              tempTitle === "VO2 Threshold" ||
+              tempTitle === "Lactate Threshold" ||
+              tempTitle === "Supplemental O2 for Training / Recovery"
+            ) {
+              setNewEvent({
+                ...newEvent,
+                title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                activityClass: "Physiological Testing",
+              });
+            }
+            // For Physiotherapy/Chiropractic Rehab/Prehab
+            else if (tempTitle === "Physiotherapy/Chiropractic Rehab/Prehab") {
+              setNewEvent({
+                ...newEvent,
+                title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                activityClass: "Physiotherapy/Chiropractic Rehab/Prehab",
+              });
+            }
+            // For Strength & Conditioning Coaching
+            else if (tempTitle === "Strength & Conditioning Coaching") {
+              setNewEvent({
+                ...newEvent,
+                title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                activityClass: "Strength & Conditioning Coaching",
+              });
+            }
+            // For Sport Nutrition
+            else if (
+              tempTitle === "Integrated Training and Dietary Analysis" ||
+              tempTitle === "Nutrition Group Presentation or Workshop"
+            ) {
+              setNewEvent({
+                ...newEvent,
+                title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                activityClass: "Sport Nutrition",
+              });
+            }
+            // For no job title
+            else {
+              setNewEvent({
+                ...newEvent,
+                title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                activityClass: "None",
+              });
+            }
+          }
+
           return (
             <div key={val.Camp_ID}>
               <h1>
@@ -1070,95 +1153,7 @@ function App() {
                   value={tempTitle}
                   onChange={(event) => {
                     tempTitle = event.target.value;
-                    // For Massage therapy
-                    if (tempTitle === "Massage Therapy") {
-                      setNewEvent({
-                        ...newEvent,
-                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
-                        activityClass: "Massage Therapy",
-                      });
-                    }
-                    // For Sport Psychology / Mental Performance
-                    else if (
-                      tempTitle === "Mental Group Presentation or Workshop" ||
-                      tempTitle === "Team Focus Session" ||
-                      tempTitle === "Individual Consultation"
-                    ) {
-                      setNewEvent({
-                        ...newEvent,
-                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
-                        activityClass: "Sport Psychology / Mental Performance",
-                      });
-                    }
-                    // For Blood Testing
-                    else if (
-                      tempTitle === "Total Hemoglobin Mass Testing" ||
-                      tempTitle ===
-                        "Complete Blood Profile (includes RBC, WBC, Hematocrit, Hemoglobin, etc.)" ||
-                      tempTitle === "Comprehensive Metabolic Panel" ||
-                      tempTitle ===
-                        "Ferritin/Iron/Total iron Binding Capacity" ||
-                      tempTitle === "Creatine Kinase (CK/CPK)"
-                    ) {
-                      setNewEvent({
-                        ...newEvent,
-                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
-                        activityClass: "Blood Testing",
-                      });
-                    }
-                    // For Physiological Testing
-                    else if (
-                      tempTitle === "VO2 & Lactate Combined" ||
-                      tempTitle === "VO2 Threshold" ||
-                      tempTitle === "Lactate Threshold" ||
-                      tempTitle === "Supplemental O2 for Training / Recovery"
-                    ) {
-                      setNewEvent({
-                        ...newEvent,
-                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
-                        activityClass: "Physiological Testing",
-                      });
-                    }
-                    // For Physiotherapy/Chiropractic Rehab/Prehab
-                    else if (
-                      tempTitle === "Physiotherapy/Chiropractic Rehab/Prehab"
-                    ) {
-                      setNewEvent({
-                        ...newEvent,
-                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
-                        activityClass:
-                          "Physiotherapy/Chiropractic Rehab/Prehab",
-                      });
-                    }
-                    // For Strength & Conditioning Coaching
-                    else if (tempTitle === "Strength & Conditioning Coaching") {
-                      setNewEvent({
-                        ...newEvent,
-                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
-                        activityClass: "Strength & Conditioning Coaching",
-                      });
-                    }
-                    // For Sport Nutrition
-                    else if (
-                      tempTitle ===
-                        "Integrated Training and Dietary Analysis" ||
-                      tempTitle === "Nutrition Group Presentation or Workshop"
-                    ) {
-                      setNewEvent({
-                        ...newEvent,
-                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
-                        activityClass: "Sport Nutrition",
-                      });
-                    }
-                    // For no job title
-                    else {
-                      setNewEvent({
-                        ...newEvent,
-                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
-                        activityClass: "None",
-                      });
-                    }
-
+                    setTitleAndActivityClass(event);
                     displayAmountOfPeopleTextBox(event);
                     displayPriceTextBox(event);
                   }}
