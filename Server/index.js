@@ -466,6 +466,64 @@ app.delete("/deleteSingleEvent/:id", (req, res) => {
   );
 });
 
+app.delete("/deleteCamp/:id", (req, res) => {
+  let id = req.params.id;
+  db.query(
+    `DELETE FROM ScheduleTable WHERE Camp_ID = "${id}"`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("success");
+      }
+    }
+  );
+  db.query(`DELETE FROM IntakeInfo WHERE Camp_ID = "${id}"`, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("success");
+    }
+  });
+  db.query(
+    `DELETE FROM AdditionalServices WHERE Camp_ID = "${id}"`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("success");
+      }
+    }
+  );
+  db.query(
+    `DELETE FROM CoreCampNeeds WHERE Camp_ID = "${id}"`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("success");
+      }
+    }
+  );
+  db.query(
+    `DELETE FROM GeneralIntake WHERE Camp_ID = "${id}"`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("success");
+      }
+    }
+  );
+  db.query(`DELETE FROM Roster WHERE Camp_ID = "${id}"`, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
 app.get("/getRoster", (req, res) => {
   let id = req.query.id;
   db.query(`SELECT * FROM Roster WHERE Camp_ID = "${id}"`, (err, result) => {

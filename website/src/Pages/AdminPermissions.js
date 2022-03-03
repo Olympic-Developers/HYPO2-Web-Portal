@@ -117,7 +117,13 @@ function App() {
             </p>
             <button
               onClick={() => {
-                console.log("out logic here for nuking the camp information");
+                Axios.delete(
+                  `http://localhost:3001/deleteCamp/${getSessionStorage(
+                    "campNumber"
+                  )}`
+                ).then(() => {
+                  navigate("/AdminProfile");
+                });
               }}
             >
               Delete Camp
