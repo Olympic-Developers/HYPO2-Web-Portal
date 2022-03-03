@@ -149,83 +149,85 @@ function App() {
               <p>Comment: {val.Comments}</p>
 
               <div>
-                {getSessionStorage("classification").toLowerCase() ===
-                  "admin" && val.request === "No Request" ? (
-                  <button
-                    onClick={() => {
-                      deleteEventForever();
-                    }}
-                  >
-                    delete
-                  </button>
-                ) : // buttons for client on No Request
-                getSessionStorage("classification").toLowerCase() ===
-                    "client" && val.request === "No Request" ? (
-                  <button
-                    onClick={() => {
-                      requestRemoval();
-                    }}
-                  >
-                    request deletion
-                  </button>
-                ) : // buttons for admin on Removal
-                getSessionStorage("classification").toLowerCase() === "admin" &&
-                  val.request === "Removal" ? (
-                  <div>
-                    <button
-                      onClick={() => {
-                        removeRequest();
-                      }}
-                    >
-                      reject request of deletion
-                    </button>
+                {getSessionStorage("campProgressType") !== "Past Camp" ? (
+                  getSessionStorage("classification").toLowerCase() ===
+                    "admin" && val.request === "No Request" ? (
                     <button
                       onClick={() => {
                         deleteEventForever();
                       }}
                     >
-                      confirm request of deletion
+                      delete
                     </button>
-                  </div>
-                ) : // buttons for client on Removal
-                getSessionStorage("classification").toLowerCase() ===
-                    "client" && val.request === "Removal" ? (
-                  <button
-                    onClick={() => {
-                      removeRequest();
-                    }}
-                  >
-                    cancel request for deletion
-                  </button>
-                ) : // buttons for admin on Request New
-                getSessionStorage("classification").toLowerCase() === "admin" &&
-                  val.request === "Request New" ? (
-                  <div>
+                  ) : // buttons for client on No Request
+                  getSessionStorage("classification").toLowerCase() ===
+                      "client" && val.request === "No Request" ? (
                     <button
                       onClick={() => {
-                        deleteEventForever();
+                        requestRemoval();
                       }}
                     >
-                      reject request of addition
+                      request deletion
                     </button>
+                  ) : // buttons for admin on Removal
+                  getSessionStorage("classification").toLowerCase() ===
+                      "admin" && val.request === "Removal" ? (
+                    <div>
+                      <button
+                        onClick={() => {
+                          removeRequest();
+                        }}
+                      >
+                        reject request of deletion
+                      </button>
+                      <button
+                        onClick={() => {
+                          deleteEventForever();
+                        }}
+                      >
+                        confirm request of deletion
+                      </button>
+                    </div>
+                  ) : // buttons for client on Removal
+                  getSessionStorage("classification").toLowerCase() ===
+                      "client" && val.request === "Removal" ? (
                     <button
                       onClick={() => {
                         removeRequest();
                       }}
                     >
-                      confirm request of addition
+                      cancel request for deletion
                     </button>
-                  </div>
-                ) : // buttons for client on Request New
-                getSessionStorage("classification").toLowerCase() ===
-                    "client" && val.request === "Request New" ? (
-                  <button
-                    onClick={() => {
-                      deleteEventForever();
-                    }}
-                  >
-                    cancel request for addition
-                  </button>
+                  ) : // buttons for admin on Request New
+                  getSessionStorage("classification").toLowerCase() ===
+                      "admin" && val.request === "Request New" ? (
+                    <div>
+                      <button
+                        onClick={() => {
+                          deleteEventForever();
+                        }}
+                      >
+                        reject request of addition
+                      </button>
+                      <button
+                        onClick={() => {
+                          removeRequest();
+                        }}
+                      >
+                        confirm request of addition
+                      </button>
+                    </div>
+                  ) : // buttons for client on Request New
+                  getSessionStorage("classification").toLowerCase() ===
+                      "client" && val.request === "Request New" ? (
+                    <button
+                      onClick={() => {
+                        deleteEventForever();
+                      }}
+                    >
+                      cancel request for addition
+                    </button>
+                  ) : null
                 ) : null}
               </div>
 
