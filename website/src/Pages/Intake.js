@@ -1493,7 +1493,9 @@ function Intake() {
               setNutritionGroupPresWS(event.target.checked);
             }}
           />
-          <label>Group Presentation or Workshop</label>
+          <label>
+            Nutrition WorkshopCheckBoxGroup Presentation or Workshop
+          </label>
 
           <div
             id="nutritionWorkshopCheckBoxInput"
@@ -1545,7 +1547,7 @@ function Intake() {
               setPyschGroupPresWS(event.target.checked);
             }}
           />
-          <label>Group Presentation or Workshop</label>
+          <label>Mental Group Presentation or Workshop</label>
 
           <div
             id="mentalWorkshopCheckBoxInput"

@@ -158,10 +158,10 @@ function App() {
       idOfService === "Primary Medical Care" ||
       idOfService === "Supplemental O2 for Training / Recovery" ||
       idOfService === "Integrated Training and Dietary Analysis" ||
-      idOfService === "Group Presentation or Workshop" ||
+      idOfService === "Nutrition Group Presentation or Workshop" ||
       idOfService === "Individual Consultation " ||
       idOfService === "Team Focus Session" ||
-      idOfService === "Group Presentation or Workshop" ||
+      idOfService === "Mental Group Presentation or Workshop" ||
       idOfService === "Other"
     ) {
       Input.style.display = "none";
@@ -732,20 +732,94 @@ function App() {
                   value={tempTitle}
                   onChange={(event) => {
                     tempTitle = event.target.value;
+                    // For Massage therapy
                     if (tempTitle === "Massage Therapy") {
                       setNewEvent({
                         ...newEvent,
                         title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
                         activityClass: "Massage Therapy",
                       });
-                    } else {
+                    }
+                    // For Sport Psychology / Mental Performance
+                    else if (
+                      tempTitle === "Mental Group Presentation or Workshop" ||
+                      tempTitle === "Team Focus Session" ||
+                      tempTitle === "Individual Consultation"
+                    ) {
+                      setNewEvent({
+                        ...newEvent,
+                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                        activityClass: "Sport Psychology / Mental Performance",
+                      });
+                    }
+                    // For Blood Testing
+                    else if (
+                      tempTitle === "Total Hemoglobin Mass Testing" ||
+                      tempTitle ===
+                        "Complete Blood Profile (includes RBC, WBC, Hematocrit, Hemoglobin, etc.)" ||
+                      tempTitle === "Comprehensive Metabolic Panel" ||
+                      tempTitle ===
+                        "Ferritin/Iron/Total iron Binding Capacity" ||
+                      tempTitle === "Creatine Kinase (CK/CPK)"
+                    ) {
+                      setNewEvent({
+                        ...newEvent,
+                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                        activityClass: "Blood Testing",
+                      });
+                    }
+                    // For Physiological Testing
+                    else if (
+                      tempTitle === "VO2 & Lactate Combined" ||
+                      tempTitle === "VO2 Threshold" ||
+                      tempTitle === "Lactate Threshold" ||
+                      tempTitle === "Supplemental O2 for Training / Recovery"
+                    ) {
+                      setNewEvent({
+                        ...newEvent,
+                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                        activityClass: "Physiological Testing",
+                      });
+                    }
+                    // For Physiotherapy/Chiropractic Rehab/Prehab
+                    else if (
+                      tempTitle === "Physiotherapy/Chiropractic Rehab/Prehab"
+                    ) {
+                      setNewEvent({
+                        ...newEvent,
+                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                        activityClass:
+                          "Physiotherapy/Chiropractic Rehab/Prehab",
+                      });
+                    }
+                    // For Strength & Conditioning Coaching
+                    else if (tempTitle === "Strength & Conditioning Coaching") {
+                      setNewEvent({
+                        ...newEvent,
+                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                        activityClass: "Strength & Conditioning Coaching",
+                      });
+                    }
+                    // For Sport Nutrition
+                    else if (
+                      tempTitle ===
+                        "Integrated Training and Dietary Analysis" ||
+                      tempTitle === "Nutrition Group Presentation or Workshop"
+                    ) {
+                      setNewEvent({
+                        ...newEvent,
+                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                        activityClass: "Sport Nutrition",
+                      });
+                    }
+                    // For no job title
+                    else {
                       setNewEvent({
                         ...newEvent,
                         title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
                         activityClass: "None",
                       });
                     }
-
                     tempTitle = event.target.value;
                     displayAmountOfPeopleTextBox(event);
                     displayPriceTextBox(event);
@@ -791,7 +865,7 @@ function App() {
                   <option value="Total Hemoglobin Mass Testing">
                     Total Hemoglobin Mass Testing (via CO Rebreathing Method)
                   </option>
-                  <option value="Complete Blood Profile (includes RBC, WBC, Hematocrit, Hemoglobin, etc.) ">
+                  <option value="Complete Blood Profile (includes RBC, WBC, Hematocrit, Hemoglobin, etc.)">
                     Complete Blood Profile (includes RBC, WBC, Hematocrit,
                     Hemoglobin, etc.)
                   </option>
@@ -815,15 +889,15 @@ function App() {
                   <option value="Integrated Training and Dietary Analysis ">
                     Integrated Training and Dietary Analysis
                   </option>
-                  <option value="Group Presentation or Workshop">
-                    Group Presentation or Workshop
+                  <option value="Nutrition Group Presentation or Workshop">
+                    Nutrition Group Presentation or Workshop
                   </option>
                   <option value="Individual Consultation">
                     Individual Consultation
                   </option>
                   <option value="Team Focus Session">Team Focus Session</option>
-                  <option value="Group Presentation or Workshop">
-                    Group Presentation or Workshop
+                  <option value="Mental Group Presentation or Workshop">
+                    Mental Group Presentation or Workshop
                   </option>
                   <option value="Other">Other</option>
                 </select>
@@ -996,13 +1070,88 @@ function App() {
                   value={tempTitle}
                   onChange={(event) => {
                     tempTitle = event.target.value;
+                    // For Massage therapy
                     if (tempTitle === "Massage Therapy") {
                       setNewEvent({
                         ...newEvent,
                         title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
                         activityClass: "Massage Therapy",
                       });
-                    } else {
+                    }
+                    // For Sport Psychology / Mental Performance
+                    else if (
+                      tempTitle === "Mental Group Presentation or Workshop" ||
+                      tempTitle === "Team Focus Session" ||
+                      tempTitle === "Individual Consultation"
+                    ) {
+                      setNewEvent({
+                        ...newEvent,
+                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                        activityClass: "Sport Psychology / Mental Performance",
+                      });
+                    }
+                    // For Blood Testing
+                    else if (
+                      tempTitle === "Total Hemoglobin Mass Testing" ||
+                      tempTitle ===
+                        "Complete Blood Profile (includes RBC, WBC, Hematocrit, Hemoglobin, etc.)" ||
+                      tempTitle === "Comprehensive Metabolic Panel" ||
+                      tempTitle ===
+                        "Ferritin/Iron/Total iron Binding Capacity" ||
+                      tempTitle === "Creatine Kinase (CK/CPK)"
+                    ) {
+                      setNewEvent({
+                        ...newEvent,
+                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                        activityClass: "Blood Testing",
+                      });
+                    }
+                    // For Physiological Testing
+                    else if (
+                      tempTitle === "VO2 & Lactate Combined" ||
+                      tempTitle === "VO2 Threshold" ||
+                      tempTitle === "Lactate Threshold" ||
+                      tempTitle === "Supplemental O2 for Training / Recovery"
+                    ) {
+                      setNewEvent({
+                        ...newEvent,
+                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                        activityClass: "Physiological Testing",
+                      });
+                    }
+                    // For Physiotherapy/Chiropractic Rehab/Prehab
+                    else if (
+                      tempTitle === "Physiotherapy/Chiropractic Rehab/Prehab"
+                    ) {
+                      setNewEvent({
+                        ...newEvent,
+                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                        activityClass:
+                          "Physiotherapy/Chiropractic Rehab/Prehab",
+                      });
+                    }
+                    // For Strength & Conditioning Coaching
+                    else if (tempTitle === "Strength & Conditioning Coaching") {
+                      setNewEvent({
+                        ...newEvent,
+                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                        activityClass: "Strength & Conditioning Coaching",
+                      });
+                    }
+                    // For Sport Nutrition
+                    else if (
+                      tempTitle ===
+                        "Integrated Training and Dietary Analysis" ||
+                      tempTitle === "Nutrition Group Presentation or Workshop"
+                    ) {
+                      setNewEvent({
+                        ...newEvent,
+                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                        activityClass: "Sport Nutrition",
+                      });
+                    }
+                    // For no job title
+                    else {
                       setNewEvent({
                         ...newEvent,
                         title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
@@ -1054,7 +1203,7 @@ function App() {
                   <option value="Total Hemoglobin Mass Testing">
                     Total Hemoglobin Mass Testing (via CO Rebreathing Method)
                   </option>
-                  <option value="Complete Blood Profile (includes RBC, WBC, Hematocrit, Hemoglobin, etc.) ">
+                  <option value="Complete Blood Profile (includes RBC, WBC, Hematocrit, Hemoglobin, etc.)">
                     Complete Blood Profile (includes RBC, WBC, Hematocrit,
                     Hemoglobin, etc.)
                   </option>
@@ -1078,15 +1227,15 @@ function App() {
                   <option value="Integrated Training and Dietary Analysis ">
                     Integrated Training and Dietary Analysis
                   </option>
-                  <option value="Group Presentation or Workshop">
-                    Group Presentation or Workshop
+                  <option value="Nutrition Group Presentation or Workshop">
+                    Nutrition Group Presentation or Workshop
                   </option>
                   <option value="Individual Consultation">
                     Individual Consultation
                   </option>
                   <option value="Team Focus Session">Team Focus Session</option>
-                  <option value="Group Presentation or Workshop">
-                    Group Presentation or Workshop
+                  <option value="Mental Group Presentation or Workshop">
+                    Mental Group Presentation or Workshop
                   </option>
                   <option value="Other">Other</option>
                 </select>

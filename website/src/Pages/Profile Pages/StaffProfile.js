@@ -61,7 +61,11 @@ function App() {
 
   function getStaffSchedule() {
     Axios.get("http://localhost:3001/getStaffSchedule", {
-      params: { activityClass: getSessionStorage("jobRoleOne") },
+      params: {
+        activityClassOne: getSessionStorage("jobRoleOne"),
+        activityClassTwo: getSessionStorage("jobRoleTwo"),
+        activityClassThree: getSessionStorage("jobRoleThree"),
+      },
     }).then((response) => {
       // put information into getUserCampsList array
       setStaffSchedule(response.data);

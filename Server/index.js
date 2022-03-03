@@ -500,9 +500,12 @@ app.post("/sendRoster", (req, res) => {
 });
 
 app.get("/getStaffSchedule", (req, res) => {
-  let activityClass = req.query.activityClass;
+  let activityClassOne = req.query.activityClassOne;
+  let activityClassTwo = req.query.activityClassTwo;
+  let activityClassThree = req.query.activityClassThree;
+
   db.query(
-    `SELECT * FROM ScheduleTable WHERE Activity_Class = "${activityClass}"`,
+    `SELECT * FROM ScheduleTable WHERE Activity_Class = "${activityClassOne}" OR Activity_Class = "${activityClassTwo}" OR Activity_Class = "${activityClassThree}"`,
     (err, result) => {
       if (err) {
         console.log(err);

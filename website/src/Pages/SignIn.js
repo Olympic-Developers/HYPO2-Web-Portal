@@ -20,6 +20,8 @@ function App() {
   setSessionStorage("campNumber", "0");
   setSessionStorage("campProgressType", "nocamp");
   setSessionStorage("jobRoleOne", "No Job");
+  setSessionStorage("jobRoleTwo", "No Job");
+  setSessionStorage("jobRoleThree", "No Job");
 
   // Function for signing in users
   async function signIn() {
@@ -34,14 +36,33 @@ function App() {
         "classification",
         user.attributes["custom:Classification"]
       );
-      setSessionStorage("jobRoleOne", user.attributes["custom:JobRoleOne"]);
 
       // Checking for classification to redirecting user to correct profile page
       if (user.attributes["custom:Classification"] === "Staff") {
+        // set job role one
+        setSessionStorage("jobRoleOne", user.attributes["custom:JobRoleOne"]);
+
+        // check if there is a second job role
+        if (typeof user.attributes["custom:JobRoleTwo"] !== "undefined") {
+          setSessionStorage("jobRoleTwo", user.attributes["custom:JobRoleTwo"]);
+        }
+
+        // check if there is a third job role
+        // Lower case j on attributes typo in cognito
+        if (typeof user.attributes["custom:jobRoleThree"] !== "undefined") {
+          setSessionStorage(
+            "jobRoleThree",
+            user.attributes["custom:jobRoleThree"]
+          );
+        }
+
+        // navigate to staffs page
         navigate("/StaffProfile");
       } else if (user.attributes["custom:Classification"] === "Admin") {
+        // navigate to admins page
         navigate("/AdminProfile");
       } else if (user.attributes["custom:Classification"] === "Client") {
+        // navigate to clients page
         navigate("/ClientProfile");
       } else {
         console.log("This Classification of account does not existed");
