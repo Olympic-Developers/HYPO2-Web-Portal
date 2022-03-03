@@ -499,6 +499,20 @@ app.post("/sendRoster", (req, res) => {
   );
 });
 
+app.get("/getStaffSchedule", (req, res) => {
+  let activityClass = req.query.activityClass;
+  db.query(
+    `SELECT * FROM ScheduleTable WHERE Activity_Class = "${activityClass}"`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
 app.listen(3001, () => {
   console.log("yay, your server is running on port 3001");
 });

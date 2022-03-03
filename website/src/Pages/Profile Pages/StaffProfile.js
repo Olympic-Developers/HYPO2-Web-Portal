@@ -1,20 +1,72 @@
-import React, { useEffect } from "react";
+import format from "date-fns/format";
+import getDay from "date-fns/getDay";
+import parse from "date-fns/parse";
+import startOfWeek from "date-fns/startOfWeek";
+import { Calendar, dateFnsLocalizer } from "react-big-calendar";
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import React, { useEffect, useState } from "react";
 import { Auth } from "aws-amplify";
 import { useNavigate } from "react-router-dom";
+import Axios from "axios";
 import {
   authCheckStaff,
   getSessionStorage,
+  setSessionStorage,
 } from "../../Components/UserInfoAndAuth";
 
 function App() {
   // Set default value for navigate
   let navigate = useNavigate();
+  const [didLoad, setDidLoad] = useState(false);
+  const [staffSchedule, setStaffSchedule] = useState(false);
 
-  useEffect(() => {
-    // checking if staff is the user trying to access this page
-    authCheckStaff(navigate);
+  const locales = {
+    "en-US": require("date-fns/locale/en-US"),
+  };
+
+  const localizer = dateFnsLocalizer({
+    format,
+    parse,
+    startOfWeek,
+    getDay,
+    locales,
   });
 
+  useEffect(() => {
+    if (!didLoad) {
+      if (authCheckStaff(navigate)) {
+        getStaffSchedule();
+        setDidLoad(true);
+      }
+    }
+  }, [didLoad, navigate]);
+
+  const handleSelected = (event) => {
+    setSessionStorage("campNumber", event.Camp_ID);
+    setSessionStorage("campProgressType", event.Status);
+    setSessionStorage("eventNumber", event.EventID);
+    navigate("/CampPage/Event");
+  };
+
+  const eventStyleGetter = (event) => ({
+    style: {
+      backgroundColor:
+        event.request === "Removal"
+          ? "red"
+          : event.request === "Request New"
+          ? "grey"
+          : "green",
+    },
+  });
+
+  function getStaffSchedule() {
+    Axios.get("http://localhost:3001/getStaffSchedule", {
+      params: { activityClass: getSessionStorage("jobRoleOne") },
+    }).then((response) => {
+      // put information into getUserCampsList array
+      setStaffSchedule(response.data);
+    });
+  }
   // For signing out users
   async function signOut() {
     try {
@@ -45,6 +97,16 @@ function App() {
         >
           Sign out
         </button>
+
+        <Calendar
+          localizer={localizer}
+          events={staffSchedule}
+          startAccessor="start"
+          endAccessor="end"
+          style={{ height: 700 }}
+          eventPropGetter={eventStyleGetter}
+          onSelectEvent={handleSelected}
+        />
       </div>
     );
   }

@@ -24,6 +24,7 @@ function App() {
   const [newEvent, setNewEvent] = useState({
     price: 0,
     amountOfPeople: 0,
+    activityClass: "",
     title: "",
     comment: "",
     start: null,
@@ -102,7 +103,7 @@ function App() {
     Axios.post("http://localhost:3001/addEvent", {
       // GeneralIntake Table Posts
       Camp_ID: getSessionStorage("campNumber"),
-      actClass: "none",
+      actClass: newEvent.activityClass,
       actStartTime: new Date(
         newEvent.start.getTime() +
           (-7 * 60 + newEvent.start.getTimezoneOffset()) * 60 * 1000
@@ -730,10 +731,20 @@ function App() {
                 <select
                   value={tempTitle}
                   onChange={(event) => {
-                    setNewEvent({
-                      ...newEvent,
-                      title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
-                    });
+                    tempTitle = event.target.value;
+                    if (tempTitle === "Massage Therapy") {
+                      setNewEvent({
+                        ...newEvent,
+                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                        activityClass: "Massage Therapy",
+                      });
+                    } else {
+                      setNewEvent({
+                        ...newEvent,
+                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                        activityClass: "None",
+                      });
+                    }
 
                     tempTitle = event.target.value;
                     displayAmountOfPeopleTextBox(event);
@@ -984,12 +995,21 @@ function App() {
                 <select
                   value={tempTitle}
                   onChange={(event) => {
-                    setNewEvent({
-                      ...newEvent,
-                      title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
-                    });
-
                     tempTitle = event.target.value;
+                    if (tempTitle === "Massage Therapy") {
+                      setNewEvent({
+                        ...newEvent,
+                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                        activityClass: "Massage Therapy",
+                      });
+                    } else {
+                      setNewEvent({
+                        ...newEvent,
+                        title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
+                        activityClass: "None",
+                      });
+                    }
+
                     displayAmountOfPeopleTextBox(event);
                     displayPriceTextBox(event);
                   }}

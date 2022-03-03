@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   getSessionStorage,
-  authCheckCamp,
+  authCheckEvent,
   setSessionStorage,
 } from "../Components/UserInfoAndAuth";
 import Axios from "axios";
@@ -17,7 +17,7 @@ function App() {
 
   useEffect(() => {
     if (!didLoad) {
-      if (authCheckCamp(navigate)) {
+      if (authCheckEvent(navigate)) {
         getSingleEvent();
         getUserCamps();
         setDidLoad(true);
@@ -86,7 +86,8 @@ function App() {
   } else if (
     getSessionStorage("authenticated") === "true" &&
     (getSessionStorage("classification").toLowerCase() === "client" ||
-      getSessionStorage("classification").toLowerCase() === "admin")
+      getSessionStorage("classification").toLowerCase() === "admin" ||
+      getSessionStorage("classification").toLowerCase() === "staff")
   ) {
     return (
       <div>

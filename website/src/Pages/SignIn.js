@@ -19,6 +19,7 @@ function App() {
   setSessionStorage("classification", "nouserclassification");
   setSessionStorage("campNumber", "0");
   setSessionStorage("campProgressType", "nocamp");
+  setSessionStorage("jobRoleOne", "No Job");
 
   // Function for signing in users
   async function signIn() {
@@ -33,6 +34,7 @@ function App() {
         "classification",
         user.attributes["custom:Classification"]
       );
+      setSessionStorage("jobRoleOne", user.attributes["custom:JobRoleOne"]);
 
       // Checking for classification to redirecting user to correct profile page
       if (user.attributes["custom:Classification"] === "Staff") {
