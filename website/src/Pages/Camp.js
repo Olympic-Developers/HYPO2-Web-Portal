@@ -20,7 +20,7 @@ function App() {
   let navigate = useNavigate();
   const [events, setEvents] = useState([]);
   const [userInfo, setGetInfo] = useState([]);
-
+  const [priceList, setPriceList] = useState([]);
   const [newEvent, setNewEvent] = useState({
     price: 0,
     amountOfPeople: 0,
@@ -43,12 +43,18 @@ function App() {
     getDay,
     locales,
   });
-
+  const getPrice = () => {
+    Axios.get("http://localhost:3001/Prices").then((response) => {
+      // put information into getUserCampsList array
+      setPriceList(response.data);
+    });
+  };
   useEffect(() => {
     if (!didLoad) {
       if (authCheckCamp(navigate)) {
         getUserCamps();
         getInfo();
+        getPrice();
         setDidLoad(true);
       }
     }
@@ -245,10 +251,12 @@ function App() {
     return (
       <div>
         {userInfo.map((val) => {
-          function getDateRanges() {
+          function getAccomPrices() {
             const initialTime = new Date(yearStart, monthStart, dayStart);
             const endTime = new Date(yearEnd, monthEnd, dayEnd);
             const rangeOfDates = [];
+
+            console.log("Got here");
 
             for (
               let tempTime = initialTime;
@@ -257,7 +265,87 @@ function App() {
             ) {
               rangeOfDates.push((tempTime.getMonth() + 1).toString());
             }
-            console.log(rangeOfDates);
+
+            let index = 0;
+            let price = 0;
+
+            if (val.Hotel_Accom === 1) {
+              while (index < rangeOfDates.length) {
+                if (
+                  rangeOfDates[index] === 1 ||
+                  rangeOfDates[index] === 2 ||
+                  rangeOfDates[index] === 3 ||
+                  rangeOfDates[index] === 4
+                ) {
+                  price += priceList[0].Hotel_Jan_Apr;
+                } else if (
+                  rangeOfDates[index] === 5 ||
+                  rangeOfDates[index] === 6 ||
+                  rangeOfDates[index] === 7 ||
+                  rangeOfDates[index] === 8 ||
+                  rangeOfDates[index] === 9 ||
+                  rangeOfDates[index] === 10
+                ) {
+                  price += priceList[0].Hotel_May_Oct;
+                } else {
+                  price += priceList[0].Hotel_Nov_Dec;
+                }
+              }
+            }
+            if (val.Condo_Accom === 1) {
+              if (val.condoAccomInfo === "2 Bedroom") {
+                while (index < rangeOfDates.length) {
+                  if (
+                    rangeOfDates[index] === 1 ||
+                    rangeOfDates[index] === 2 ||
+                    rangeOfDates[index] === 3 ||
+                    rangeOfDates[index] === 4
+                  ) {
+                    price += priceList[0].Extended_Hotel_Jan_Apr_2Bed;
+                  } else if (rangeOfDates[index] === 5) {
+                    price += priceList[0].Extended_Hotel_May_2Bed;
+                  } else if (
+                    rangeOfDates[index] === 6 ||
+                    rangeOfDates[index] === 7
+                  ) {
+                    price += priceList[0].Extended_Hotel_June_July_2Bed;
+                  } else if (
+                    rangeOfDates[index] === 8 ||
+                    rangeOfDates[index] === 9
+                  ) {
+                    price += priceList[0].Extended_Hotel_Aug_Sep_2Bed;
+                  } else {
+                    price += priceList[0].Extended_Hotel_Oct_Dec_2Bed;
+                  }
+                }
+              } else {
+                while (index < rangeOfDates.length) {
+                  if (
+                    rangeOfDates[index] === 1 ||
+                    rangeOfDates[index] === 2 ||
+                    rangeOfDates[index] === 3 ||
+                    rangeOfDates[index] === 4
+                  ) {
+                    price += priceList[0].Extended_Hotel_Jan_Apr_Studio;
+                  } else if (rangeOfDates[index] === 5) {
+                    price += priceList[0].Extended_Hotel_May_Studio;
+                  } else if (
+                    rangeOfDates[index] === 6 ||
+                    rangeOfDates[index] === 7
+                  ) {
+                    price += priceList[0].Extended_Hotel_June_July_Studio;
+                  } else if (
+                    rangeOfDates[index] === 8 ||
+                    rangeOfDates[index] === 9
+                  ) {
+                    price += priceList[0].Extended_Hotel_Aug_Sep_Studio;
+                  } else {
+                    price += priceList[0].Extended_Hotel_Oct_Dec_Studio;
+                  }
+                }
+              }
+            }
+            console.log(price);
           }
 
           const splitStartDate = val.Camp_Date_Start.split(/[- : T]/);
@@ -991,6 +1079,15 @@ function App() {
                 }}
               >
                 Confirm Camp
+              </button>
+
+              <button
+                onClick={() => {
+                  getAccomPrices();
+                }}
+              >
+                {" "}
+                test{" "}
               </button>
             </div>
           );
