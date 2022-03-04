@@ -396,6 +396,9 @@ function App() {
                     <div>
                       <div>Condo Accommodations: True</div>
                       <div>Condo Accommodation Notes: {val.condoAccomInfo}</div>
+                      <div>
+                        Condo Accommodation Notes: {val.condoAmountInfo}
+                      </div>
                     </div>
                   );
                 }

@@ -74,6 +74,7 @@ app.post("/intake", (req, res) => {
 
   const hotelAccomInfo = req.body.hotelAccomInfo;
   const condoAccomInfo = req.body.condoAccomInfo;
+  const condoAmountInfo = req.body.condoAmountInfo;
   const univCafeteriaInfo = req.body.univCafeteriaInfo;
   const cateringInfo = req.body.cateringInfo;
   const charterTransportInfo = req.body.charterTransportInfo;
@@ -208,11 +209,12 @@ app.post("/intake", (req, res) => {
     }
   );
   db.query(
-    "INSERT INTO IntakeInfo(Team_Name, hotelAccomInfo, condoAccomInfo, cafeteriaInfo, cateringInfo, charterInfo, shuttleInfo, rentalInfo, permitInfo, track400Info, track300Info, gymInfo, OFGInfo, OFTInfo, IFTInfo, AGTInfo, massageInfo, physioInfo, strengthInfo, orthoInfo, primMedInfo, hemoInfo, compBloodInfo, metaInfo, TIBCInfo, creatineKinaseInfo, otherText, VO2LactateInfo, VO2ThreshInfo, LactateThreshInfo, suppO2Info, dietAnalysisInfo, nutritionWSInfo, psychConsultInfo, psychWSInfo, focusInfo, meetingInfo, equipInfo, dayTripInfo, teamBuildInfo, otherInfoText) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
+    "INSERT INTO IntakeInfo(Team_Name, hotelAccomInfo, condoAccomInfo, condoAmountInfo, cafeteriaInfo, cateringInfo, charterInfo, shuttleInfo, rentalInfo, permitInfo, track400Info, track300Info, gymInfo, OFGInfo, OFTInfo, IFTInfo, AGTInfo, massageInfo, physioInfo, strengthInfo, orthoInfo, primMedInfo, hemoInfo, compBloodInfo, metaInfo, TIBCInfo, creatineKinaseInfo, otherText, VO2LactateInfo, VO2ThreshInfo, LactateThreshInfo, suppO2Info, dietAnalysisInfo, nutritionWSInfo, psychConsultInfo, psychWSInfo, focusInfo, meetingInfo, equipInfo, dayTripInfo, teamBuildInfo, otherInfoText) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
     [
       teamName,
       hotelAccomInfo,
       condoAccomInfo,
+      condoAmountInfo,
       univCafeteriaInfo,
       cateringInfo,
       charterTransportInfo,

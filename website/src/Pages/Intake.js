@@ -55,6 +55,7 @@ function Intake() {
   const [hotelAccomInfo, setHotelAccomInfo] = useState("");
   const [condoAccom, setCondoAccom] = useState(0);
   const [condoAccomInfo, setCondoAccomInfo] = useState("");
+  const [condoAmountInfo, setCondoAmountInfo] = useState();
   const [univCafeteria, setUnivCafeteria] = useState(false);
   const [univCafeteriaInfo, setunivCafeteriaInfo] = useState("");
   const [catering, setCatering] = useState(false);
@@ -219,6 +220,7 @@ function Intake() {
         //Info
         hotelAccomInfo: hotelAccomInfo,
         condoAccomInfo: condoAccomInfo,
+        condoAmountInfo: condoAmountInfo,
         univCafeteriaInfo: univCafeteriaInfo,
         cateringInfo: cateringInfo,
         charterTransportInfo: charterTransportInfo,
@@ -700,10 +702,22 @@ function Intake() {
 
           <div id="condoCheckBoxInput" className="hidden-text details-block">
             <label>details if needed:</label>
-            <input
-              type="text"
+            <select
+              id="country"
+              name="country"
               onChange={(event) => {
                 setCondoAccomInfo(event.target.value);
+              }}
+            >
+              <option value="select type"> Select A Condo Type</option>
+              <option value="2 Bedroom"> 2 Bedroom</option>
+              <option value="studio"> Studio</option>
+            </select>
+            <label>Condo Amount:</label>
+            <input
+              type="number"
+              onChange={(event) => {
+                setCondoAmountInfo(event.target.value);
               }}
             />
           </div>
