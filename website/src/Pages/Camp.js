@@ -18,6 +18,8 @@ import {
 function App() {
   const [didLoad, setDidLoad] = useState(false);
   let navigate = useNavigate();
+  let accomPrice = 0;
+  const [rentalPrice, setRentalPrice] = useState(0);
   const [events, setEvents] = useState([]);
   const [userInfo, setGetInfo] = useState([]);
   const [priceList, setPriceList] = useState([]);
@@ -126,6 +128,12 @@ function App() {
     });
   }
 
+  function updateAccomPrice(price) {
+    //update the AccomPrice with rental
+    //Im thinking we are going to have to make it global to the page after we get the accomPrice for hotels and condos
+    // we could store it after that calculation but there has to be a cleaner way to do it
+    // just add the price inserted into the manual box on top of it
+  }
   function handleAddEvent() {
     if (newEvent.start !== null && newEvent.end !== null) {
       if (Date.parse(newEvent.start) < Date.parse(newEvent.end)) {
@@ -266,8 +274,10 @@ function App() {
               rangeOfDates.push((tempTime.getMonth() + 1).toString());
             }
 
+            console.log("Got Here 2");
+            console.log(rangeOfDates);
+
             let index = 0;
-            let price = 0;
 
             if (val.Hotel_Accom === 1) {
               while (index < rangeOfDates.length) {
@@ -277,7 +287,7 @@ function App() {
                   rangeOfDates[index] === 3 ||
                   rangeOfDates[index] === 4
                 ) {
-                  price += priceList[0].Hotel_Jan_Apr;
+                  accomPrice += priceList[0].Hotel_Jan_Apr;
                 } else if (
                   rangeOfDates[index] === 5 ||
                   rangeOfDates[index] === 6 ||
@@ -286,10 +296,11 @@ function App() {
                   rangeOfDates[index] === 9 ||
                   rangeOfDates[index] === 10
                 ) {
-                  price += priceList[0].Hotel_May_Oct;
+                  accomPrice += priceList[0].Hotel_May_Oct;
                 } else {
-                  price += priceList[0].Hotel_Nov_Dec;
+                  accomPrice += priceList[0].Hotel_Nov_Dec;
                 }
+                index++;
               }
             }
             if (val.Condo_Accom === 1) {
@@ -301,22 +312,23 @@ function App() {
                     rangeOfDates[index] === 3 ||
                     rangeOfDates[index] === 4
                   ) {
-                    price += priceList[0].Extended_Hotel_Jan_Apr_2Bed;
+                    accomPrice += priceList[0].Extended_Hotel_Jan_Apr_2Bed;
                   } else if (rangeOfDates[index] === 5) {
-                    price += priceList[0].Extended_Hotel_May_2Bed;
+                    accomPrice += priceList[0].Extended_Hotel_May_2Bed;
                   } else if (
                     rangeOfDates[index] === 6 ||
                     rangeOfDates[index] === 7
                   ) {
-                    price += priceList[0].Extended_Hotel_June_July_2Bed;
+                    accomPrice += priceList[0].Extended_Hotel_June_July_2Bed;
                   } else if (
                     rangeOfDates[index] === 8 ||
                     rangeOfDates[index] === 9
                   ) {
-                    price += priceList[0].Extended_Hotel_Aug_Sep_2Bed;
+                    accomPrice += priceList[0].Extended_Hotel_Aug_Sep_2Bed;
                   } else {
-                    price += priceList[0].Extended_Hotel_Oct_Dec_2Bed;
+                    accomPrice += priceList[0].Extended_Hotel_Oct_Dec_2Bed;
                   }
+                  index++;
                 }
               } else {
                 while (index < rangeOfDates.length) {
@@ -326,26 +338,28 @@ function App() {
                     rangeOfDates[index] === 3 ||
                     rangeOfDates[index] === 4
                   ) {
-                    price += priceList[0].Extended_Hotel_Jan_Apr_Studio;
+                    accomPrice += priceList[0].Extended_Hotel_Jan_Apr_Studio;
                   } else if (rangeOfDates[index] === 5) {
-                    price += priceList[0].Extended_Hotel_May_Studio;
+                    accomPrice += priceList[0].Extended_Hotel_May_Studio;
                   } else if (
                     rangeOfDates[index] === 6 ||
                     rangeOfDates[index] === 7
                   ) {
-                    price += priceList[0].Extended_Hotel_June_July_Studio;
+                    accomPrice += priceList[0].Extended_Hotel_June_July_Studio;
                   } else if (
                     rangeOfDates[index] === 8 ||
                     rangeOfDates[index] === 9
                   ) {
-                    price += priceList[0].Extended_Hotel_Aug_Sep_Studio;
+                    accomPrice += priceList[0].Extended_Hotel_Aug_Sep_Studio;
                   } else {
-                    price += priceList[0].Extended_Hotel_Oct_Dec_Studio;
+                    accomPrice += priceList[0].Extended_Hotel_Oct_Dec_Studio;
                   }
+
+                  index++;
                 }
               }
             }
-            console.log(price);
+            console.log(accomPrice);
           }
 
           const splitStartDate = val.Camp_Date_Start.split(/[- : T]/);
@@ -526,7 +540,7 @@ function App() {
                   return (
                     <div>
                       <div>Individual Shuttle: True</div>
-                      <div>INdividual Shuttle Notes: {val.shuttleInfo}</div>
+                      <div>Individual Shuttle Notes: {val.shuttleInfo}</div>
                     </div>
                   );
                 }
@@ -541,7 +555,17 @@ function App() {
                         <input
                           type="number"
                           placeholder="Price for Rental Car"
+                          onChange={(event) => {
+                            setRentalPrice(event.target.value);
+                          }}
                         ></input>
+                        <button
+                          onClick={() => {
+                            updateAccomPrice(rentalPrice);
+                          }}
+                        >
+                          Add Rental
+                        </button>
                       </div>
                     </div>
                   );
