@@ -115,6 +115,17 @@ app.post("/intake", (req, res) => {
   const otherText = req.body.otherInfoText;
 
   db.query(
+    "INSERT INTO CampPrice(accomPricing, initServices, currentServices, priceAdjust, rentalCar) values (?,?,?,?,?)",
+    [0, 0, 0, 0, 0],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("Values Inserted");
+      }
+    }
+  );
+  db.query(
     "INSERT INTO GeneralIntake(Team_Name, Camp_Date_Start, Camp_Date_End, Num_Personnel, Country, Contact_Name, Contact_Email, Contact_Phone, OnSite_Name, OnSite_Email, OnSite_Phone, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
     [
       teamName,
