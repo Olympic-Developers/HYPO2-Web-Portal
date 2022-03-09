@@ -89,7 +89,24 @@ function App() {
 
             <button onClick={backToCorrectHomePage}>Return To Home Page</button>
 
-            <h1>Billing</h1>
+            <h1>Initial Price</h1>
+
+            <h3>Accommodations: {val.accomPricing}</h3>
+            <h3>Services: {val.initServices}</h3>
+            <h3>Transportation: {val.transportPrice}</h3>
+            <h3>
+              Total: {val.accomPricing + val.initServices + val.transportPrice}
+            </h3>
+
+            <h1>Initial Price</h1>
+
+            <h3>Accommodations: {val.accomPricing}</h3>
+            <h3>Services: {val.currentServices}</h3>
+            <h3>Transportation: {val.transportPrice}</h3>
+            <h3>
+              Total:{" "}
+              {val.accomPricing + val.currentServices + val.transportPrice}
+            </h3>
           </div>
         );
       })}

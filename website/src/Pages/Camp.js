@@ -127,6 +127,25 @@ function App() {
       comment: newEvent.comment,
       request: newEvent.request,
     });
+
+    if (
+      getSessionStorage("campProgressType") ===
+      "Pending Camp Confirmation Needed"
+    ) {
+      Axios.post("http://localhost:3001/updateInit", {
+        campID: getSessionStorage("campNumber"),
+        price: newEvent.price,
+      }).then(() => {
+        window.location.reload(false);
+      });
+    } else {
+      Axios.post("http://localhost:3001/updateCurrent", {
+        campID: getSessionStorage("campNumber"),
+        price: newEvent.price,
+      }).then(() => {
+        window.location.reload(false);
+      });
+    }
   }
 
   function updateTransportPrice(price) {
@@ -400,8 +419,6 @@ function App() {
             const endTime = new Date(yearEnd, monthEnd, dayEnd);
             const rangeOfDates = [];
 
-            console.log("Got here");
-
             for (
               let tempTime = initialTime;
               tempTime < endTime;
@@ -409,9 +426,6 @@ function App() {
             ) {
               rangeOfDates.push((tempTime.getMonth() + 1).toString());
             }
-
-            console.log("Got Here 2");
-            console.log(rangeOfDates);
 
             let index = 0;
 
@@ -495,7 +509,10 @@ function App() {
                 }
               }
             }
-            console.log(accomPrice);
+            Axios.post("http://localhost:3001/updateAccom", {
+              campID: getSessionStorage("campNumber"),
+              price: accomPrice,
+            });
           }
 
           const splitStartDate = val.Camp_Date_Start.split(/[- : T]/);
@@ -1244,6 +1261,7 @@ function App() {
               <button
                 onClick={() => {
                   const CampID = getSessionStorage("campNumber");
+                  getAccomPrices();
 
                   console.log(CampID);
 
@@ -1257,15 +1275,6 @@ function App() {
                 }}
               >
                 Confirm Camp
-              </button>
-
-              <button
-                onClick={() => {
-                  getAccomPrices();
-                }}
-              >
-                {" "}
-                test{" "}
               </button>
             </div>
           );

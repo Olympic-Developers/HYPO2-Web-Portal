@@ -435,6 +435,63 @@ app.post("/updateTransport", (req, res) => {
     }
   );
 });
+
+app.post("/updateAccom", (req, res) => {
+  const campID = req.body.campID;
+  const price = req.body.price;
+
+  db.query(
+    `UPDATE CampPrice SET accomPricing = ${price} WHERE CAMP_ID = ${campID};`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+app.post("/updateCurrent", (req, res) => {
+  const campID = req.body.campID;
+  const price = req.body.price;
+
+  db.query(
+    `UPDATE CampPrice SET currentServices = currentServices + ${price} WHERE CAMP_ID = ${campID};`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
+app.post("/updateInit", (req, res) => {
+  const campID = req.body.campID;
+  const price = req.body.price;
+
+  db.query(
+    `UPDATE CampPrice SET initServices = initServices + ${price} WHERE CAMP_ID = ${campID};`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("Inserted");
+      }
+    }
+  );
+  db.query(
+    `UPDATE CampPrice SET currentServices = initServices WHERE CAMP_ID = ${campID};`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
 app.post("/setCampStatus", (req, res) => {
   const status = req.body.status;
   const campID = req.body.campID;
