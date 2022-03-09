@@ -98,7 +98,7 @@ function App() {
               Total: {val.accomPricing + val.initServices + val.transportPrice}
             </h3>
 
-            <h1>Initial Price</h1>
+            <h1>Current Price</h1>
 
             <h3>Accommodations: {val.accomPricing}</h3>
             <h3>Services: {val.currentServices}</h3>
