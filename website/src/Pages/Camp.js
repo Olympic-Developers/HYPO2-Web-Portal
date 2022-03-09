@@ -25,7 +25,7 @@ function App() {
   const [priceList, setPriceList] = useState([]);
   const [newEvent, setNewEvent] = useState({
     price: 0,
-    amountOfPeople: 0,
+    amountOfPeople: 1,
     activityClass: "",
     title: "",
     comment: "",
