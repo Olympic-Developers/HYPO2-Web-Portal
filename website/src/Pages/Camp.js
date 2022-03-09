@@ -139,17 +139,142 @@ function App() {
       window.location.reload(false);
     });
   }
-  function handleAddEvent() {
+
+  function calcEventPrice() {
+    if (tempTitle === "Cafeteria Buffet Breakfast") {
+      newEvent.price =
+        priceList[0].University_Cafeteria_Breakfast * newEvent.amountOfPeople;
+    }
+    if (tempTitle === "Cafeteria Buffet Lunch") {
+      newEvent.price =
+        priceList[0].University_Cafeteria_Lunch * newEvent.amountOfPeople;
+    }
+    if (tempTitle === "Cafeteria Buffet Dinner") {
+      newEvent.price =
+        priceList[0].University_Cafeteria_Dinner * newEvent.amountOfPeople;
+    }
+    if (tempTitle === "50m Aquatic Center LC Lanes") {
+      newEvent.price = priceList[0].Aquatic_Center_LC * newEvent.amountOfPeople;
+    }
+    if (tempTitle === "50m Aquatic Center SC Lanes") {
+      newEvent.price = priceList[0].Aquatic_Center_SC * newEvent.amountOfPeople;
+    }
+    if (tempTitle === "400m Outdoor track(8-lane)") {
+      newEvent.price = priceList[0].Outdoor_Track * newEvent.amountOfPeople;
+    }
+    if (tempTitle === "300m Indoor Track(6-lane)") {
+      newEvent.price = priceList[0].Outdoor_Track * newEvent.amountOfPeople;
+    }
+    if (tempTitle === "University Gym") {
+      newEvent.price = priceList[0].University_Gym * newEvent.amountOfPeople;
+    }
+    if (tempTitle === "Hypo2 Gym") {
+      newEvent.price = priceList[0].Hypo2_Gym * newEvent.amountOfPeople;
+    }
+    // if (tempTitle === "Outdoor Field Grass") {
+    //   newEvent.price = priceList[0]. * newEvent.amountOfPeople;
+    // }
+    // if (tempTitle === "Outdoor Field Artificial Turf") {
+    //   newEvent.price = priceList[0]. * newEvent.amountOfPeople;
+    // }
+    // if (tempTitle === "Indoor Field") {
+    //   newEvent.price =
+    //     priceList[0].Focus * newEvent.amountOfPeople;
+    // }
+    if (tempTitle === "High Speed Treadmill") {
+      newEvent.price =
+        priceList[0].High_Speed_Treadmill * newEvent.amountOfPeople;
+    }
+    if (tempTitle === "Massage Therapy" && newEvent.amountOfPeople <= 10) {
+      newEvent.price =
+        priceList[0].Massage_Therapy_1_10 * newEvent.amountOfPeople;
+    }
+    if (tempTitle === "Massage Therapy" && newEvent.amountOfPeople > 10) {
+      newEvent.price =
+        priceList[0].Massage_Therapy_10 * newEvent.amountOfPeople;
+    }
+    if (tempTitle === "Physiotherapy/Chiropractic Rehab/Prehab") {
+      newEvent.price = priceList[0].Physio_Chiro * newEvent.amountOfPeople;
+    }
+    // if (tempTitle === "Orthopaedic Care") {
+    //   newEvent.price = priceList[0].Orthopaedic_Care * newEvent.amountOfPeople;
+    // }
+    // if (tempTitle === "Primary Medical Care") {
+    //   newEvent.price =
+    //     priceList[0].Primary_Medical_Care * newEvent.amountOfPeople;
+    // }
     if (
-      newEvent.start === null ||
-      newEvent.end === null ||
-      newEvent.title === ""
+      tempTitle === "Total Hemoglobin Mass Testing(via CO Rebreathing method)"
     ) {
+      newEvent.price =
+        priceList[0].Hemoglobin_Mass_Testing * newEvent.amountOfPeople;
+    }
+    if (
+      tempTitle ===
+      "Complete Blood Profile(includes RBC, WBC, Hematocrit, Hemoglobin, etc.)"
+    ) {
+      newEvent.price = priceList[0].Comp_Blood * newEvent.amountOfPeople;
+    }
+    if (tempTitle === "Comprehensive Metabolic Panel") {
+      newEvent.price = priceList[0].Metabolic_Profile * newEvent.amountOfPeople;
+    }
+    if (tempTitle === "Ferritin/Total iron Binding Capacity") {
+      newEvent.price =
+        priceList[0].Ferritin_Iron_Binding_Capacity * newEvent.amountOfPeople;
+    }
+    if (tempTitle === "Creatine Kinase (CK/CPK)") {
+      newEvent.price = priceList[0].CK_CPK * newEvent.amountOfPeople;
+    }
+    if (tempTitle === "VO2 & Lactate Combined") {
+      newEvent.price = priceList[0].VO2_Lactate * newEvent.amountOfPeople;
+    }
+    if (tempTitle === "VO2 Threshold") {
+      newEvent.price = priceList[0].VO2 * newEvent.amountOfPeople;
+    }
+    if (tempTitle === "Lactate Threshold") {
+      newEvent.price = priceList[0].Lactate * newEvent.amountOfPeople;
+    }
+    if (tempTitle === "Supplemental O2 for Training/Recovery") {
+      newEvent.price = priceList[0].Supplemental_O2 * newEvent.amountOfPeople;
+    }
+    if (tempTitle === "Integrated Training and Dietary Analysis") {
+      newEvent.price =
+        priceList[0].Integrated_Training_Dietary_Analysis *
+        newEvent.amountOfPeople;
+    }
+    if (tempTitle === "Nutrition Group Presentation or Workshop") {
+      newEvent.price =
+        priceList[0].Group_Presentation_Workshop_Nutrition *
+        newEvent.amountOfPeople;
+    }
+    if (tempTitle === "Mental Group Presentation or Workshop") {
+      newEvent.price =
+        priceList[0].Group_Presentation_Workshop_Psychology *
+        newEvent.amountOfPeople;
+    }
+    if (tempTitle === "Individual Consultation") {
+      newEvent.price = priceList[0].Consult * newEvent.amountOfPeople;
+    }
+    if (tempTitle === "Team Focus Session") {
+      newEvent.price = priceList[0].Focus * newEvent.amountOfPeople;
+    }
+    // if (tempTitle === "Other") {
+    //   newEvent.price =
+    //     priceList[0].Focus * newEvent.amountOfPeople;
+    // }
+  }
+
+  function handleAddEvent() {
+    if (newEvent.start === null || newEvent.end === null || tempTitle === "") {
       alert(
         "Please make sure to enter a start and end date and select a event"
       );
       return;
     }
+
+    calcEventPrice();
+
+    console.log(newEvent.price);
 
     if (Date.parse(newEvent.start) > Date.parse(newEvent.end)) {
       alert("Please make sure the end date is after the start date");
