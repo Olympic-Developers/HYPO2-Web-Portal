@@ -436,6 +436,22 @@ app.post("/updateTransport", (req, res) => {
   );
 });
 
+app.post("/subCurrentPrices", (req, res) => {
+  const campID = req.body.campID;
+  const price = req.body.price;
+
+  db.query(
+    `UPDATE CampPrice SET currentServices = currentServices - ${price} WHERE CAMP_ID = ${campID};`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
 app.post("/updateAccom", (req, res) => {
   const campID = req.body.campID;
   const price = req.body.price;

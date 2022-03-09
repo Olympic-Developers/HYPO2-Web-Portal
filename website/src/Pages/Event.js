@@ -129,6 +129,11 @@ function App() {
           }
 
           function deleteEventForever() {
+            Axios.post("http://localhost:3001/subCurrentPrices", {
+              campID: getSessionStorage("campNumber"),
+              price: val.Price,
+            });
+
             Axios.delete(
               `http://localhost:3001/deleteSingleEvent/${val.EventID}`
             ).then(() => {
