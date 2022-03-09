@@ -135,15 +135,11 @@ function App() {
       Axios.post("http://localhost:3001/updateInit", {
         campID: getSessionStorage("campNumber"),
         price: newEvent.price,
-      }).then(() => {
-        window.location.reload(false);
       });
     } else {
       Axios.post("http://localhost:3001/updateCurrent", {
         campID: getSessionStorage("campNumber"),
         price: newEvent.price,
-      }).then(() => {
-        window.location.reload(false);
       });
     }
   }
@@ -513,7 +509,7 @@ function App() {
           const dayEnd = splitEndDate[2];
 
           function setTitleAndActivityClass(event) {
-            if (tempTitle === "Massage Therapy") {
+            if (event.target.value === "Massage Therapy") {
               setNewEvent({
                 ...newEvent,
                 title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
@@ -522,9 +518,9 @@ function App() {
             }
             // For Sport Psychology / Mental Performance
             else if (
-              tempTitle === "Mental Group Presentation or Workshop" ||
-              tempTitle === "Team Focus Session" ||
-              tempTitle === "Individual Consultation"
+              event.target.value === "Mental Group Presentation or Workshop" ||
+              event.target.value === "Team Focus Session" ||
+              event.target.value === "Individual Consultation"
             ) {
               setNewEvent({
                 ...newEvent,
@@ -534,12 +530,13 @@ function App() {
             }
             // For Blood Testing
             else if (
-              tempTitle === "Total Hemoglobin Mass Testing" ||
-              tempTitle ===
+              event.target.value === "Total Hemoglobin Mass Testing" ||
+              event.target.value ===
                 "Complete Blood Profile (includes RBC, WBC, Hematocrit, Hemoglobin, etc.)" ||
-              tempTitle === "Comprehensive Metabolic Panel" ||
-              tempTitle === "Ferritin/Iron/Total iron Binding Capacity" ||
-              tempTitle === "Creatine Kinase (CK/CPK)"
+              event.target.value === "Comprehensive Metabolic Panel" ||
+              event.target.value ===
+                "Ferritin/Iron/Total iron Binding Capacity" ||
+              event.target.value === "Creatine Kinase (CK/CPK)"
             ) {
               setNewEvent({
                 ...newEvent,
@@ -549,10 +546,10 @@ function App() {
             }
             // For Physiological Testing
             else if (
-              tempTitle === "VO2 & Lactate Combined" ||
-              tempTitle === "VO2 Threshold" ||
-              tempTitle === "Lactate Threshold" ||
-              tempTitle === "Supplemental O2 for Training / Recovery"
+              event.target.value === "VO2 & Lactate Combined" ||
+              event.target.value === "VO2 Threshold" ||
+              event.target.value === "Lactate Threshold" ||
+              event.target.value === "Supplemental O2 for Training / Recovery"
             ) {
               setNewEvent({
                 ...newEvent,
@@ -561,7 +558,9 @@ function App() {
               });
             }
             // For Physiotherapy/Chiropractic Rehab/Prehab
-            else if (tempTitle === "Physiotherapy/Chiropractic Rehab/Prehab") {
+            else if (
+              event.target.value === "Physiotherapy/Chiropractic Rehab/Prehab"
+            ) {
               setNewEvent({
                 ...newEvent,
                 title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
@@ -569,7 +568,9 @@ function App() {
               });
             }
             // For Strength & Conditioning Coaching
-            else if (tempTitle === "Strength & Conditioning Coaching") {
+            else if (
+              event.target.value === "Strength & Conditioning Coaching"
+            ) {
               setNewEvent({
                 ...newEvent,
                 title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
@@ -578,8 +579,9 @@ function App() {
             }
             // For Sport Nutrition
             else if (
-              tempTitle === "Integrated Training and Dietary Analysis" ||
-              tempTitle === "Nutrition Group Presentation or Workshop"
+              event.target.value ===
+                "Integrated Training and Dietary Analysis" ||
+              event.target.value === "Nutrition Group Presentation or Workshop"
             ) {
               setNewEvent({
                 ...newEvent,
@@ -1281,7 +1283,7 @@ function App() {
           const dayStart = splitStartDate[2];
 
           function setTitleAndActivityClass(event) {
-            if (tempTitle === "Massage Therapy") {
+            if (event.target.value === "Massage Therapy") {
               setNewEvent({
                 ...newEvent,
                 title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
@@ -1290,9 +1292,9 @@ function App() {
             }
             // For Sport Psychology / Mental Performance
             else if (
-              tempTitle === "Mental Group Presentation or Workshop" ||
-              tempTitle === "Team Focus Session" ||
-              tempTitle === "Individual Consultation"
+              event.target.value === "Mental Group Presentation or Workshop" ||
+              event.target.value === "Team Focus Session" ||
+              event.target.value === "Individual Consultation"
             ) {
               setNewEvent({
                 ...newEvent,
@@ -1302,12 +1304,13 @@ function App() {
             }
             // For Blood Testing
             else if (
-              tempTitle === "Total Hemoglobin Mass Testing" ||
-              tempTitle ===
+              event.target.value === "Total Hemoglobin Mass Testing" ||
+              event.target.value ===
                 "Complete Blood Profile (includes RBC, WBC, Hematocrit, Hemoglobin, etc.)" ||
-              tempTitle === "Comprehensive Metabolic Panel" ||
-              tempTitle === "Ferritin/Iron/Total iron Binding Capacity" ||
-              tempTitle === "Creatine Kinase (CK/CPK)"
+              event.target.value === "Comprehensive Metabolic Panel" ||
+              event.target.value ===
+                "Ferritin/Iron/Total iron Binding Capacity" ||
+              event.target.value === "Creatine Kinase (CK/CPK)"
             ) {
               setNewEvent({
                 ...newEvent,
@@ -1317,10 +1320,10 @@ function App() {
             }
             // For Physiological Testing
             else if (
-              tempTitle === "VO2 & Lactate Combined" ||
-              tempTitle === "VO2 Threshold" ||
-              tempTitle === "Lactate Threshold" ||
-              tempTitle === "Supplemental O2 for Training / Recovery"
+              event.target.value === "VO2 & Lactate Combined" ||
+              event.target.value === "VO2 Threshold" ||
+              event.target.value === "Lactate Threshold" ||
+              event.target.value === "Supplemental O2 for Training / Recovery"
             ) {
               setNewEvent({
                 ...newEvent,
@@ -1329,7 +1332,9 @@ function App() {
               });
             }
             // For Physiotherapy/Chiropractic Rehab/Prehab
-            else if (tempTitle === "Physiotherapy/Chiropractic Rehab/Prehab") {
+            else if (
+              event.target.value === "Physiotherapy/Chiropractic Rehab/Prehab"
+            ) {
               setNewEvent({
                 ...newEvent,
                 title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
@@ -1337,7 +1342,9 @@ function App() {
               });
             }
             // For Strength & Conditioning Coaching
-            else if (tempTitle === "Strength & Conditioning Coaching") {
+            else if (
+              event.target.value === "Strength & Conditioning Coaching"
+            ) {
               setNewEvent({
                 ...newEvent,
                 title: `${val.Team_Name} - ${val.Camp_ID} - ${event.target.value}`,
@@ -1346,8 +1353,9 @@ function App() {
             }
             // For Sport Nutrition
             else if (
-              tempTitle === "Integrated Training and Dietary Analysis" ||
-              tempTitle === "Nutrition Group Presentation or Workshop"
+              event.target.value ===
+                "Integrated Training and Dietary Analysis" ||
+              event.target.value === "Nutrition Group Presentation or Workshop"
             ) {
               setNewEvent({
                 ...newEvent,
