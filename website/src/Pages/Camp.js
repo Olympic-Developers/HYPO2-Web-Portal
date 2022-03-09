@@ -190,16 +190,6 @@ function App() {
     if (tempTitle === "Hypo2 Gym") {
       newEvent.price = priceList[0].Hypo2_Gym * newEvent.amountOfPeople;
     }
-    // if (tempTitle === "Outdoor Field Grass") {
-    //   newEvent.price = priceList[0]. * newEvent.amountOfPeople;
-    // }
-    // if (tempTitle === "Outdoor Field Artificial Turf") {
-    //   newEvent.price = priceList[0]. * newEvent.amountOfPeople;
-    // }
-    // if (tempTitle === "Indoor Field") {
-    //   newEvent.price =
-    //     priceList[0].Focus * newEvent.amountOfPeople;
-    // }
     if (tempTitle === "High Speed Treadmill") {
       newEvent.price =
         priceList[0].High_Speed_Treadmill * newEvent.amountOfPeople;
@@ -215,13 +205,6 @@ function App() {
     if (tempTitle === "Physiotherapy/Chiropractic Rehab/Prehab") {
       newEvent.price = priceList[0].Physio_Chiro * newEvent.amountOfPeople;
     }
-    // if (tempTitle === "Orthopaedic Care") {
-    //   newEvent.price = priceList[0].Orthopaedic_Care * newEvent.amountOfPeople;
-    // }
-    // if (tempTitle === "Primary Medical Care") {
-    //   newEvent.price =
-    //     priceList[0].Primary_Medical_Care * newEvent.amountOfPeople;
-    // }
     if (
       tempTitle === "Total Hemoglobin Mass Testing(via CO Rebreathing method)"
     ) {
@@ -277,10 +260,6 @@ function App() {
     if (tempTitle === "Team Focus Session") {
       newEvent.price = priceList[0].Focus * newEvent.amountOfPeople;
     }
-    // if (tempTitle === "Other") {
-    //   newEvent.price =
-    //     priceList[0].Focus * newEvent.amountOfPeople;
-    // }
   }
 
   function handleAddEvent() {
@@ -291,12 +270,18 @@ function App() {
       return;
     }
 
-    calcEventPrice();
-
-    console.log(newEvent.price);
-
     if (Date.parse(newEvent.start) > Date.parse(newEvent.end)) {
       alert("Please make sure the end date is after the start date");
+      return;
+    }
+
+    calcEventPrice();
+
+    if (
+      getSessionStorage("classification").toLowerCase() === "admin" &&
+      newEvent.price === 0
+    ) {
+      alert("Please enter a price");
       return;
     }
 
@@ -1112,11 +1097,9 @@ function App() {
                   <option value="50m Aquatic Center LC Lanes">
                     50m Aquatic Center LC Lanes
                   </option>
-
                   <option value="50m Aquatic Center SC Lanes">
                     50m Aquatic Center SC Lanes
                   </option>
-
                   <option value="400m Outdoor Track (8-lane)">
                     400m Outdoor Track (8-lane)
                   </option>
@@ -1440,7 +1423,12 @@ function App() {
                     setTempTitle(event.target.value);
                     setTitleAndActivityClass(event);
                     displayAmountOfPeopleTextBox(event);
-                    displayPriceTextBox(event);
+                    if (
+                      getSessionStorage("classification").toLowerCase() ===
+                      "admin"
+                    ) {
+                      displayPriceTextBox(event);
+                    }
                   }}
                 >
                   <option value="Select An Event">Select an Event</option>
@@ -1456,11 +1444,9 @@ function App() {
                   <option value="50m Aquatic Center LC Lanes">
                     50m Aquatic Center LC Lanes
                   </option>
-
                   <option value="50m Aquatic Center SC Lanes">
                     50m Aquatic Center SC Lanes
                   </option>
-
                   <option value="400m Outdoor Track (8-lane)">
                     400m Outdoor Track (8-lane)
                   </option>
@@ -1545,7 +1531,7 @@ function App() {
                   ></textarea>
                 </div>
 
-                <div id="amountOfPeople">
+                <div id="amountOfPeople" className="hidden-text">
                   <input
                     type="number"
                     placeholder="Amount of people"
