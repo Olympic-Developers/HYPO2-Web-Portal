@@ -33,6 +33,7 @@ function App() {
     end: null,
     request: "",
   });
+  const [tempTitle, setTempTitle] = useState("");
 
   const locales = {
     "en-US": require("date-fns/locale/en-US"),
@@ -128,35 +129,47 @@ function App() {
     });
   }
 
-  function updateAccomPrice(price) {
-    //update the AccomPrice with rental
-    //Im thinking we are going to have to make it global to the page after we get the accomPrice for hotels and condos
-    // we could store it after that calculation but there has to be a cleaner way to do it
-    // just add the price inserted into the manual box on top of it
+  function updateTransportPrice(price) {
+    console.log(price);
+
+    Axios.post("http://localhost:3001/updateTransport", {
+      campID: getSessionStorage("campNumber"),
+      price: price,
+    }).then(() => {
+      window.location.reload(false);
+    });
   }
   function handleAddEvent() {
-    if (newEvent.start !== null && newEvent.end !== null) {
-      if (Date.parse(newEvent.start) < Date.parse(newEvent.end)) {
-        if (getSessionStorage("classification").toLowerCase() === "client") {
-          Axios.post("http://localhost:3001/setCampStatus", {
-            campID: getSessionStorage("campNumber"),
-            status: "Needs Assistance",
-          }).then(() => {
-            setSessionStorage("campProgressType", "Needs Assistance");
-          });
-          newEvent.request = "Request New";
-        } else {
-          newEvent.request = "No Request";
-        }
-
-        postActivity();
-        setDidLoad(false);
-      } else {
-        alert("Please make sure the end date is after the start date");
-      }
-    } else {
-      alert("Please make sure to enter a start and end date");
+    if (
+      newEvent.start === null ||
+      newEvent.end === null ||
+      newEvent.title === ""
+    ) {
+      alert(
+        "Please make sure to enter a start and end date and select a event"
+      );
+      return;
     }
+
+    if (Date.parse(newEvent.start) > Date.parse(newEvent.end)) {
+      alert("Please make sure the end date is after the start date");
+      return;
+    }
+
+    if (getSessionStorage("classification").toLowerCase() === "client") {
+      Axios.post("http://localhost:3001/setCampStatus", {
+        campID: getSessionStorage("campNumber"),
+        status: "Needs Assistance",
+      }).then(() => {
+        setSessionStorage("campProgressType", "Needs Assistance");
+      });
+      newEvent.request = "Request New";
+    } else {
+      newEvent.request = "No Request";
+    }
+
+    postActivity();
+    setDidLoad(false);
   }
 
   function displayAmountOfPeopleTextBox(event) {
@@ -164,16 +177,14 @@ function App() {
     let Input = document.getElementById("amountOfPeople");
 
     if (
+      idOfService === "50m Aquatic Center LC Lanes" ||
+      idOfService === "50m Aquatic Center SC Lanes" ||
+      idOfService === "400m Outdoor Track (8-lane)" ||
+      idOfService === "High Speed Treadmill" ||
       idOfService === "Outdoor Fields Grass" ||
       idOfService === "Outdoor Fields Artificial Turf" ||
       idOfService === "Indoor Field" ||
-      idOfService === "Physiotherapy/Chiropractic Rehab/Prehab" ||
-      idOfService === "Orthopaedic Care" ||
-      idOfService === "Primary Medical Care" ||
-      idOfService === "Supplemental O2 for Training / Recovery" ||
-      idOfService === "Integrated Training and Dietary Analysis" ||
       idOfService === "Nutrition Group Presentation or Workshop" ||
-      idOfService === "Individual Consultation " ||
       idOfService === "Team Focus Session" ||
       idOfService === "Mental Group Presentation or Workshop" ||
       idOfService === "Other"
@@ -374,8 +385,6 @@ function App() {
           const monthEnd = splitEndDate[1] - 1;
           const dayEnd = splitEndDate[2];
 
-          let tempTitle;
-
           function setTitleAndActivityClass(event) {
             if (tempTitle === "Massage Therapy") {
               setNewEvent({
@@ -552,20 +561,30 @@ function App() {
                       <div> Rental: True</div>
                       <div> Rental Notes: {val.rentalInfo}</div>
                       <div id="priceForRental">
-                        <input
-                          type="number"
-                          placeholder="Price for Rental Car"
-                          onChange={(event) => {
-                            setRentalPrice(event.target.value);
-                          }}
-                        ></input>
-                        <button
-                          onClick={() => {
-                            updateAccomPrice(rentalPrice);
-                          }}
-                        >
-                          Add Rental
-                        </button>
+                        <div id="priceForRental">
+                          {val.transportPrice === 0 ? (
+                            <div>
+                              <input
+                                type="number"
+                                placeholder="Price for Rental Car"
+                                onChange={(event) => {
+                                  setRentalPrice(event.target.value);
+                                }}
+                              ></input>
+                              <button
+                                onClick={() => {
+                                  updateTransportPrice(rentalPrice);
+                                }}
+                              >
+                                Add Rental
+                              </button>
+                            </div>
+                          ) : (
+                            <div>
+                              <p>Price has already been set for this service</p>
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
                   );
@@ -932,12 +951,22 @@ function App() {
                 <select
                   value={tempTitle}
                   onChange={(event) => {
-                    tempTitle = event.target.value;
+                    setTempTitle(event.target.value);
                     setTitleAndActivityClass(event);
                     displayAmountOfPeopleTextBox(event);
                     displayPriceTextBox(event);
                   }}
                 >
+                  <option value="Select An Event">Select an Event</option>
+                  <option value="Cafeteria Buffet Breakfast">
+                    Cafeteria Buffet Breakfast
+                  </option>
+                  <option value="Cafeteria Buffet Lunch">
+                    Cafeteria Buffet Lunch
+                  </option>
+                  <option value="Cafeteria Buffet Dinner">
+                    Cafeteria Buffet Dinner
+                  </option>
                   <option value="50m Aquatic Center LC Lanes">
                     50m Aquatic Center LC Lanes
                   </option>
@@ -1030,7 +1059,7 @@ function App() {
                   ></textarea>
                 </div>
 
-                <div id="amountOfPeople">
+                <div id="amountOfPeople" className="hidden-text">
                   <input
                     type="number"
                     placeholder="Amount of people"
@@ -1133,8 +1162,6 @@ function App() {
           const yearStart = splitStartDate[0];
           const monthStart = splitStartDate[1] - 1;
           const dayStart = splitStartDate[2];
-
-          let tempTitle;
 
           function setTitleAndActivityClass(event) {
             if (tempTitle === "Massage Therapy") {
@@ -1276,12 +1303,22 @@ function App() {
                 <select
                   value={tempTitle}
                   onChange={(event) => {
-                    tempTitle = event.target.value;
+                    setTempTitle(event.target.value);
                     setTitleAndActivityClass(event);
                     displayAmountOfPeopleTextBox(event);
                     displayPriceTextBox(event);
                   }}
                 >
+                  <option value="Select An Event">Select an Event</option>
+                  <option value="Cafeteria Buffet Breakfast">
+                    Cafeteria Buffet Breakfast
+                  </option>
+                  <option value="Cafeteria Buffet Lunch">
+                    Cafeteria Buffet Lunch
+                  </option>
+                  <option value="Cafeteria Buffet Dinner">
+                    Cafeteria Buffet Dinner
+                  </option>
                   <option value="50m Aquatic Center LC Lanes">
                     50m Aquatic Center LC Lanes
                   </option>

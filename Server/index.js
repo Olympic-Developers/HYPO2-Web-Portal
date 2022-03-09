@@ -115,7 +115,7 @@ app.post("/intake", (req, res) => {
   const otherText = req.body.otherInfoText;
 
   db.query(
-    "INSERT INTO CampPrice(accomPricing, initServices, currentServices, priceAdjust, rentalPrice) values (?,?,?,?,?)",
+    "INSERT INTO CampPrice(accomPricing, initServices, currentServices, priceAdjust, transportPrice) values (?,?,?,?,?)",
     [0, 0, 0, 0, 0],
     (err, result) => {
       if (err) {
@@ -323,7 +323,7 @@ app.get("/CampInfo", (req, res) => {
   let id = req.query.id;
 
   db.query(
-    `SELECT * FROM GeneralIntake Left Join CoreCampNeeds ON GeneralIntake.Camp_ID = CoreCampNeeds.Camp_ID Left Join AdditionalServices ON GeneralIntake.Camp_ID = AdditionalServices.Camp_ID Left JOIN IntakeInfo ON GeneralIntake.Camp_ID = IntakeInfo.Camp_ID WHERE GeneralIntake.Camp_ID = "${id}"`,
+    `SELECT * FROM GeneralIntake Left Join CoreCampNeeds ON GeneralIntake.Camp_ID = CoreCampNeeds.Camp_ID Left Join AdditionalServices ON GeneralIntake.Camp_ID = AdditionalServices.Camp_ID Left JOIN IntakeInfo ON GeneralIntake.Camp_ID = IntakeInfo.Camp_ID Left Join CampPrice ON GeneralIntake.Camp_ID = CampPrice.Camp_ID WHERE GeneralIntake.Camp_ID = "${id}"`,
     (err, result) => {
       if (err) {
         console.log(err);
@@ -420,6 +420,21 @@ app.post("/sendPrice", (req, res) => {
   );
 });
 
+app.post("/updateTransport", (req, res) => {
+  const campID = req.body.campID;
+  const price = req.body.price;
+
+  db.query(
+    `UPDATE CampPrice SET transportPrice = transportPrice + ${price} WHERE CAMP_ID = ${campID};`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
 app.post("/setCampStatus", (req, res) => {
   const status = req.body.status;
   const campID = req.body.campID;
