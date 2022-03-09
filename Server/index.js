@@ -115,7 +115,7 @@ app.post("/intake", (req, res) => {
   const otherText = req.body.otherInfoText;
 
   db.query(
-    "INSERT INTO CampPrice(accomPricing, initServices, currentServices, priceAdjust, rentalCar) values (?,?,?,?,?)",
+    "INSERT INTO CampPrice(accomPricing, initServices, currentServices, priceAdjust, rentalPrice) values (?,?,?,?,?)",
     [0, 0, 0, 0, 0],
     (err, result) => {
       if (err) {
