@@ -156,105 +156,89 @@ function App() {
   }
 
   function calcEventPrice() {
+    console.log(tempTitle);
+
     if (tempTitle === "Cafeteria Buffet Breakfast") {
       newEvent.price =
         priceList[0].University_Cafeteria_Breakfast * newEvent.amountOfPeople;
-    }
-    if (tempTitle === "Cafeteria Buffet Lunch") {
+    } else if (tempTitle === "Cafeteria Buffet Lunch") {
       newEvent.price =
         priceList[0].University_Cafeteria_Lunch * newEvent.amountOfPeople;
-    }
-    if (tempTitle === "Cafeteria Buffet Dinner") {
+    } else if (tempTitle === "Cafeteria Buffet Dinner") {
       newEvent.price =
         priceList[0].University_Cafeteria_Dinner * newEvent.amountOfPeople;
-    }
-    if (tempTitle === "50m Aquatic Center LC Lanes") {
+    } else if (tempTitle === "50m Aquatic Center LC Lanes") {
       newEvent.price = priceList[0].Aquatic_Center_LC * newEvent.amountOfPeople;
-    }
-    if (tempTitle === "50m Aquatic Center SC Lanes") {
+    } else if (tempTitle === "50m Aquatic Center SC Lanes") {
       newEvent.price = priceList[0].Aquatic_Center_SC * newEvent.amountOfPeople;
-    }
-    if (tempTitle === "400m Outdoor track(8-lane)") {
+    } else if (tempTitle === "400m Outdoor Track (8-lane)") {
       newEvent.price = priceList[0].Outdoor_Track * newEvent.amountOfPeople;
-    }
-    if (tempTitle === "300m Indoor Track(6-lane)") {
+    } else if (tempTitle === "300m Indoor Track (6-lane)") {
       newEvent.price = priceList[0].Outdoor_Track * newEvent.amountOfPeople;
-    }
-    if (tempTitle === "University Gym") {
+    } else if (tempTitle === "University Gym") {
       newEvent.price = priceList[0].University_Gym * newEvent.amountOfPeople;
-    }
-    if (tempTitle === "Hypo2 Gym") {
+    } else if (tempTitle === "Hypo2 Gym") {
       newEvent.price = priceList[0].Hypo2_Gym * newEvent.amountOfPeople;
-    }
-    if (tempTitle === "High Speed Treadmill") {
+    } else if (tempTitle === "High Speed Treadmill") {
       newEvent.price =
         priceList[0].High_Speed_Treadmill * newEvent.amountOfPeople;
-    }
-    if (tempTitle === "Massage Therapy" && newEvent.amountOfPeople <= 10) {
+    } else if (
+      tempTitle === "Massage Therapy" &&
+      newEvent.amountOfPeople <= 10
+    ) {
       newEvent.price =
         priceList[0].Massage_Therapy_1_10 * newEvent.amountOfPeople;
-    }
-    if (tempTitle === "Massage Therapy" && newEvent.amountOfPeople > 10) {
+    } else if (
+      tempTitle === "Massage Therapy" &&
+      newEvent.amountOfPeople > 10
+    ) {
       newEvent.price =
         priceList[0].Massage_Therapy_10 * newEvent.amountOfPeople;
-    }
-    if (tempTitle === "Physiotherapy/Chiropractic Rehab/Prehab") {
+    } else if (tempTitle === "Physiotherapy/Chiropractic Rehab/Prehab") {
       newEvent.price = priceList[0].Physio_Chiro * newEvent.amountOfPeople;
-    }
-    if (
+    } else if (
       tempTitle === "Total Hemoglobin Mass Testing(via CO Rebreathing method)"
     ) {
       newEvent.price =
         priceList[0].Hemoglobin_Mass_Testing * newEvent.amountOfPeople;
-    }
-    if (
+    } else if (
       tempTitle ===
       "Complete Blood Profile(includes RBC, WBC, Hematocrit, Hemoglobin, etc.)"
     ) {
       newEvent.price = priceList[0].Comp_Blood * newEvent.amountOfPeople;
-    }
-    if (tempTitle === "Comprehensive Metabolic Panel") {
+    } else if (tempTitle === "Comprehensive Metabolic Panel") {
       newEvent.price = priceList[0].Metabolic_Profile * newEvent.amountOfPeople;
-    }
-    if (tempTitle === "Ferritin/Total iron Binding Capacity") {
+    } else if (tempTitle === "Ferritin/Total iron Binding Capacity") {
       newEvent.price =
         priceList[0].Ferritin_Iron_Binding_Capacity * newEvent.amountOfPeople;
-    }
-    if (tempTitle === "Creatine Kinase (CK/CPK)") {
+    } else if (tempTitle === "Creatine Kinase (CK/CPK)") {
       newEvent.price = priceList[0].CK_CPK * newEvent.amountOfPeople;
-    }
-    if (tempTitle === "VO2 & Lactate Combined") {
+    } else if (tempTitle === "VO2 & Lactate Combined") {
       newEvent.price = priceList[0].VO2_Lactate * newEvent.amountOfPeople;
-    }
-    if (tempTitle === "VO2 Threshold") {
+    } else if (tempTitle === "VO2 Threshold") {
       newEvent.price = priceList[0].VO2 * newEvent.amountOfPeople;
-    }
-    if (tempTitle === "Lactate Threshold") {
+    } else if (tempTitle === "Lactate Threshold") {
       newEvent.price = priceList[0].Lactate * newEvent.amountOfPeople;
-    }
-    if (tempTitle === "Supplemental O2 for Training/Recovery") {
+    } else if (tempTitle === "Supplemental O2 for Training/Recovery") {
       newEvent.price = priceList[0].Supplemental_O2 * newEvent.amountOfPeople;
-    }
-    if (tempTitle === "Integrated Training and Dietary Analysis") {
+    } else if (tempTitle === "Integrated Training and Dietary Analysis") {
       newEvent.price =
         priceList[0].Integrated_Training_Dietary_Analysis *
         newEvent.amountOfPeople;
-    }
-    if (tempTitle === "Nutrition Group Presentation or Workshop") {
+    } else if (tempTitle === "Nutrition Group Presentation or Workshop") {
       newEvent.price =
         priceList[0].Group_Presentation_Workshop_Nutrition *
         newEvent.amountOfPeople;
-    }
-    if (tempTitle === "Mental Group Presentation or Workshop") {
+    } else if (tempTitle === "Mental Group Presentation or Workshop") {
       newEvent.price =
         priceList[0].Group_Presentation_Workshop_Psychology *
         newEvent.amountOfPeople;
-    }
-    if (tempTitle === "Individual Consultation") {
+    } else if (tempTitle === "Individual Consultation") {
       newEvent.price = priceList[0].Consult * newEvent.amountOfPeople;
-    }
-    if (tempTitle === "Team Focus Session") {
+    } else if (tempTitle === "Team Focus Session") {
       newEvent.price = priceList[0].Focus * newEvent.amountOfPeople;
+    } else {
+      return;
     }
   }
 
@@ -305,6 +289,7 @@ function App() {
       idOfService === "50m Aquatic Center LC Lanes" ||
       idOfService === "50m Aquatic Center SC Lanes" ||
       idOfService === "400m Outdoor Track (8-lane)" ||
+      idOfService === "300m Indoor Track (6-lane)" ||
       idOfService === "High Speed Treadmill" ||
       idOfService === "Outdoor Fields Grass" ||
       idOfService === "Outdoor Fields Artificial Turf" ||
