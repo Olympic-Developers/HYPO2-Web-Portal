@@ -121,13 +121,13 @@ function App() {
             const StatusDateStart = val.Camp_Date_Start.split(/[- : T]/);
 
             const yearStart = StatusDateStart[0];
-            const monthStart = StatusDateStart[1] - 1;
+            const monthStart = StatusDateStart[1];
             const dayStart = StatusDateStart[2];
 
             const StatusDateEnd = val.Camp_Date_End.split(/[- : T]/);
 
             const yearEnd = StatusDateEnd[0];
-            const monthEnd = StatusDateEnd[1] - 1;
+            const monthEnd = StatusDateEnd[1];
             const dayEnd = StatusDateEnd[2];
 
             return (
