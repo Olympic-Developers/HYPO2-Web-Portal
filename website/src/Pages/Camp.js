@@ -606,7 +606,7 @@ function App() {
               <h3>General Information</h3>
               <div>Team Name: {val.Team_Name}</div>
               <div>
-                Camp Start: {monthStart + 1}/{dayStart}/ {yearStart}
+                Camp Start: {monthStart + 1}/{dayStart}/{yearStart}
               </div>
               <div>
                 Camp End: {monthEnd + 1}/{dayEnd}/{yearEnd}
