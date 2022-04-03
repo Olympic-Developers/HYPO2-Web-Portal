@@ -13,6 +13,8 @@ import {
   getSessionStorage,
   setSessionStorage,
 } from "../../Components/UserInfoAndAuth";
+import "../../Style pages/homeStylePageAdminStaff.css";
+import SignInImage from "../../Style pages/Images/SignInLogo.png";
 
 function App() {
   // Set default value for navigate
@@ -90,27 +92,34 @@ function App() {
   ) {
     return (
       <div>
-        <h1>
-          Hello {getSessionStorage("username").toLowerCase()} welcome to your
-          Staff Page
-        </h1>
-        <button
-          onClick={() => {
-            signOut();
-          }}
-        >
-          Sign out
-        </button>
+        <div class="navbar">
+          <img src={SignInImage} alt="HYPO2 Logo"></img>
 
-        <Calendar
-          localizer={localizer}
-          events={staffSchedule}
-          startAccessor="start"
-          endAccessor="end"
-          style={{ height: 700 }}
-          eventPropGetter={eventStyleGetter}
-          onSelectEvent={handleSelected}
-        />
+          <button
+            onClick={() => {
+              signOut();
+            }}
+          >
+            Sign out
+          </button>
+        </div>
+
+        <div class="schedule">
+          <h1>Calendar</h1>
+          <Calendar
+            localizer={localizer}
+            events={staffSchedule}
+            startAccessor="start"
+            endAccessor="end"
+            style={{
+              height: 700,
+              margin: "0px 25px",
+              backgroundColor: "white",
+            }}
+            eventPropGetter={eventStyleGetter}
+            onSelectEvent={handleSelected}
+          />
+        </div>
       </div>
     );
   }

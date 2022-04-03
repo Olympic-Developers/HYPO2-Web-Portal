@@ -11,7 +11,7 @@
   margin-bottom: 25px;
 }
 
-.float-child {
+.schedule {
   padding-top: 0px;
   background-color: #677a81;
   width: 85%;
@@ -19,7 +19,7 @@
   float: right;
 }
 
-.float-child h1 {
+.schedule h1 {
   padding-left: 25px;
   color: white;
 }
