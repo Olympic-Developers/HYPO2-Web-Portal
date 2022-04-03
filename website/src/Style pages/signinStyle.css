@@ -1,0 +1,48 @@
+.signInBlock {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+}
+
+.centerInput {
+  text-align: center;
+  padding-top: 15px;
+}
+
+.Signinput {
+  width: 200px;
+  height: 30px;
+  border-width: 2px;
+  border-color: #677a81;
+}
+
+::placeholder {
+  color: #f5a900;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.Buttoninput {
+  width: 200px;
+  height: 30px;
+  font-size: 20px;
+  background-color: #677a81;
+  color: #f5a900;
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+
+.Buttoninput:hover {
+  background-color: #f5a900;
+  color: #677a81;
+}
+
+a:hover {
+  color: #677a81;
+}
+
+a {
+  color: #f5a900;
+}

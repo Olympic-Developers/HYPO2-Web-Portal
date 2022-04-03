@@ -13,6 +13,8 @@ import {
   getSessionStorage,
   setSessionStorage,
 } from "../../Components/UserInfoAndAuth";
+import "../../Style pages/homeStylePage.css";
+import SignInImage from "../../Style pages/Images/SignInLogo.png";
 
 function App() {
   const locales = {
@@ -121,77 +123,75 @@ function App() {
   ) {
     return (
       <div>
-        <h1>
-          Hello {getSessionStorage("username").toLowerCase()} welcome to your
-          Admin Page
-        </h1>
-        <button
-          style={{ display: "inline", marginRight: "20px" }}
-          onClick={() => {
-            navigate("/AdminProfile");
-          }}
-        >
-          Home
-        </button>
-        <button
-          style={{ display: "inline", marginRight: "20px" }}
-          onClick={() => {
-            navigate("/AdminProfile/PendingCamps");
-          }}
-        >
-          Pending Camps
-        </button>
-        <button
-          style={{ display: "inline", marginRight: "20px" }}
-          onClick={() => {
-            navigate("/AdminProfile/NeedsAssistance");
-          }}
-        >
-          Camps That Need Assistance
-        </button>
-        <button
-          style={{ display: "inline", marginRight: "20px" }}
-          onClick={() => {
-            navigate("/AdminProfile/ConfirmedCamps");
-          }}
-        >
-          Confirmed Camps
-        </button>
-        <button
-          style={{ display: "inline", marginRight: "20px" }}
-          onClick={() => {
-            navigate("/AdminProfile/PastCamps");
-          }}
-        >
-          Past Camps
-        </button>
-        <button
-          style={{ display: "inline", marginRight: "20px" }}
-          onClick={() => {
-            navigate("/AdminProfile/UpdatePrices");
-          }}
-        >
-          Update Prices Of Services
-        </button>
-        <button
-          style={{ display: "inline", marginRight: "20px" }}
-          onClick={() => {
-            signOut();
-          }}
-        >
-          Sign out
-        </button>
+        <div class="navbar">
+          <img src={SignInImage} alt="HYPO2 Logo"></img>
 
-        <h1>Master Calendar</h1>
-        <Calendar
-          localizer={localizer}
-          events={events}
-          startAccessor="start"
-          endAccessor="end"
-          style={{ height: 700, margin: "0px 25px" }}
-          onSelectEvent={handleSelected}
-          eventPropGetter={eventStyleGetter}
-        />
+          <button
+            onClick={() => {
+              navigate("/AdminProfile");
+            }}
+          >
+            Home
+          </button>
+          <button
+            onClick={() => {
+              navigate("/AdminProfile/PendingCamps");
+            }}
+          >
+            Pending
+          </button>
+          <button
+            onClick={() => {
+              navigate("/AdminProfile/NeedsAssistance");
+            }}
+          >
+            Needs Assistance
+          </button>
+          <button
+            onClick={() => {
+              navigate("/AdminProfile/ConfirmedCamps");
+            }}
+          >
+            Confirmed
+          </button>
+          <button
+            onClick={() => {
+              navigate("/AdminProfile/PastCamps");
+            }}
+          >
+            Past
+          </button>
+          <button
+            onClick={() => {
+              navigate("/AdminProfile/UpdatePrices");
+            }}
+          >
+            Update Prices
+          </button>
+          <button
+            onClick={() => {
+              signOut();
+            }}
+          >
+            Sign out
+          </button>
+        </div>
+        <div class="float-child">
+          <h1>Master Calendar</h1>
+          <Calendar
+            localizer={localizer}
+            events={events}
+            startAccessor="start"
+            endAccessor="end"
+            style={{
+              height: 700,
+              margin: "0px 25px",
+              backgroundColor: "white",
+            }}
+            onSelectEvent={handleSelected}
+            eventPropGetter={eventStyleGetter}
+          />
+        </div>
       </div>
     );
   }

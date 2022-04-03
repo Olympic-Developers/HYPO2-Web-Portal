@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { Amplify, Auth } from "aws-amplify";
 import { useNavigate } from "react-router-dom";
 import awsExports from "../aws-exports";
+import "../Style pages/signinStyle.css";
 import { setSessionStorage } from "../Components/UserInfoAndAuth";
+import SignInImage from "../Style pages/Images/SignInLogo.png";
 Amplify.configure(awsExports);
 
 function App() {
@@ -73,11 +75,12 @@ function App() {
   }
 
   return (
-    <div>
-      <h1>Login Sign In To Your Account</h1>
+    <div class="signInBlock">
+      <img src={SignInImage} alt="HYPO2 Logo"></img>
 
-      <div>
+      <div class="centerInput">
         <input
+          class="Signinput"
           type="text"
           name="userName"
           placeholder="Username"
@@ -87,8 +90,9 @@ function App() {
         />
       </div>
 
-      <div>
+      <div class="centerInput">
         <input
+          class="Signinput"
           type="password"
           name="password"
           placeholder="Password"
@@ -98,7 +102,15 @@ function App() {
         />
       </div>
 
-      <button onClick={signIn}>Log In</button>
+      <div class="centerInput">
+        <button class="Buttoninput" onClick={signIn}>
+          Sign In
+        </button>
+      </div>
+
+      <div class="centerInput">
+        <a href="mailto: accounts@hypo2sport.com">Request Account Set Up</a>
+      </div>
     </div>
   );
 }
