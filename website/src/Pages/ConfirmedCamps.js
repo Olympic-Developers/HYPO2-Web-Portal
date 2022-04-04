@@ -7,6 +7,8 @@ import {
   getSessionStorage,
   setSessionStorage,
 } from "../Components/UserInfoAndAuth";
+import "../Style pages/dashBoard.css";
+import SignInImage from "../Style pages/Images/SignInLogo.png";
 
 function App() {
   // Set default value for navigate
@@ -56,67 +58,66 @@ function App() {
   ) {
     return (
       <div>
-        <h1>
-          Hello {getSessionStorage("username").toLowerCase()} welcome to your
-          Admin Page
-        </h1>
-        <button
-          style={{ display: "inline", marginRight: "20px" }}
-          onClick={() => {
-            navigate("/AdminProfile");
-          }}
-        >
-          Home
-        </button>
-        <button
-          style={{ display: "inline", marginRight: "20px" }}
-          onClick={() => {
-            navigate("/AdminProfile/PendingCamps");
-          }}
-        >
-          Pending Camps
-        </button>
-        <button
-          style={{ display: "inline", marginRight: "20px" }}
-          onClick={() => {
-            navigate("/AdminProfile/NeedsAssistance");
-          }}
-        >
-          Camps That Need Assistance
-        </button>
-        <button
-          style={{ display: "inline", marginRight: "20px" }}
-          onClick={() => {
-            navigate("/AdminProfile/ConfirmedCamps");
-          }}
-        >
-          Confirmed Camps
-        </button>
-        <button
-          style={{ display: "inline", marginRight: "20px" }}
-          onClick={() => {
-            navigate("/AdminProfile/PastCamps");
-          }}
-        >
-          Past Camps
-        </button>
-        <button
-          style={{ display: "inline", marginRight: "20px" }}
-          onClick={() => {
-            navigate("/AdminProfile/UpdatePrices");
-          }}
-        >
-          Update Prices Of Services
-        </button>
-        <button
-          style={{ display: "inline", marginRight: "20px" }}
-          onClick={() => {
-            signOut();
-          }}
-        >
-          Sign out
-        </button>
-        <div>
+        <div class="navbar">
+          <img src={SignInImage} alt="HYPO2 Logo"></img>
+          <button
+            style={{ display: "inline", marginRight: "20px" }}
+            onClick={() => {
+              navigate("/AdminProfile");
+            }}
+          >
+            Home
+          </button>
+          <button
+            style={{ display: "inline", marginRight: "20px" }}
+            onClick={() => {
+              navigate("/AdminProfile/PendingCamps");
+            }}
+          >
+            Pending Camps
+          </button>
+          <button
+            style={{ display: "inline", marginRight: "20px" }}
+            onClick={() => {
+              navigate("/AdminProfile/NeedsAssistance");
+            }}
+          >
+            Camps That Need Assistance
+          </button>
+          <button
+            style={{ display: "inline", marginRight: "20px" }}
+            onClick={() => {
+              navigate("/AdminProfile/ConfirmedCamps");
+            }}
+          >
+            Confirmed Camps
+          </button>
+          <button
+            style={{ display: "inline", marginRight: "20px" }}
+            onClick={() => {
+              navigate("/AdminProfile/PastCamps");
+            }}
+          >
+            Past Camps
+          </button>
+          <button
+            style={{ display: "inline", marginRight: "20px" }}
+            onClick={() => {
+              navigate("/AdminProfile/UpdatePrices");
+            }}
+          >
+            Update Prices Of Services
+          </button>
+          <button
+            style={{ display: "inline", marginRight: "20px" }}
+            onClick={() => {
+              signOut();
+            }}
+          >
+            Sign out
+          </button>
+        </div>
+        <div class="rightContent">
           {allCampList.map((val) => {
             const StatusDateStart = val.Camp_Date_Start.split(/[- : T]/);
 

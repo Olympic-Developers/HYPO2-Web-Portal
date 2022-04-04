@@ -13,7 +13,7 @@ import {
   getSessionStorage,
   setSessionStorage,
 } from "../../Components/UserInfoAndAuth";
-import "../../Style pages/homeStylePageAdminStaff.css";
+import "../../Style pages/dashBoard.css";
 import SignInImage from "../../Style pages/Images/SignInLogo.png";
 
 function App() {
@@ -176,7 +176,7 @@ function App() {
             Sign out
           </button>
         </div>
-        <div class="schedule">
+        <div class="rightContent">
           <h1>Master Calendar</h1>
           <Calendar
             localizer={localizer}

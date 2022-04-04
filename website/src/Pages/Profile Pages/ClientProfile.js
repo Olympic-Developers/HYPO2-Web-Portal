@@ -7,6 +7,8 @@ import {
   getSessionStorage,
   setSessionStorage,
 } from "../../Components/UserInfoAndAuth";
+import "../../Style pages/dashBoard.css";
+import SignInImage from "../../Style pages/Images/SignInLogo.png";
 
 function App() {
   // Set default value for navigate
@@ -56,12 +58,28 @@ function App() {
   ) {
     return (
       <div>
-        <h1>
-          Hello {getSessionStorage("username").toLowerCase()} welcome to your
-          Team Page
-        </h1>
+        <div className="navbar">
+          <img src={SignInImage} alt="HYPO2 Logo"></img>
 
-        <div>
+          <button
+            style={{ marginBottom: "10px " }}
+            onClick={() => {
+              signOut();
+            }}
+          >
+            Sign out
+          </button>
+
+          <button
+            onClick={() => {
+              navigate("/ClientProfile/Intake");
+            }}
+          >
+            Create a Camp
+          </button>
+        </div>
+
+        <div class="rightContent">
           {userCampsList.map((val) => {
             const StatusDateStart = val.Camp_Date_Start.split(/[- : T]/);
 
@@ -99,25 +117,6 @@ function App() {
             );
           })}
         </div>
-
-        <div>
-          <button
-            style={{ marginBottom: "10px " }}
-            onClick={() => {
-              signOut();
-            }}
-          >
-            Sign out
-          </button>
-        </div>
-
-        <button
-          onClick={() => {
-            navigate("/ClientProfile/Intake");
-          }}
-        >
-          Create a Camp!
-        </button>
       </div>
     );
   }
