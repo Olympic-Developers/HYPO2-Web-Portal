@@ -24,6 +24,45 @@
   color: white;
 }
 
+.campList {
+  margin: 25px;
+  display: block;
+  border: outset;
+  background: lightgrey;
+  width: 96%;
+}
+.campList:hover {
+  background-color: #f5a900;
+  cursor: pointer;
+  border: inset;
+}
+
+.dates {
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.dates p {
+  margin: 2px;
+}
+
+.title {
+  display: inline-block;
+  width: 50%;
+  vertical-align: center;
+  text-align: center;
+}
+
+.title h3 {
+  display: inline-block;
+  width: 400px;
+  height: 40%;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  margin: 3%;
+}
 .navbar button {
   display: block;
   margin: 0 auto;
@@ -40,4 +79,50 @@
 .navbar button:hover {
   background-color: #677a81;
   color: #f5a900;
+  cursor: pointer;
+}
+
+.update {
+}
+.update select {
+  height: 40px;
+  font-size: 25px;
+  margin-bottom: 5px;
+  margin-left: 20px;
+  background-color: #677a81;
+  border: inset black;
+}
+.update option {
+  background-color: lightgray;
+}
+
+.update p {
+  display: inline;
+  margin-right: 10px;
+  font-size: 20px;
+  margin-left: 20px;
+  font-weight: bold;
+}
+.update p.currentPrice {
+  font-size: 30px;
+  padding-bottom: 50px;
+}
+.update input {
+  height: 40px;
+  font-size: 25px;
+  border: inset black;
+  background-color: #677a81;
+}
+.update button {
+  width: 200px;
+  height: 40px;
+  font-size: 15px;
+  text-align: center;
+  border: outset;
+  margin-left: 20px;
+}
+.update button:hover {
+  background-color: #f5a900;
+  border: inset;
+  cursor: pointer;
 }

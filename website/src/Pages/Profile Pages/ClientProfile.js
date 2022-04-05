@@ -80,6 +80,7 @@ function App() {
         </div>
 
         <div class="rightContent">
+          <h1>Camp Dashboard</h1>
           {userCampsList.map((val) => {
             const StatusDateStart = val.Camp_Date_Start.split(/[- : T]/);
 
@@ -94,7 +95,8 @@ function App() {
             const dayEnd = StatusDateEnd[2];
 
             return (
-              <button
+              <div
+                class="campList"
                 key={val.Camp_ID}
                 disabled={val.clicked}
                 onClick={() => {
@@ -104,16 +106,21 @@ function App() {
                 }}
                 style={{ border: "5px solid Black", display: "block" }}
               >
-                <h3>
-                  Camp: {val.Team_Name} - {val.Camp_ID} Status: {val.Status}
-                </h3>
-                <p>
-                  Start Date: {monthStart}/{dayStart}/{yearStart}
-                </p>
-                <p>
-                  End Date: {monthEnd}/{dayEnd}/{yearEnd}
-                </p>
-              </button>
+                <div class="title">
+                  <h3>
+                    Camp: {val.Team_Name} - {val.Camp_ID} <br></br> Status:{" "}
+                    {val.Status}
+                  </h3>
+                </div>
+                <div class="dates">
+                  <p>
+                    Start Date: {monthStart}/{dayStart}/{yearStart}
+                  </p>
+                  <p>
+                    End Date: {monthEnd}/{dayEnd}/{yearEnd}
+                  </p>
+                </div>
+              </div>
             );
           })}
         </div>

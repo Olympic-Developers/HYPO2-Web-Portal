@@ -119,6 +119,7 @@ function App() {
           </button>
         </div>
         <div class="rightContent">
+          <h1>Pending Camps</h1>
           {allCampList.map((val) => {
             const StatusDateStart = val.Camp_Date_Start.split(/[- : T]/);
 
@@ -133,25 +134,30 @@ function App() {
             const dayEnd = StatusDateEnd[2];
 
             return (
-              <button
+              <div
+                class="campList"
                 key={val.Camp_ID}
                 onClick={() => {
                   setSessionStorage("campNumber", val.Camp_ID);
                   setSessionStorage("campProgressType", val.Status);
                   navigate("/CampPage");
                 }}
-                style={{ border: "5px solid Black", display: "block" }}
               >
-                <h3>
-                  Camp: {val.Team_Name} - {val.Camp_ID} Status: {val.Status}
-                </h3>
-                <p>
-                  Start Date: {monthStart}/{dayStart}/{yearStart}
-                </p>
-                <p>
-                  End Date: {monthEnd}/{dayEnd}/{yearEnd}
-                </p>
-              </button>
+                <div class="title">
+                  <h3>
+                    Camp: {val.Team_Name} - {val.Camp_ID} <br></br> Status:{" "}
+                    {val.Status}
+                  </h3>
+                </div>
+                <div class="dates">
+                  <p>
+                    Start Date: {monthStart}/{dayStart}/{yearStart}
+                  </p>
+                  <p>
+                    End Date: {monthEnd}/{dayEnd}/{yearEnd}
+                  </p>
+                </div>
+              </div>
             );
           })}
         </div>
