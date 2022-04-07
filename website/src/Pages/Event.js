@@ -6,6 +6,8 @@ import {
   setSessionStorage,
 } from "../Components/UserInfoAndAuth";
 import Axios from "axios";
+import "../Style pages/dashBoard.css";
+import SignInImage from "../Style pages/Images/SignInLogo.png";
 
 function App() {
   // Set default value for navigate
@@ -69,15 +71,19 @@ function App() {
         <p>
           {singleEventFlag ? (
             <div>
-              <h1>Event was deleted and no longer exist</h1>
-
-              <button
-                onClick={() => {
-                  navigate(-1);
-                }}
-              >
-                Back to Calendar
-              </button>
+              <div class="navbar">
+                <img src={SignInImage} alt="HYPO2 Logo"></img>
+                <button
+                  onClick={() => {
+                    navigate(-1);
+                  }}
+                >
+                  Back to Calendar
+                </button>
+              </div>
+              <div class="rightContent">
+                <h1>Event was deleted and no longer exist</h1>
+              </div>
             </div>
           ) : null}
         </p>
@@ -92,6 +98,21 @@ function App() {
     return (
       <div>
         {singleEvent.map((val) => {
+          const StatusDateStart = val.start.split(/[- : T]/);
+          const yearStart = StatusDateStart[0];
+          const monthStart = StatusDateStart[1];
+          const dayStart = StatusDateStart[2];
+          const startHour = StatusDateStart[3] % 12;
+          const startMinute = StatusDateStart[4];
+
+          const StatusDateEnd = val.end.split(/[- : T]/);
+
+          const yearEnd = StatusDateEnd[0];
+          const monthEnd = StatusDateEnd[1];
+          const dayEnd = StatusDateEnd[2];
+
+          const endHour = StatusDateEnd[3] % 12;
+          const endMinute = StatusDateEnd[4];
           // Function for request removal
           function requestRemoval() {
             // Always set camp to Needs Assistance
@@ -143,107 +164,123 @@ function App() {
                   status: "Camp Confirmed",
                 });
                 setSessionStorage("Camp Confirmed", "Needs Assistance");
-                window.location.reload(false);
                 setSingleEvent(null);
               }
+              setDidLoad(false);
             });
           }
 
           return (
             <div key={val.EventID}>
-              <h1>Event: {val.title}</h1>
-              <p>Comment: {val.Comments}</p>
+              <div class="navbar">
+                <img src={SignInImage} alt="HYPO2 Logo"></img>
+                <div>
+                  {getSessionStorage("campProgressType") !== "Past Camp" ? (
+                    getSessionStorage("classification").toLowerCase() ===
+                      "admin" && val.request === "No Request" ? (
+                      <button
+                        onClick={() => {
+                          deleteEventForever();
+                        }}
+                      >
+                        Delete
+                      </button>
+                    ) : // buttons for client on No Request
+                    getSessionStorage("classification").toLowerCase() ===
+                        "client" && val.request === "No Request" ? (
+                      <button
+                        onClick={() => {
+                          requestRemoval();
+                        }}
+                      >
+                        Request Deletion
+                      </button>
+                    ) : // buttons for admin on Removal
+                    getSessionStorage("classification").toLowerCase() ===
+                        "admin" && val.request === "Removal" ? (
+                      <div>
+                        <button
+                          onClick={() => {
+                            removeRequest();
+                          }}
+                        >
+                          Reject Request of Deletion
+                        </button>
+                        <button
+                          onClick={() => {
+                            deleteEventForever();
+                          }}
+                        >
+                          Confirm Request of Deletion
+                        </button>
+                      </div>
+                    ) : // buttons for client on Removal
+                    getSessionStorage("classification").toLowerCase() ===
+                        "client" && val.request === "Removal" ? (
+                      <button
+                        onClick={() => {
+                          removeRequest();
+                        }}
+                      >
+                        Cancel Request for Deletion
+                      </button>
+                    ) : // buttons for admin on Request New
+                    getSessionStorage("classification").toLowerCase() ===
+                        "admin" && val.request === "Request New" ? (
+                      <div>
+                        <button
+                          onClick={() => {
+                            deleteEventForever();
+                          }}
+                        >
+                          Reject Request of Addition
+                        </button>
+                        <button
+                          onClick={() => {
+                            removeRequest();
+                          }}
+                        >
+                          Confirm Request of Addition
+                        </button>
+                      </div>
+                    ) : // buttons for client on Request New
+                    getSessionStorage("classification").toLowerCase() ===
+                        "client" && val.request === "Request New" ? (
+                      <button
+                        onClick={() => {
+                          deleteEventForever();
+                        }}
+                      >
+                        Cancel Request for Addition
+                      </button>
+                    ) : null
+                  ) : null}
+                </div>
 
-              <div>
-                {getSessionStorage("campProgressType") !== "Past Camp" ? (
-                  getSessionStorage("classification").toLowerCase() ===
-                    "admin" && val.request === "No Request" ? (
-                    <button
-                      onClick={() => {
-                        deleteEventForever();
-                      }}
-                    >
-                      delete
-                    </button>
-                  ) : // buttons for client on No Request
-                  getSessionStorage("classification").toLowerCase() ===
-                      "client" && val.request === "No Request" ? (
-                    <button
-                      onClick={() => {
-                        requestRemoval();
-                      }}
-                    >
-                      request deletion
-                    </button>
-                  ) : // buttons for admin on Removal
-                  getSessionStorage("classification").toLowerCase() ===
-                      "admin" && val.request === "Removal" ? (
-                    <div>
-                      <button
-                        onClick={() => {
-                          removeRequest();
-                        }}
-                      >
-                        reject request of deletion
-                      </button>
-                      <button
-                        onClick={() => {
-                          deleteEventForever();
-                        }}
-                      >
-                        confirm request of deletion
-                      </button>
-                    </div>
-                  ) : // buttons for client on Removal
-                  getSessionStorage("classification").toLowerCase() ===
-                      "client" && val.request === "Removal" ? (
-                    <button
-                      onClick={() => {
-                        removeRequest();
-                      }}
-                    >
-                      cancel request for deletion
-                    </button>
-                  ) : // buttons for admin on Request New
-                  getSessionStorage("classification").toLowerCase() ===
-                      "admin" && val.request === "Request New" ? (
-                    <div>
-                      <button
-                        onClick={() => {
-                          deleteEventForever();
-                        }}
-                      >
-                        reject request of addition
-                      </button>
-                      <button
-                        onClick={() => {
-                          removeRequest();
-                        }}
-                      >
-                        confirm request of addition
-                      </button>
-                    </div>
-                  ) : // buttons for client on Request New
-                  getSessionStorage("classification").toLowerCase() ===
-                      "client" && val.request === "Request New" ? (
-                    <button
-                      onClick={() => {
-                        deleteEventForever();
-                      }}
-                    >
-                      cancel request for addition
-                    </button>
-                  ) : null
-                ) : null}
+                <button
+                  onClick={() => {
+                    navigate(-1);
+                  }}
+                >
+                  Back to Calendar
+                </button>
               </div>
-
-              <button
-                onClick={() => {
-                  navigate(-1);
-                }}
-              >
-                Back to Calendar
-              </button>
+              <div class="rightContent">
+                <h1>Event: {val.title}</h1>
+                <h1>Comment: {val.Comments}</h1>
+                <h1>
+                  Start Date: {monthStart}/{dayStart}/{yearStart}{" "}
+                  {parseInt(StatusDateStart[3]) === 12 ? "12" : startHour}:
+                  {startMinute}
+                  {parseInt(StatusDateStart[3]) >= 12 ? "PM" : "AM"}
+                </h1>
+                <h1>
+                  End Date: {monthEnd}/{dayEnd}/{yearEnd}{" "}
+                  {parseInt(StatusDateEnd[3]) === 12 ? "12" : endHour}:
+                  {endMinute}
+                  {parseInt(StatusDateEnd[3]) >= 12 ? "PM" : "AM"}
+                </h1>
+              </div>
             </div>
           );
         })}
