@@ -1404,222 +1404,236 @@ function App() {
 
           return (
             <div key={val.Camp_ID}>
-              <h1>
-                Camp Page {val.Team_Name} - {val.Camp_ID}
-              </h1>
-
-              <button
-                onClick={() => {
-                  navigate("/CampPage");
-                }}
-              >
-                Home Camp Page
-              </button>
-              <button
-                onClick={() => {
-                  navigate("/CampPage/Roster");
-                }}
-              >
-                Roster
-              </button>
-              <button
-                onClick={() => {
-                  navigate("/CampPage/Summary");
-                }}
-              >
-                Summary
-              </button>
-              <button
-                onClick={() => {
-                  navigate("/CampPage/Billing");
-                }}
-              >
-                Billing
-              </button>
-              <span>
-                {getSessionStorage("classification").toLowerCase() ===
-                "admin" ? (
-                  <button
-                    onClick={() => {
-                      navigate("/CampPage/AdminPermissions");
-                    }}
-                  >
-                    Admin Permissions
-                  </button>
-                ) : null}
-              </span>
-
-              <button onClick={backToCorrectHomePage}>
-                Return To Home Page
-              </button>
-
-              <div>
-                <select
-                  value={tempTitle}
-                  onChange={(event) => {
-                    setTempTitle(event.target.value);
-                    setTitleAndActivityClass(event);
-                    displayAmountOfPeopleTextBox(event);
-                    if (
-                      getSessionStorage("classification").toLowerCase() ===
-                      "admin"
-                    ) {
-                      displayPriceTextBox(event);
-                    }
+              <div class="navbar">
+                <img src={SignInImage} alt="HYPO2 Logo"></img>
+                <button
+                  onClick={() => {
+                    navigate("/CampPage");
                   }}
                 >
-                  <option value="Select An Event">Select an Event</option>
-                  <option value="Cafeteria Buffet Breakfast">
-                    Cafeteria Buffet Breakfast
-                  </option>
-                  <option value="Cafeteria Buffet Lunch">
-                    Cafeteria Buffet Lunch
-                  </option>
-                  <option value="Cafeteria Buffet Dinner">
-                    Cafeteria Buffet Dinner
-                  </option>
-                  <option value="50m Aquatic Center LC Lanes">
-                    50m Aquatic Center LC Lanes
-                  </option>
-                  <option value="50m Aquatic Center SC Lanes">
-                    50m Aquatic Center SC Lanes
-                  </option>
-                  <option value="400m Outdoor Track (8-lane)">
-                    400m Outdoor Track (8-lane)
-                  </option>
-                  <option value="300m Indoor Track (6-lane)">
-                    300m Indoor Track (6-lane)
-                  </option>
-                  <option value="University Gym">University Gym</option>
-                  <option value="Hypo2 Gym">Hypo2 Gym</option>
-                  <option value="Outdoor Fields Grass">
-                    Outdoor Fields Grass
-                  </option>
-                  <option value="Outdoor Fields Artificial Turf">
-                    Outdoor Fields Artificial Turf
-                  </option>
-                  <option value="Indoor Field">Indoor Field</option>
-                  <option value="High Speed Treadmill">
-                    High Speed Treadmill
-                  </option>
-                  <option value="Massage Therapy">Massage Therapy</option>
-                  <option value="Physiotherapy/Chiropractic Rehab/Prehab">
-                    Physiotherapy/Chiropractic Rehab/Prehab
-                  </option>
-                  <option value="Strength & Conditioning Coaching">
-                    Strength & Conditioning Coaching
-                  </option>
-                  <option value="Orthopaedic Care">Orthopaedic Care</option>
-                  <option value="Primary Medical Care">
-                    Primary Medical Care
-                  </option>
-                  <option value="Total Hemoglobin Mass Testing">
-                    Total Hemoglobin Mass Testing (via CO Rebreathing Method)
-                  </option>
-                  <option value="Complete Blood Profile (includes RBC, WBC, Hematocrit, Hemoglobin, etc.)">
-                    Complete Blood Profile (includes RBC, WBC, Hematocrit,
-                    Hemoglobin, etc.)
-                  </option>
-                  <option value="Comprehensive Metabolic Panel">
-                    Comprehensive Metabolic Panel
-                  </option>
-                  <option value="Ferritin/Iron/Total iron Binding Capacity">
-                    Ferritin/Iron/Total iron Binding Capacity
-                  </option>
-                  <option value="Creatine Kinase (CK/CPK)">
-                    Creatine Kinase (CK/CPK)
-                  </option>
-                  <option value="VO2 & Lactate Combined">
-                    VO2 & Lactate Combined
-                  </option>
-                  <option value="VO2 Threshold">VO2 Threshold</option>
-                  <option value="Lactate Threshold">Lactate Threshold</option>
-                  <option value="Supplemental O2 for Training / Recovery">
-                    Supplemental O2 for Training / Recovery
-                  </option>
-                  <option value="Integrated Training and Dietary Analysis ">
-                    Integrated Training and Dietary Analysis
-                  </option>
-                  <option value="Nutrition Group Presentation or Workshop">
-                    Nutrition Group Presentation or Workshop
-                  </option>
-                  <option value="Individual Consultation">
-                    Individual Consultation
-                  </option>
-                  <option value="Team Focus Session">Team Focus Session</option>
-                  <option value="Mental Group Presentation or Workshop">
-                    Mental Group Presentation or Workshop
-                  </option>
-                  <option value="Other">Other</option>
-                </select>
+                  Home Camp Page
+                </button>
+                <button
+                  onClick={() => {
+                    navigate("/CampPage/Roster");
+                  }}
+                >
+                  Roster
+                </button>
+                <button
+                  onClick={() => {
+                    navigate("/CampPage/Summary");
+                  }}
+                >
+                  Summary
+                </button>
+                <button
+                  onClick={() => {
+                    navigate("/CampPage/Billing");
+                  }}
+                >
+                  Billing
+                </button>
+                <span>
+                  {getSessionStorage("classification").toLowerCase() ===
+                  "admin" ? (
+                    <button
+                      onClick={() => {
+                        navigate("/CampPage/AdminPermissions");
+                      }}
+                    >
+                      Admin Permissions
+                    </button>
+                  ) : null}
+                </span>
 
-                <div>
-                  <textarea
-                    placeholder="Comment if needed"
-                    placename="Comments"
-                    onChange={(event) => {
-                      setNewEvent({
-                        ...newEvent,
-                        comment: event.target.value,
-                      });
-                    }}
-                    cols="50"
-                    rows="10"
-                  ></textarea>
-                </div>
-
-                <div id="amountOfPeople" className="hidden-text">
-                  <input
-                    type="number"
-                    placeholder="Amount of people"
-                    onChange={(event) =>
-                      setNewEvent({
-                        ...newEvent,
-                        amountOfPeople: event.target.value,
-                      })
-                    }
-                  ></input>
-                </div>
-
-                <div id="priceForService" className="hidden-text">
-                  <input
-                    type="number"
-                    placeholder="Price for service"
-                    onChange={(event) =>
-                      setNewEvent({ ...newEvent, price: event.target.value })
-                    }
-                  />
-                </div>
-
-                <DatePicker
-                  placeholderText="Start Date"
-                  dateFormat="MM/dd/yyyy  EE hh:mm a"
-                  showTimeSelect
-                  selected={newEvent.start}
-                  onChange={(start) => setNewEvent({ ...newEvent, start })}
-                />
-                <DatePicker
-                  placeholderText="End Date"
-                  dateFormat="MM/dd/yyyy  EE hh:mm a"
-                  showTimeSelect
-                  selected={newEvent.end}
-                  onChange={(end) => setNewEvent({ ...newEvent, end })}
-                />
-                <button style={{ marginTop: "25px" }} onClick={handleAddEvent}>
-                  Add Event
+                <button onClick={backToCorrectHomePage}>
+                  Return To Home Page
                 </button>
               </div>
+              <div class="rightContent">
+                <h1>
+                  Camp Page {val.Team_Name} - {val.Camp_ID}
+                </h1>
+                <div class="addEvent">
+                  <div class="name">
+                    <select
+                      value={tempTitle}
+                      onChange={(event) => {
+                        setTempTitle(event.target.value);
+                        setTitleAndActivityClass(event);
+                        displayAmountOfPeopleTextBox(event);
+                        if (
+                          getSessionStorage("classification").toLowerCase() ===
+                          "admin"
+                        ) {
+                          displayPriceTextBox(event);
+                        }
+                      }}
+                    >
+                      <option value="Select An Event">Select an Event</option>
+                      <option value="Cafeteria Buffet Breakfast">
+                        Cafeteria Buffet Breakfast
+                      </option>
+                      <option value="Cafeteria Buffet Lunch">
+                        Cafeteria Buffet Lunch
+                      </option>
+                      <option value="Cafeteria Buffet Dinner">
+                        Cafeteria Buffet Dinner
+                      </option>
+                      <option value="50m Aquatic Center LC Lanes">
+                        50m Aquatic Center LC Lanes
+                      </option>
+                      <option value="50m Aquatic Center SC Lanes">
+                        50m Aquatic Center SC Lanes
+                      </option>
+                      <option value="400m Outdoor Track (8-lane)">
+                        400m Outdoor Track (8-lane)
+                      </option>
+                      <option value="300m Indoor Track (6-lane)">
+                        300m Indoor Track (6-lane)
+                      </option>
+                      <option value="University Gym">University Gym</option>
+                      <option value="Hypo2 Gym">Hypo2 Gym</option>
+                      <option value="Outdoor Fields Grass">
+                        Outdoor Fields Grass
+                      </option>
+                      <option value="Outdoor Fields Artificial Turf">
+                        Outdoor Fields Artificial Turf
+                      </option>
+                      <option value="Indoor Field">Indoor Field</option>
+                      <option value="High Speed Treadmill">
+                        High Speed Treadmill
+                      </option>
+                      <option value="Massage Therapy">Massage Therapy</option>
+                      <option value="Physiotherapy/Chiropractic Rehab/Prehab">
+                        Physiotherapy/Chiropractic Rehab/Prehab
+                      </option>
+                      <option value="Strength & Conditioning Coaching">
+                        Strength & Conditioning Coaching
+                      </option>
+                      <option value="Orthopaedic Care">Orthopaedic Care</option>
+                      <option value="Primary Medical Care">
+                        Primary Medical Care
+                      </option>
+                      <option value="Total Hemoglobin Mass Testing">
+                        Total Hemoglobin Mass Testing (via CO Rebreathing
+                        Method)
+                      </option>
+                      <option value="Complete Blood Profile (includes RBC, WBC, Hematocrit, Hemoglobin, etc.)">
+                        Complete Blood Profile (includes RBC, WBC, Hematocrit,
+                        Hemoglobin, etc.)
+                      </option>
+                      <option value="Comprehensive Metabolic Panel">
+                        Comprehensive Metabolic Panel
+                      </option>
+                      <option value="Ferritin/Iron/Total iron Binding Capacity">
+                        Ferritin/Iron/Total iron Binding Capacity
+                      </option>
+                      <option value="Creatine Kinase (CK/CPK)">
+                        Creatine Kinase (CK/CPK)
+                      </option>
+                      <option value="VO2 & Lactate Combined">
+                        VO2 & Lactate Combined
+                      </option>
+                      <option value="VO2 Threshold">VO2 Threshold</option>
+                      <option value="Lactate Threshold">
+                        Lactate Threshold
+                      </option>
+                      <option value="Supplemental O2 for Training / Recovery">
+                        Supplemental O2 for Training / Recovery
+                      </option>
+                      <option value="Integrated Training and Dietary Analysis ">
+                        Integrated Training and Dietary Analysis
+                      </option>
+                      <option value="Nutrition Group Presentation or Workshop">
+                        Nutrition Group Presentation or Workshop
+                      </option>
+                      <option value="Individual Consultation">
+                        Individual Consultation
+                      </option>
+                      <option value="Team Focus Session">
+                        Team Focus Session
+                      </option>
+                      <option value="Mental Group Presentation or Workshop">
+                        Mental Group Presentation or Workshop
+                      </option>
+                      <option value="Other">Other</option>
+                    </select>
+                    <textarea
+                      placeholder="Comment if needed"
+                      placename="Comments"
+                      onChange={(event) => {
+                        setNewEvent({
+                          ...newEvent,
+                          comment: event.target.value,
+                        });
+                      }}
+                      cols="61"
+                    ></textarea>
+                  </div>
 
-              <Calendar
-                localizer={localizer}
-                events={events}
-                startAccessor="start"
-                endAccessor="end"
-                defaultDate={new Date(yearStart, monthStart, dayStart)}
-                style={{ height: 700 }}
-                eventPropGetter={eventStyleGetter}
-                onSelectEvent={handleSelected}
-              />
+                  <div id="amountOfPeople" className="hidden-text">
+                    <input
+                      type="number"
+                      placeholder="Amount of people"
+                      onChange={(event) =>
+                        setNewEvent({
+                          ...newEvent,
+                          amountOfPeople: event.target.value,
+                        })
+                      }
+                    ></input>
+                  </div>
+
+                  <div id="priceForService" className="hidden-text">
+                    <input
+                      type="number"
+                      placeholder="Price for service"
+                      onChange={(event) =>
+                        setNewEvent({ ...newEvent, price: event.target.value })
+                      }
+                    />
+                  </div>
+
+                  <DatePicker
+                    placeholderText="Start Date"
+                    dateFormat="MM/dd/yyyy  EE hh:mm a"
+                    showTimeSelect
+                    selected={newEvent.start}
+                    onChange={(start) => setNewEvent({ ...newEvent, start })}
+                  />
+                  <DatePicker
+                    placeholderText="End Date"
+                    dateFormat="MM/dd/yyyy  EE hh:mm a"
+                    showTimeSelect
+                    selected={newEvent.end}
+                    onChange={(end) => setNewEvent({ ...newEvent, end })}
+                  />
+                  <button
+                    style={{ marginTop: "25px" }}
+                    onClick={handleAddEvent}
+                  >
+                    Add Event
+                  </button>
+                </div>
+
+                <Calendar
+                  localizer={localizer}
+                  events={events}
+                  startAccessor="start"
+                  endAccessor="end"
+                  defaultDate={new Date(yearStart, monthStart, dayStart)}
+                  style={{
+                    height: 700,
+                    margin: "0px 25px",
+                    backgroundColor: "white",
+                    marginBottom: "25px",
+                  }}
+                  eventPropGetter={eventStyleGetter}
+                  onSelectEvent={handleSelected}
+                />
+              </div>
             </div>
           );
         })}
@@ -1642,53 +1656,62 @@ function App() {
 
           return (
             <div>
-              <h1>
-                Camp Page {val.Team_Name} - {val.Camp_ID}
-              </h1>
+              <div class="navbar">
+                <img src={SignInImage} alt="HYPO2 Logo"></img>
 
-              <button
-                onClick={() => {
-                  navigate("/CampPage");
-                }}
-              >
-                Home Camp Page
-              </button>
-              <button
-                onClick={() => {
-                  navigate("/CampPage/Roster");
-                }}
-              >
-                Roster
-              </button>
-              <button
-                onClick={() => {
-                  navigate("/CampPage/Summary");
-                }}
-              >
-                Summary
-              </button>
-              <button
-                onClick={() => {
-                  navigate("/CampPage/Billing");
-                }}
-              >
-                Billing
-              </button>
+                <button
+                  onClick={() => {
+                    navigate("/CampPage");
+                  }}
+                >
+                  Home Camp Page
+                </button>
+                <button
+                  onClick={() => {
+                    navigate("/CampPage/Roster");
+                  }}
+                >
+                  Roster
+                </button>
+                <button
+                  onClick={() => {
+                    navigate("/CampPage/Summary");
+                  }}
+                >
+                  Summary
+                </button>
+                <button
+                  onClick={() => {
+                    navigate("/CampPage/Billing");
+                  }}
+                >
+                  Billing
+                </button>
 
-              <button onClick={backToCorrectHomePage}>
-                Return To Home Page
-              </button>
-
-              <Calendar
-                localizer={localizer}
-                events={events}
-                startAccessor="start"
-                endAccessor="end"
-                defaultDate={new Date(yearStart, monthStart, dayStart)}
-                style={{ height: 700 }}
-                eventPropGetter={eventStyleGetter}
-                onSelectEvent={handleSelected}
-              />
+                <button onClick={backToCorrectHomePage}>
+                  Return To Home Page
+                </button>
+              </div>
+              <div class="rightContent">
+                <h1>
+                  Camp Page {val.Team_Name} - {val.Camp_ID}
+                </h1>
+                <Calendar
+                  localizer={localizer}
+                  events={events}
+                  startAccessor="start"
+                  endAccessor="end"
+                  defaultDate={new Date(yearStart, monthStart, dayStart)}
+                  style={{
+                    height: 700,
+                    margin: "0px 25px",
+                    backgroundColor: "white",
+                    marginBottom: "25px",
+                  }}
+                  eventPropGetter={eventStyleGetter}
+                  onSelectEvent={handleSelected}
+                />
+              </div>
             </div>
           );
         })}
