@@ -15,8 +15,48 @@
   padding-top: 0px;
   background-color: #677a81;
   width: 85%;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   float: right;
+}
+.rightContent div.addEvent {
+  padding-left: 25px;
+}
+
+.addEvent button {
+  margin-top: 25px;
+  background-color: white;
+  width: 200px;
+  height: 40px;
+  font-size: 20px;
+  border: inset;
+}
+.addEvent button:hover {
+  background-color: #f5a900;
+  width: 200px;
+  height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  border: outset;
+}
+.name select {
+  display: block;
+  height: 40px;
+  font-size: 20px;
+}
+.name textarea {
+  font-size: 20px;
+}
+
+.rightContent div.sum {
+  margin-left: 20px;
+  padding-left: 5px;
+  height: 300px;
+  width: 70%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: white;
+  border: solid 5px black;
 }
 
 .rightContent h1 {
@@ -82,8 +122,6 @@
   cursor: pointer;
 }
 
-.update {
-}
 .update select {
   height: 40px;
   font-size: 25px;
