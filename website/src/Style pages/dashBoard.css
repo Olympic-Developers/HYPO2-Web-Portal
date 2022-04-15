@@ -164,3 +164,101 @@
   border: inset;
   cursor: pointer;
 }
+
+.roster label {
+  font-size: 25px;
+  text-align: right;
+  width: 10%;
+}
+.roster input {
+  width: 11%;
+  background-color: #677a81;
+  border: 1px black solid;
+  font-size: 25px;
+}
+.roster select {
+  width: 11%;
+  background-color: #677a81;
+  border: 1px black solid;
+  font-size: 25px;
+}
+.roster button {
+  width: 200px;
+  height: 40px;
+  font-size: 20px;
+  text-align: center;
+  border: outset;
+  margin-left: 20px;
+}
+.roster button:hover {
+  background-color: #f5a900;
+  border: inset;
+  cursor: pointer;
+}
+table {
+  width: 96%;
+  margin-bottom: 50px;
+}
+th {
+  font-size: 25px;
+  font-display: bold;
+  color: white;
+}
+td {
+  font-size: 25px;
+}
+tr {
+  height: 30px;
+  text-align: center;
+}
+
+.permission {
+  margin-left: 20px;
+}
+
+.permission button {
+  width: 200px;
+  height: 40px;
+  font-size: 20px;
+  text-align: center;
+  border: outset;
+  margin-left: 20px;
+}
+.permission button:hover {
+  background-color: #f5a900;
+  border: inset;
+  cursor: pointer;
+}
+
+.initial {
+  display: inline-block;
+  width: 40%;
+  margin: 25px;
+  text-align: center;
+}
+
+.initial h3 {
+  font-size: 25px;
+}
+.current {
+  display: inline-block;
+  width: 40%;
+  margin: 25px;
+  text-align: center;
+}
+.current h3 {
+  font-size: 25px;
+}
+
+.general {
+  margin: 25px;
+  font-size: 20px;
+}
+.core {
+  margin: 25px;
+  font-size: 20px;
+}
+.additional {
+  margin: 25px;
+  font-size: 20px;
+}

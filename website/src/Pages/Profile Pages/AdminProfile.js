@@ -173,7 +173,7 @@ function App() {
               signOut();
             }}
           >
-            Sign out
+            Sign Out
           </button>
         </div>
         <div class="rightContent">

@@ -5,6 +5,8 @@ import {
   authCheckCamp,
   getSessionStorage,
 } from "../Components/UserInfoAndAuth";
+import "../Style pages/dashBoard.css";
+import SignInImage from "../Style pages/Images/SignInLogo.png";
 
 function App() {
   // Set default value for navigate
@@ -75,123 +77,147 @@ function App() {
         {userInfo.map((val) => {
           return (
             <div>
-              <h1>
-                Camp Page {val.Team_Name} - {val.Camp_ID}
-              </h1>
-              <button
-                onClick={() => {
-                  navigate("/CampPage");
-                }}
-              >
-                Home Camp Page
-              </button>
-              <button
-                onClick={() => {
-                  navigate("/CampPage/Roster");
-                }}
-              >
-                Roster
-              </button>
-              <button
-                onClick={() => {
-                  navigate("/CampPage/Summary");
-                }}
-              >
-                Summary
-              </button>
-              <button
-                onClick={() => {
-                  navigate("/CampPage/Billing");
-                }}
-              >
-                Billing
-              </button>
-              <span>
-                {getSessionStorage("classification").toLowerCase() ===
-                "admin" ? (
-                  <button
-                    onClick={() => {
-                      navigate("/CampPage/AdminPermissions");
-                    }}
-                  >
-                    Admin Permissions
-                  </button>
-                ) : null}
-              </span>
-              <button onClick={backToCorrectHomePage}>
-                Return To Home Page
-              </button>
-
-              <h1>Roster</h1>
-
-              {rosterList.map((val) => {
-                const birthDateSplit = val.Birth_Date.split(/[- : T]/);
-
-                const year = birthDateSplit[0];
-                const month = birthDateSplit[1] - 1;
-                const day = birthDateSplit[2];
-                return (
-                  <div>
-                    Name: {val.Name} Role: {val.Role} Gender:
-                    {val.Gender.toLowerCase()} Date of Birth: {month}/{day}/
-                    {year}
-                  </div>
-                );
-              })}
-
-              <div>
-                <span className="roster">
-                  <label>Name: </label>
-                  <input
-                    type="text"
-                    name="name"
-                    onChange={(event) => {
-                      setName(event.target.value);
-                    }}
-                  />
-                </span>
-                <span className="roster">
-                  <label>Role: </label>
-                  <input
-                    type="text"
-                    name="name"
-                    onChange={(event) => {
-                      setRole(event.target.value);
-                    }}
-                  />
-                </span>
-                <span className="roster">
-                  <label>Birth-Date: </label>
-                  <input
-                    type="date"
-                    name="name"
-                    onChange={(event) => {
-                      setBirthDate(event.target.value);
-                    }}
-                  />
-                </span>
-                <span className="roster">
-                  <label>Gender: </label>
-                  <select
-                    id="country"
-                    name="country"
-                    onChange={(event) => {
-                      setGender(event.target.value);
-                    }}
-                  >
-                    <option value="Select One">Select One</option>
-                    <option value="MALE">MALE</option>
-                    <option value="FEMALE">FEMALE</option>
-                  </select>
-                </span>
+              <div class="navbar">
+                <img src={SignInImage} alt="HYPO2 Logo"></img>
                 <button
                   onClick={() => {
-                    sendRoster();
-                    window.location.reload(false);
+                    navigate("/CampPage");
                   }}
                 >
-                  Submit
+                  Home Camp Page
                 </button>
+                <button
+                  onClick={() => {
+                    navigate("/CampPage/Roster");
+                  }}
+                >
+                  Roster
+                </button>
+                <button
+                  onClick={() => {
+                    navigate("/CampPage/Summary");
+                  }}
+                >
+                  Summary
+                </button>
+                <button
+                  onClick={() => {
+                    navigate("/CampPage/Billing");
+                  }}
+                >
+                  Billing
+                </button>
+                <span>
+                  {getSessionStorage("classification").toLowerCase() ===
+                  "admin" ? (
+                    <button
+                      onClick={() => {
+                        navigate("/CampPage/AdminPermissions");
+                      }}
+                    >
+                      Admin Permissions
+                    </button>
+                  ) : null}
+                </span>
+                <button onClick={backToCorrectHomePage}>
+                  Return To Home Page
+                </button>
+              </div>
+              <div class="rightContent">
+                <h1>
+                  Camp Page {val.Team_Name} - {val.Camp_ID}
+                </h1>
+
+                <h1>Roster</h1>
+                <table>
+                  <tr>
+                    <th>
+                      <h2>Name</h2>
+                    </th>
+                    <th>
+                      <h2>Role</h2>
+                    </th>
+                    <th>
+                      <h2>Gender</h2>
+                    </th>
+                    <th>
+                      <h2>Date of Birth</h2>
+                    </th>
+                  </tr>
+                  {rosterList.map((val) => {
+                    const birthDateSplit = val.Birth_Date.split(/[- : T]/);
+
+                    const year = birthDateSplit[0];
+                    const month = birthDateSplit[1] - 1;
+                    const day = birthDateSplit[2];
+                    return (
+                      <tr>
+                        <td>{val.Name}</td>
+                        <td>{val.Role}</td>
+                        <td>{val.Gender.toLowerCase()}</td>
+                        <td>
+                          {month}/{day}/{year}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </table>
+
+                <div class="roster">
+                  <span>
+                    <label>Name: </label>
+                    <input
+                      type="text"
+                      name="name"
+                      onChange={(event) => {
+                        setName(event.target.value);
+                      }}
+                    />
+                  </span>
+                  <span>
+                    <label>Role: </label>
+                    <input
+                      type="text"
+                      name="name"
+                      onChange={(event) => {
+                        setRole(event.target.value);
+                      }}
+                    />
+                  </span>
+                  <span>
+                    <label>Birth-Date: </label>
+                    <input
+                      type="date"
+                      name="name"
+                      onChange={(event) => {
+                        setBirthDate(event.target.value);
+                      }}
+                    />
+                  </span>
+                  <span>
+                    <label>Gender: </label>
+                    <select
+                      id="country"
+                      name="country"
+                      onChange={(event) => {
+                        setGender(event.target.value);
+                      }}
+                    >
+                      <option value="Select One">Select One</option>
+                      <option value="MALE">MALE</option>
+                      <option value="FEMALE">FEMALE</option>
+                      <option value="OTHER">OTHER</option>
+                    </select>
+                  </span>
+                  <button
+                    onClick={() => {
+                      sendRoster();
+                      window.location.reload(false);
+                    }}
+                  >
+                    Submit
+                  </button>
+                </div>
               </div>
             </div>
           );
