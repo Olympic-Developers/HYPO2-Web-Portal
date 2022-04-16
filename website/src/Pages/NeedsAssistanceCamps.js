@@ -62,7 +62,6 @@ function App() {
           <img src={SignInImage} alt="HYPO2 Logo"></img>
 
           <button
-            style={{ display: "inline", marginRight: "20px" }}
             onClick={() => {
               navigate("/AdminProfile");
             }}
@@ -70,52 +69,46 @@ function App() {
             Home
           </button>
           <button
-            style={{ display: "inline", marginRight: "20px" }}
             onClick={() => {
               navigate("/AdminProfile/PendingCamps");
             }}
           >
-            Pending Camps
+            Pending
           </button>
           <button
-            style={{ display: "inline", marginRight: "20px" }}
             onClick={() => {
               navigate("/AdminProfile/NeedsAssistance");
             }}
           >
-            Camps That Need Assistance
+            Needs Assistance
           </button>
           <button
-            style={{ display: "inline", marginRight: "20px" }}
             onClick={() => {
               navigate("/AdminProfile/ConfirmedCamps");
             }}
           >
-            Confirmed Camps
+            Confirmed
           </button>
           <button
-            style={{ display: "inline", marginRight: "20px" }}
             onClick={() => {
               navigate("/AdminProfile/PastCamps");
             }}
           >
-            Past Camps
+            Past
           </button>
           <button
-            style={{ display: "inline", marginRight: "20px" }}
             onClick={() => {
               navigate("/AdminProfile/UpdatePrices");
             }}
           >
-            Update Prices Of Services
+            Update Prices
           </button>
           <button
-            style={{ display: "inline", marginRight: "20px" }}
             onClick={() => {
               signOut();
             }}
           >
-            Sign out
+            Sign Out
           </button>
         </div>
         <div class="rightContent">

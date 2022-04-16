@@ -64,6 +64,16 @@
   color: white;
 }
 
+.rightContent h1.intakeHeader {
+  padding-left: 0px;
+  margin-bottom: 0px;
+  color: white;
+}
+
+.intakeLabel {
+  margin-left: 4px;
+}
+
 .campList {
   margin: 25px;
   display: block;
@@ -138,7 +148,7 @@
   display: inline;
   margin-right: 10px;
   font-size: 20px;
-  margin-left: 20px;
+  margin-left: 25px;
   font-weight: bold;
 }
 .update p.currentPrice {
@@ -157,12 +167,16 @@
   font-size: 15px;
   text-align: center;
   border: outset;
-  margin-left: 20px;
+  margin-left: 25px;
 }
 .update button:hover {
   background-color: #f5a900;
   border: inset;
   cursor: pointer;
+}
+
+.roster {
+  margin-left: 25px;
 }
 
 .roster label {

@@ -291,14 +291,14 @@ function Intake() {
         </div>
         <div class="rightContent">
           <div class="general">
-            <h1>General Information</h1>
+            <h1 class="intakeHeader">General Information</h1>
 
             <span className="info-block">
               <h2>Team Name: {getSessionStorage("username").toLowerCase()}</h2>
             </span>
 
             <span className="info-block">
-              <label>Start Date:</label>
+              <label class="intakeLabel">Start Date:</label>
               <input
                 type="date"
                 name="name"
@@ -311,7 +311,7 @@ function Intake() {
             </span>
 
             <span className="info-block">
-              <label>End Date: </label>
+              <label class="intakeLabel">End Date: </label>
               <input
                 type="date"
                 name="name"
@@ -322,7 +322,7 @@ function Intake() {
             </span>
 
             <span className="info-block">
-              <label>Number of Personnel: </label>
+              <label class="intakeLabel">Number of Personnel: </label>
               <input
                 type="number"
                 name="name"
@@ -333,7 +333,7 @@ function Intake() {
             </span>
 
             <span className="info-block">
-              <label>Home Country </label>
+              <label class="intakeLabel">Home Country </label>
               <select
                 id="country"
                 name="country"
@@ -613,7 +613,7 @@ function Intake() {
             </span>
 
             <span className="info-block">
-              <label>Name of Main Contact Person: </label>
+              <label class="intakeLabel">Name of Main Contact Person: </label>
               <input
                 type="text"
                 name="name"
@@ -624,7 +624,7 @@ function Intake() {
             </span>
 
             <span className="info-block">
-              <label>Main Contact Person E-mail:</label>
+              <label class="intakeLabel">Main Contact Person E-mail:</label>
               <input
                 type="text"
                 name="name"
@@ -635,7 +635,7 @@ function Intake() {
             </span>
 
             <span className="info-block">
-              <label>Main Contact Person Phone:</label>
+              <label class="intakeLabel">Main Contact Person Phone:</label>
               <input
                 type="tel"
                 name="name"
@@ -646,7 +646,7 @@ function Intake() {
             </span>
 
             <span className="info-block">
-              <label>
+              <label class="intakeLabel">
                 Name of On-site Contact Person (if different than above):
               </label>
               <input
@@ -659,7 +659,7 @@ function Intake() {
             </span>
 
             <span className="info-block">
-              <label>On-site Contact Person E-mail: </label>
+              <label class="intakeLabel">On-site Contact Person E-mail: </label>
               <input
                 type="text"
                 name="name"
@@ -670,7 +670,9 @@ function Intake() {
             </span>
 
             <span className="info-block">
-              <label>On-site Contact Person Mobile Number: </label>
+              <label class="intakeLabel">
+                On-site Contact Person Mobile Number:{" "}
+              </label>
               <input
                 type="text"
                 name="name"
@@ -680,7 +682,9 @@ function Intake() {
               />
             </span>
 
-            <h1 className="head-section-header">Core Training Camp Needs</h1>
+            <h1 className="head-section-header" class="intakeHeader">
+              Core Training Camp Needs
+            </h1>
             <p className="sub-section-para">
               (please check all desired training camp options)
             </p>
@@ -1138,7 +1142,7 @@ function Intake() {
             </span>
           </div>
           <div class="additional">
-            <h1 className="head-section-header">
+            <h1 className="head-section-header" class="intakeHeader">
               Additional High Performance Services
             </h1>
 

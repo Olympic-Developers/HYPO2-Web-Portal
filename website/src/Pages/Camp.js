@@ -366,11 +366,18 @@ function App() {
   ) {
     return (
       <div>
-        <h1>
-          The team is currently working on setting up your camp please check
-          back soon!
-        </h1>
-        <button onClick={backToCorrectHomePage}>return to home page</button>
+        <div class="navbar">
+          <img src={SignInImage} alt="HYPO2 Logo"></img>
+
+          <button onClick={backToCorrectHomePage}>return to home page</button>
+        </div>
+
+        <div class="rightContent">
+          <h1>
+            The team is currently working on setting up your camp please check
+            back soon!
+          </h1>
+        </div>
       </div>
     );
   } else if (

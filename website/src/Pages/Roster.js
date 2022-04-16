@@ -148,7 +148,7 @@ function App() {
                     const birthDateSplit = val.Birth_Date.split(/[- : T]/);
 
                     const year = birthDateSplit[0];
-                    const month = birthDateSplit[1] - 1;
+                    const month = birthDateSplit[1];
                     const day = birthDateSplit[2];
                     return (
                       <tr>
@@ -235,52 +235,86 @@ function App() {
         {userInfo.map((val) => {
           return (
             <div>
-              <h1>
-                Camp Page {val.Team_Name} - {val.Camp_ID}
-              </h1>
-              <button
-                onClick={() => {
-                  navigate("/CampPage");
-                }}
-              >
-                Home Camp Page
-              </button>
-              <button
-                onClick={() => {
-                  navigate("/CampPage/Roster");
-                }}
-              >
-                Roster
-              </button>
-              <button
-                onClick={() => {
-                  navigate("/CampPage/Summary");
-                }}
-              >
-                Summary
-              </button>
-              <button
-                onClick={() => {
-                  navigate("/CampPage/Billing");
-                }}
-              >
-                Billing
-              </button>
+              <div class="navbar">
+                <img src={SignInImage} alt="HYPO2 Logo"></img>
+                <button
+                  onClick={() => {
+                    navigate("/CampPage");
+                  }}
+                >
+                  Home Camp Page
+                </button>
+                <button
+                  onClick={() => {
+                    navigate("/CampPage/Roster");
+                  }}
+                >
+                  Roster
+                </button>
+                <button
+                  onClick={() => {
+                    navigate("/CampPage/Summary");
+                  }}
+                >
+                  Summary
+                </button>
+                <button
+                  onClick={() => {
+                    navigate("/CampPage/Billing");
+                  }}
+                >
+                  Billing
+                </button>
+                <span>
+                  {getSessionStorage("classification").toLowerCase() ===
+                  "admin" ? (
+                    <button
+                      onClick={() => {
+                        navigate("/CampPage/AdminPermissions");
+                      }}
+                    >
+                      Admin Permissions
+                    </button>
+                  ) : null}
+                </span>
+                <button onClick={backToCorrectHomePage}>
+                  Return To Home Page
+                </button>
+              </div>
+              <div class="rightContent">
+                <h1>
+                  Camp Page {val.Team_Name} - {val.Camp_ID}
+                </h1>
 
-              <button onClick={backToCorrectHomePage}>
-                Return To Home Page
-              </button>
+                <h1>Roster</h1>
+                <table>
+                  <tr>
+                    <th>
+                      <h2>Name</h2>
+                    </th>
+                    <th>
+                      <h2>Role</h2>
+                    </th>
+                    <th>
+                      <h2>Gender</h2>
+                    </th>
+                  </tr>
+                  {rosterList.map((val) => {
+                    const birthDateSplit = val.Birth_Date.split(/[- : T]/);
 
-              <h1>ROSTER</h1>
-            </div>
-          );
-        })}
-
-        {rosterList.map((val) => {
-          return (
-            <div>
-              Name: {val.Name} Role: {val.Role} Gender:
-              {val.Gender.toLowerCase()}
+                    const year = birthDateSplit[0];
+                    const month = birthDateSplit[1];
+                    const day = birthDateSplit[2];
+                    return (
+                      <tr>
+                        <td>{val.Name}</td>
+                        <td>{val.Role}</td>
+                        <td>{val.Gender.toLowerCase()}</td>
+                      </tr>
+                    );
+                  })}
+                </table>
+              </div>
             </div>
           );
         })}
