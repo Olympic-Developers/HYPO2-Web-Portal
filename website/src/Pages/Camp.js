@@ -158,8 +158,6 @@ function App() {
   }
 
   function calcEventPrice() {
-    console.log(tempTitle);
-
     if (tempTitle === "Cafeteria Buffet Breakfast") {
       newEvent.price =
         priceList[0].University_Cafeteria_Breakfast * newEvent.amountOfPeople;
@@ -198,9 +196,7 @@ function App() {
         priceList[0].Massage_Therapy_10 * newEvent.amountOfPeople;
     } else if (tempTitle === "Physiotherapy/Chiropractic Rehab/Prehab") {
       newEvent.price = priceList[0].Physio_Chiro * newEvent.amountOfPeople;
-    } else if (
-      tempTitle === "Total Hemoglobin Mass Testing(via CO Rebreathing method)"
-    ) {
+    } else if (tempTitle === "Total Hemoglobin Mass Testing") {
       newEvent.price =
         priceList[0].Hemoglobin_Mass_Testing * newEvent.amountOfPeople;
     } else if (
@@ -245,6 +241,7 @@ function App() {
   }
 
   function handleAddEvent() {
+    console.log(tempTitle);
     if (newEvent.start === null || newEvent.end === null || tempTitle === "") {
       alert(
         "Please make sure to enter a start and end date and select a event"
@@ -1182,8 +1179,7 @@ function App() {
                         Primary Medical Care
                       </option>
                       <option value="Total Hemoglobin Mass Testing">
-                        Total Hemoglobin Mass Testing (via CO Rebreathing
-                        Method)
+                        Total Hemoglobin Mass Testing
                       </option>
                       <option value="Complete Blood Profile (includes RBC, WBC, Hematocrit, Hemoglobin, etc.)">
                         Complete Blood Profile (includes RBC, WBC, Hematocrit,
@@ -1524,8 +1520,7 @@ function App() {
                         Primary Medical Care
                       </option>
                       <option value="Total Hemoglobin Mass Testing">
-                        Total Hemoglobin Mass Testing (via CO Rebreathing
-                        Method)
+                        Total Hemoglobin Mass Testing
                       </option>
                       <option value="Complete Blood Profile (includes RBC, WBC, Hematocrit, Hemoglobin, etc.)">
                         Complete Blood Profile (includes RBC, WBC, Hematocrit,

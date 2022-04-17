@@ -15,7 +15,6 @@ function App() {
   const [singleEvent, setSingleEvent] = useState([]);
   const [didLoad, setDidLoad] = useState(false);
   const [events, setEvents] = useState([]);
-  const [singleEventFlag, setsSingleEventFlag] = useState(false);
 
   useEffect(() => {
     if (!didLoad) {
@@ -53,7 +52,6 @@ function App() {
     }).then((response) => {
       // put information into getUserCampsList array
       setSingleEvent(response.data);
-      setsSingleEventFlag(true);
     });
   }
 
@@ -69,23 +67,21 @@ function App() {
     return (
       <div>
         <p>
-          {singleEventFlag ? (
-            <div>
-              <div class="navbar">
-                <img src={SignInImage} alt="HYPO2 Logo"></img>
-                <button
-                  onClick={() => {
-                    navigate(-1);
-                  }}
-                >
-                  Back to Calendar
-                </button>
-              </div>
-              <div class="rightContent">
-                <h1>Event was deleted and no longer exist</h1>
-              </div>
+          <div>
+            <div class="navbar">
+              <img src={SignInImage} alt="HYPO2 Logo"></img>
+              <button
+                onClick={() => {
+                  navigate(-1);
+                }}
+              >
+                Back to Calendar
+              </button>
             </div>
-          ) : null}
+            <div class="rightContent">
+              <h1>Event was deleted and no longer exist</h1>
+            </div>
+          </div>
         </p>
       </div>
     );
@@ -164,7 +160,6 @@ function App() {
                   status: "Camp Confirmed",
                 });
                 setSessionStorage("Camp Confirmed", "Needs Assistance");
-                setSingleEvent(null);
               }
               setDidLoad(false);
             });
