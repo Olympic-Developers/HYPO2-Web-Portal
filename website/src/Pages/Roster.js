@@ -265,18 +265,6 @@ function App() {
                 >
                   Billing
                 </button>
-                <span>
-                  {getSessionStorage("classification").toLowerCase() ===
-                  "admin" ? (
-                    <button
-                      onClick={() => {
-                        navigate("/CampPage/AdminPermissions");
-                      }}
-                    >
-                      Admin Permissions
-                    </button>
-                  ) : null}
-                </span>
                 <button onClick={backToCorrectHomePage}>
                   Return To Home Page
                 </button>
