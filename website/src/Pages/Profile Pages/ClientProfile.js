@@ -31,7 +31,7 @@ function App() {
 
   // to get information of all user's camps
   const getCamps = () => {
-    Axios.get("http://localhost:3001/UserCamps", {
+    Axios.get("/api/UserCamps", {
       params: { username: getSessionStorage("username").toLowerCase() },
     }).then((response) => {
       // put information into getUserCampsList array

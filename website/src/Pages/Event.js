@@ -47,7 +47,7 @@ function App() {
 
   // get information for event we are looking at
   function getSingleEvent() {
-    Axios.get("http://localhost:3001/getSingleEventInfo", {
+    Axios.get("/api/getSingleEventInfo", {
       params: { id: getSessionStorage("eventNumber") },
     }).then((response) => {
       // put information into getUserCampsList array
@@ -56,7 +56,7 @@ function App() {
   }
 
   function getUserCamps() {
-    Axios.get("http://localhost:3001/getUserEvent", {
+    Axios.get("/api/getUserEvent", {
       params: { id: getSessionStorage("campNumber") },
     }).then((response) => {
       setEvents(response.data);
@@ -112,7 +112,7 @@ function App() {
           // Function for request removal
           function requestRemoval() {
             // Always set camp to Needs Assistance
-            Axios.post("http://localhost:3001/setCampStatus", {
+            Axios.post("/api/setCampStatus", {
               campID: getSessionStorage("campNumber"),
               status: "Needs Assistance",
             }).then(() => {
@@ -120,7 +120,7 @@ function App() {
             });
 
             // Sets type of request needed for event (Removal)
-            Axios.post("http://localhost:3001/setEventRequest", {
+            Axios.post("/api/setEventRequest", {
               id: val.EventID,
               request: "Removal",
             }).then(() => {
@@ -131,12 +131,12 @@ function App() {
           // remove request
           function removeRequest() {
             // Sets type of request needed for event (no Request)
-            Axios.post("http://localhost:3001/setEventRequest", {
+            Axios.post("/api/setEventRequest", {
               id: val.EventID,
               request: "No Request",
             }).then(() => {
               if (checkCampsForConfirmedRequests()) {
-                Axios.post("http://localhost:3001/setCampStatus", {
+                Axios.post("/api/setCampStatus", {
                   campID: getSessionStorage("campNumber"),
                   status: "Camp Confirmed",
                 });
@@ -146,16 +146,14 @@ function App() {
           }
 
           function deleteEventForever() {
-            Axios.post("http://localhost:3001/subCurrentPrices", {
+            Axios.post("/api/subCurrentPrices", {
               campID: getSessionStorage("campNumber"),
               price: val.Price,
             });
 
-            Axios.delete(
-              `http://localhost:3001/deleteSingleEvent/${val.EventID}`
-            ).then(() => {
+            Axios.delete(`/api/deleteSingleEvent/${val.EventID}`).then(() => {
               if (checkCampsForConfirmedRequests()) {
-                Axios.post("http://localhost:3001/setCampStatus", {
+                Axios.post("/api/setCampStatus", {
                   campID: getSessionStorage("campNumber"),
                   status: "Camp Confirmed",
                 });

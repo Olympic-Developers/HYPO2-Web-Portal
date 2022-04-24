@@ -24,7 +24,7 @@ function App() {
   }, [didLoad, navigate]);
 
   function getInfo() {
-    Axios.get("http://localhost:3001/CampInfo", {
+    Axios.get("/api/CampInfo", {
       params: { id: getSessionStorage("campNumber") },
     }).then((response) => {
       // put information into getUserCampsList array

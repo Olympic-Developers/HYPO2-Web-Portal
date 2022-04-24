@@ -12,7 +12,7 @@ function App() {
   const [didLoad, setDidLoad] = useState(false);
 
   function sendNewPrice() {
-    Axios.post("http://localhost:3001/sendPrice", {
+    Axios.post("/api/sendPrice", {
       newPrice: newPrice,
       colName: colName,
     }).then(() => {
@@ -49,7 +49,7 @@ function App() {
   }, [navigate, didLoad]);
 
   const getPrice = () => {
-    Axios.get("http://localhost:3001/Prices").then((response) => {
+    Axios.get("/api/Prices").then((response) => {
       // put information into getUserCampsList array
       setPriceList(response.data);
     });

@@ -14,7 +14,7 @@ const db = mysql.createConnection({
   database: "Intake",
 });
 
-app.post("/intake", (req, res) => {
+app.post("/api/intake", (req, res) => {
   const teamName = req.body.teamName;
   const startDate = req.body.startDate;
   const endDate = req.body.endDate;
@@ -275,7 +275,7 @@ app.post("/intake", (req, res) => {
   );
 });
 
-app.get("/Summary", (req, res) => {
+app.get("/api/Summary", (req, res) => {
   let username = req.query.username;
   db.query(
     `SELECT * FROM GeneralIntake Left Join CoreCampNeeds ON GeneralIntake.Camp_ID = CoreCampNeeds.Camp_ID Left Join AdditionalServices ON GeneralIntake.Camp_ID = AdditionalServices.Camp_ID Left JOIN IntakeInfo ON GeneralIntake.Camp_ID = IntakeInfo.Camp_ID where GeneralIntake.Team_Name = "${username}" ORDER BY GeneralIntake.Camp_ID DESC Limit 1`,
@@ -289,7 +289,7 @@ app.get("/Summary", (req, res) => {
   );
 });
 
-app.get("/getCampsByStatus", (req, res) => {
+app.get("/api/getCampsByStatus", (req, res) => {
   let status = req.query.status;
 
   db.query(
@@ -304,7 +304,7 @@ app.get("/getCampsByStatus", (req, res) => {
   );
 });
 
-app.get("/UserCamps", (req, res) => {
+app.get("/api/UserCamps", (req, res) => {
   let username = req.query.username;
 
   db.query(
@@ -319,7 +319,7 @@ app.get("/UserCamps", (req, res) => {
   );
 });
 
-app.get("/CampInfo", (req, res) => {
+app.get("/api/CampInfo", (req, res) => {
   let id = req.query.id;
 
   db.query(
@@ -334,7 +334,7 @@ app.get("/CampInfo", (req, res) => {
   );
 });
 
-app.get("/Prices", (req, res) => {
+app.get("/api/Prices", (req, res) => {
   db.query("SELECT * FROM BillingIntake", (err, result) => {
     if (err) {
       console.log(err);
@@ -344,7 +344,7 @@ app.get("/Prices", (req, res) => {
   });
 });
 
-app.post("/addEvent", (req, res) => {
+app.post("/api/addEvent", (req, res) => {
   const Camp_ID = req.body.Camp_ID;
   const actClass = req.body.actClass;
   const actStartTime = moment
@@ -380,7 +380,7 @@ app.post("/addEvent", (req, res) => {
   );
 });
 
-app.get("/getAllEvent", (req, res) => {
+app.get("/api/getAllEvent", (req, res) => {
   db.query("SELECT * FROM ScheduleTable", (err, result) => {
     if (err) {
       console.log(err);
@@ -390,7 +390,7 @@ app.get("/getAllEvent", (req, res) => {
   });
 });
 
-app.get("/getUserEvent", (req, res) => {
+app.get("/api/getUserEvent", (req, res) => {
   let id = req.query.id;
   db.query(
     `SELECT * FROM ScheduleTable WHERE CAMP_ID = "${id}"`,
@@ -404,7 +404,7 @@ app.get("/getUserEvent", (req, res) => {
   );
 });
 
-app.post("/sendPrice", (req, res) => {
+app.post("/api/sendPrice", (req, res) => {
   const newPrice = req.body.newPrice;
   const colName = req.body.colName;
 
@@ -420,7 +420,7 @@ app.post("/sendPrice", (req, res) => {
   );
 });
 
-app.post("/updateTransport", (req, res) => {
+app.post("/api/updateTransport", (req, res) => {
   const campID = req.body.campID;
   const price = req.body.price;
 
@@ -436,7 +436,7 @@ app.post("/updateTransport", (req, res) => {
   );
 });
 
-app.post("/subCurrentPrices", (req, res) => {
+app.post("/api/subCurrentPrices", (req, res) => {
   const campID = req.body.campID;
   const price = req.body.price;
 
@@ -452,7 +452,7 @@ app.post("/subCurrentPrices", (req, res) => {
   );
 });
 
-app.post("/updateAccom", (req, res) => {
+app.post("/api/updateAccom", (req, res) => {
   const campID = req.body.campID;
   const price = req.body.price;
 
@@ -467,7 +467,7 @@ app.post("/updateAccom", (req, res) => {
     }
   );
 });
-app.post("/updateCurrent", (req, res) => {
+app.post("/api/updateCurrent", (req, res) => {
   const campID = req.body.campID;
   const price = req.body.price;
 
@@ -483,7 +483,7 @@ app.post("/updateCurrent", (req, res) => {
   );
 });
 
-app.post("/updateInit", (req, res) => {
+app.post("/api/updateInit", (req, res) => {
   const campID = req.body.campID;
   const price = req.body.price;
 
@@ -508,7 +508,7 @@ app.post("/updateInit", (req, res) => {
     }
   );
 });
-app.post("/setCampStatus", (req, res) => {
+app.post("/api/setCampStatus", (req, res) => {
   const status = req.body.status;
   const campID = req.body.campID;
 
@@ -523,7 +523,7 @@ app.post("/setCampStatus", (req, res) => {
     }
   );
 });
-app.post("/setEventRequest", (req, res) => {
+app.post("/api/setEventRequest", (req, res) => {
   const id = req.body.id;
   const request = req.body.request;
 
@@ -539,7 +539,7 @@ app.post("/setEventRequest", (req, res) => {
   );
 });
 
-app.get("/getSingleEventInfo", (req, res) => {
+app.get("/api/getSingleEventInfo", (req, res) => {
   let id = req.query.id;
   db.query(
     `SELECT * FROM ScheduleTable WHERE EventID = "${id}"`,
@@ -553,7 +553,7 @@ app.get("/getSingleEventInfo", (req, res) => {
   );
 });
 
-app.delete("/deleteSingleEvent/:id", (req, res) => {
+app.delete("/api/deleteSingleEvent/:id", (req, res) => {
   let id = req.params.id;
   db.query(
     `DELETE FROM ScheduleTable WHERE EventID = "${id}"`,
@@ -567,7 +567,7 @@ app.delete("/deleteSingleEvent/:id", (req, res) => {
   );
 });
 
-app.delete("/deleteCamp/:id", (req, res) => {
+app.delete("/api/deleteCamp/:id", (req, res) => {
   let id = req.params.id;
   db.query(
     `DELETE FROM ScheduleTable WHERE Camp_ID = "${id}"`,
@@ -625,7 +625,7 @@ app.delete("/deleteCamp/:id", (req, res) => {
   });
 });
 
-app.get("/getRoster", (req, res) => {
+app.get("/api/getRoster", (req, res) => {
   let id = req.query.id;
   db.query(`SELECT * FROM Roster WHERE Camp_ID = "${id}"`, (err, result) => {
     if (err) {
@@ -636,7 +636,7 @@ app.get("/getRoster", (req, res) => {
   });
 });
 
-app.post("/sendRoster", (req, res) => {
+app.post("/api/sendRoster", (req, res) => {
   const id = req.body.id;
   const name = req.body.name;
   const role = req.body.role;
@@ -658,7 +658,7 @@ app.post("/sendRoster", (req, res) => {
   );
 });
 
-app.get("/getStaffSchedule", (req, res) => {
+app.get("/api/getStaffSchedule", (req, res) => {
   let activityClassOne = req.query.activityClassOne;
   let activityClassTwo = req.query.activityClassTwo;
   let activityClassThree = req.query.activityClassThree;
@@ -675,6 +675,7 @@ app.get("/getStaffSchedule", (req, res) => {
   );
 });
 
-app.listen(3001, () => {
-  console.log("yay, your server is running on port 3001");
+const port = process.env.port || 5000;
+app.listen(port, () => {
+  console.log(`yay, your server is running on port ${port}`);
 });

@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Intake from "./Pages/Intake";
 import SignIn from "./Pages/SignIn";
 import StaffProfile from "./Pages/Profile Pages/StaffProfile";

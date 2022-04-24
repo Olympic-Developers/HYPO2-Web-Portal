@@ -157,7 +157,7 @@ function Intake() {
       contactPhone !== ""
     ) {
       // push info to database
-      Axios.post("http://localhost:3001/intake", {
+      Axios.post("/api/intake", {
         // GeneralIntake Table Posts
         teamName: teamName,
         startDate: startDate,

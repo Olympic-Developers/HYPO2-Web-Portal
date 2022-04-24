@@ -30,7 +30,7 @@ function App() {
     }
   }
   function sendRoster() {
-    Axios.post("http://localhost:3001/sendRoster", {
+    Axios.post("/api/sendRoster", {
       id: id,
       name: name,
       birth: birthDate,
@@ -50,7 +50,7 @@ function App() {
   }, [navigate, didLoad]);
 
   function getInfo() {
-    Axios.get("http://localhost:3001/CampInfo", {
+    Axios.get("/api/CampInfo", {
       params: { id: getSessionStorage("campNumber") },
     }).then((response) => {
       // put information into getUserCampsList array
@@ -59,7 +59,7 @@ function App() {
   }
 
   function getRoster() {
-    Axios.get("http://localhost:3001/getRoster", {
+    Axios.get("/api/getRoster", {
       params: { id: getSessionStorage("campNumber") },
     }).then((response) => {
       setRosterList(response.data);

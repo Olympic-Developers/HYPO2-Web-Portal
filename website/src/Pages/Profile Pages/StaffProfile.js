@@ -62,7 +62,7 @@ function App() {
   });
 
   function getStaffSchedule() {
-    Axios.get("http://localhost:3001/getStaffSchedule", {
+    Axios.get("/api/getStaffSchedule", {
       params: {
         activityClassOne: getSessionStorage("jobRoleOne"),
         activityClassTwo: getSessionStorage("jobRoleTwo"),

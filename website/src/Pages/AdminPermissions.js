@@ -25,7 +25,7 @@ function App() {
   }, [didLoad, navigate]);
 
   function getInfo() {
-    Axios.get("http://localhost:3001/CampInfo", {
+    Axios.get("/api/CampInfo", {
       params: { id: getSessionStorage("campNumber") },
     }).then((response) => {
       // put information into getUserCampsList array
@@ -105,7 +105,7 @@ function App() {
                 </p>
                 <button
                   onClick={() => {
-                    Axios.post("http://localhost:3001/setCampStatus", {
+                    Axios.post("/api/setCampStatus", {
                       campID: getSessionStorage("campNumber"),
                       status: "Past Camp",
                     }).then(() => {
@@ -128,9 +128,7 @@ function App() {
                 <button
                   onClick={() => {
                     Axios.delete(
-                      `http://localhost:3001/deleteCamp/${getSessionStorage(
-                        "campNumber"
-                      )}`
+                      `/api/deleteCamp/${getSessionStorage("campNumber")}`
                     ).then(() => {
                       navigate("/AdminProfile");
                     });

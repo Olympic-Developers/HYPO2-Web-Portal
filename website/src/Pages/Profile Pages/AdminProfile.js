@@ -44,7 +44,7 @@ function App() {
   }, [didLoad, navigate]);
 
   function getAllCamps() {
-    Axios.get("http://localhost:3001/getAllEvent").then((response) => {
+    Axios.get("/api/getAllEvent").then((response) => {
       getEvents(response.data);
 
       let index = 0;

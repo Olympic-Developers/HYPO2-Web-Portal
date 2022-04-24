@@ -28,7 +28,7 @@ function Summary() {
 
   // get summary information
   const getSummary = () => {
-    Axios.get("http://localhost:3001/Summary", {
+    Axios.get("/api/Summary", {
       params: { username: getSessionStorage("username").toLowerCase() },
     }).then((response) => {
       // set values in array for holding summary information

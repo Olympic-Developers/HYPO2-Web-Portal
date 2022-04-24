@@ -31,7 +31,7 @@ function App() {
 
   // to get information of all camps
   const getAllCamps = () => {
-    Axios.get("http://localhost:3001/getCampsByStatus", {
+    Axios.get("/api/getCampsByStatus", {
       params: { status: "Needs Assistance" },
     }).then((response) => {
       // put information into allCampList array

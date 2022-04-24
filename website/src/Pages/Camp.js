@@ -49,7 +49,7 @@ function App() {
     locales,
   });
   const getPrice = () => {
-    Axios.get("http://localhost:3001/Prices").then((response) => {
+    Axios.get("/api/Prices").then((response) => {
       // put information into getUserCampsList array
       setPriceList(response.data);
     });
@@ -66,7 +66,7 @@ function App() {
   }, [didLoad, navigate]);
 
   function getUserCamps() {
-    Axios.get("http://localhost:3001/getUserEvent", {
+    Axios.get("/api/getUserEvent", {
       params: { id: getSessionStorage("campNumber") },
     }).then((response) => {
       setEvents(response.data);
@@ -111,7 +111,7 @@ function App() {
   }
 
   function postActivity() {
-    Axios.post("http://localhost:3001/addEvent", {
+    Axios.post("/api/addEvent", {
       // GeneralIntake Table Posts
       Camp_ID: getSessionStorage("campNumber"),
       actClass: newEvent.activityClass,
@@ -134,12 +134,12 @@ function App() {
       getSessionStorage("campProgressType") ===
       "Pending Camp Confirmation Needed"
     ) {
-      Axios.post("http://localhost:3001/updateInit", {
+      Axios.post("/api/updateInit", {
         campID: getSessionStorage("campNumber"),
         price: newEvent.price,
       });
     } else {
-      Axios.post("http://localhost:3001/updateCurrent", {
+      Axios.post("/api/updateCurrent", {
         campID: getSessionStorage("campNumber"),
         price: newEvent.price,
       });
@@ -149,7 +149,7 @@ function App() {
   function updateTransportPrice(price) {
     console.log(price);
 
-    Axios.post("http://localhost:3001/updateTransport", {
+    Axios.post("/api/updateTransport", {
       campID: getSessionStorage("campNumber"),
       price: price,
     }).then(() => {
@@ -265,7 +265,7 @@ function App() {
     }
 
     if (getSessionStorage("classification").toLowerCase() === "client") {
-      Axios.post("http://localhost:3001/setCampStatus", {
+      Axios.post("/api/setCampStatus", {
         campID: getSessionStorage("campNumber"),
         status: "Needs Assistance",
       }).then(() => {
@@ -347,7 +347,7 @@ function App() {
   }
 
   function getInfo() {
-    Axios.get("http://localhost:3001/CampInfo", {
+    Axios.get("/api/CampInfo", {
       params: { id: getSessionStorage("campNumber") },
     }).then((response) => {
       // put information into getUserCampsList array
@@ -481,7 +481,7 @@ function App() {
                 }
               }
             }
-            Axios.post("http://localhost:3001/updateAccom", {
+            Axios.post("/api/updateAccom", {
               campID: getSessionStorage("campNumber"),
               price: accomPrice,
             });
@@ -605,7 +605,7 @@ function App() {
 
                     console.log(CampID);
 
-                    Axios.post("http://localhost:3001/setCampStatus", {
+                    Axios.post("/api/setCampStatus", {
                       campID: CampID,
                       status: "Camp Confirmed",
                     }).then(() => {
